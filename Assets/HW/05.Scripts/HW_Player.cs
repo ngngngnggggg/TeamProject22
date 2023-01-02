@@ -30,7 +30,9 @@ public class HW_Player : MonoBehaviour
     [Header("벽을 감지하는 레이 거리")] [SerializeField] private float range = 1f;
 
     [Header("벽에 힘을 주는 변수")] [SerializeField] private float sticktowallforce = 10f;
-    [Header("벽타는 속도")] [SerializeField] private float climbspeed = 1f;
+    [Header("벽타는 속도")] [SerializeField] private float climbspeed = 0.5f;
+
+    [Header("벽을 타는지 확인")] [SerializeField] private bool isclimbing = false;
    
 
     //플레이어가 벽을 감지하게 하는 레이 히트
@@ -48,17 +50,25 @@ public class HW_Player : MonoBehaviour
 
     private void Update()
     {
-        Move();
+        if ( Move()) Run();
         Grab();
-        Run();
         Jump();
         Climb();
 
+        // switch (animState)
+        // {
+        //     case EAnim.Walk:
+        //         if ( Move()) Run();
+        //         break;
+        //     case EAnim.Grab:
+        //         Grab();
+        //         break;
+        // }
     }
 
     //플레이어 이동 함수
     // ReSharper disable Unity.PerformanceAnalysis
-    private void Move()
+    private bool Move()
     {
         //플레이어 이동
         float h = Input.GetAxis("Horizontal");
@@ -69,19 +79,24 @@ public class HW_Player : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(moveDir);
         }
+        
+        float runSpeed = speed * (Input.GetKey(KeyCode.LeftShift) ? 2f : 1f);
+        
         //플레이어 이동   
-        transform.Translate(moveDir.normalized * (speed * Time.deltaTime), Space.World);
+        transform.Translate(moveDir.normalized * (runSpeed * Time.deltaTime), Space.World);
         
        
         
-        ChangeAnim(anim, moveDir, speed, canJump, hit);
+        ChangeAnim(anim, moveDir, runSpeed, canJump, hit);
+
+        return h != 0;
     }
 
     //플레이어 달리기 함수
     private void Run()
     {
         //LShift키를 누르면 3.0의 속도로 달리고 떼면 1.5의 속도로 걷기
-        speed = Input.GetKey(KeyCode.LeftShift) ? 3.0f : 1.5f;
+        //speed = Input.GetKey(KeyCode.LeftShift) ? 3.0f : 1.5f;
     }
     
     private void Jump()
@@ -144,34 +159,132 @@ public class HW_Player : MonoBehaviour
     }
 
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void Climb()
     {
-        RaycastHit hit;
-        if (Input.GetKey(KeyCode.C))
+
+        if (isclimbing == false && Input.GetKeyDown(KeyCode.C))
         {
-            if (Physics.Raycast(transform.position, transform.forward, out hit, range))
+            if (Physics.Raycast(transform.position + (Vector3.up *0.7f), transform.forward, out hit, range))
             {
                 if (hit.transform.tag == "Wall")
                 {
-                    transform.position += transform.forward * (Time.deltaTime * sticktowallforce);
-                    transform.position += transform.up * (Time.deltaTime * climbspeed);
-                    rigid.useGravity = false;
-                    
-                }
-                else 
-                {
-                        rigid.useGravity = true;
-
+                    isclimbing = true;
                 }
             }
         }
+
+        if (isclimbing)
+        {
+            if (Physics.Raycast(transform.position + (Vector3.up *0.7f), transform.forward, out hit, range))
+            {
+                if (hit.transform.tag == "Wall")
+                {
+
+                    transform.position += transform.up * Time.deltaTime * climbspeed;
+                    //콜라이더와 중력을 비활성화 한다.
+                    cc.enabled = false;
+                    rigid.useGravity = false;
+                    //애니메이션 실행
+                    anim.SetBool("isClimbing", true);
+
+
+                }
+               
+            }
+            else
+            {
+                isclimbing = false;
+                
+                StartCoroutine(ClimbCoroutine());
+            }
+        }
+        
+        
     }
-    
+
+    private IEnumerator ClimbCoroutine()
+    {
+        anim.SetBool("isClimbing", false);
+        anim.SetTrigger("finish");
+
+        yield return new WaitForSeconds(0.5f);
+        
+        float t=0f;
+        Vector3 startpos = transform.position;
+        Vector3 endpos = startpos + (Vector3.up * 0.1f)+(Vector3.right * 0.02f);
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+            transform.position = Vector3.Lerp(startpos, endpos, t);
+            yield return null;
+        }
+        //transform.position += Vector3.up * 0.1f;
+        //transform.position += Vector3.right * 0.02f;
+        
+        //yield return new WaitForSeconds(1f);
+        
+        
+        t=0f;
+        startpos = transform.position;
+        endpos = startpos + (Vector3.up * 0.2f)+(Vector3.right * 0.02f);
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+            transform.position = Vector3.Lerp(startpos, endpos, t);
+            yield return null;
+        }
+        
+        //transform.position += Vector3.up * 0.2f;
+        //transform.position += Vector3.right * 0.02f;
+        //yield return new WaitForSeconds(1f);
+        
+        t=0f;
+        startpos = transform.position;
+        endpos = startpos + (Vector3.up * 0.3f)+(Vector3.right * 0.42f);
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+            transform.position = Vector3.Lerp(startpos, endpos, t);
+            yield return null;
+        }
+        
+       // transform.position += Vector3.up * 0.3f;
+      //  transform.position += Vector3.right * 0.42f;
+       // yield return new WaitForSeconds(1f);
+       
+       
+       t=0f;
+       startpos = transform.position;
+       endpos = startpos + (Vector3.up * 0.3f);
+       while (t < 0.2f)
+       {
+           t += Time.deltaTime ;
+           transform.position = Vector3.Lerp(startpos, endpos, t);
+           yield return null;
+       }
+       
+       
+        //transform.position += Vector3.up * 0.1f;
+       // yield return new WaitForSeconds(0.2f);
+        //transform.position += Vector3.up * 0.2f;
+        cc.enabled = true;
+        rigid.useGravity = true;
+
+
+    }
 
 
 
     private void ChangeAnim(Animator anim, Vector3 _moveDir, float _speed, bool _canJump, RaycastHit _hit)
     {
+        // switch (animState)
+        // {
+        //     case EAnim.Walk:
+        //         anim.SetBool("isWalk", _moveDir != Vector3.zero);
+        //         break;
+        // }
+        
         
         //플레이어의 속도가 0보다 클 때 Walking 애니메이션 실행
         //플레이어의 속도가 0일 때 Idle 애니메이션 실행
@@ -187,7 +300,7 @@ public class HW_Player : MonoBehaviour
         anim.SetBool("RunningJump", _canJump);
         Debug.DrawRay(transform.position + Vector3.up, transform.forward * range, Color.red);
         
-            if (Physics.Raycast(transform.position + Vector3.up, transform.forward, out _hit, range))
+            /*if (Physics.Raycast(transform.position + Vector3.up, transform.forward, out _hit, range))
             {
                 Debug.Log(_hit.transform.tag);
                 if (_hit.transform.tag == "Wall"&& Input.GetKeyDown(KeyCode.G))
@@ -200,13 +313,14 @@ public class HW_Player : MonoBehaviour
                  
                 }
                 
-            } else
+            } 
+            else
             {
                 if (anim.GetBool("isClimbing"))
                 {
                     anim.SetBool("isFinish", true);
                 }
-            }
+            }*/
     }
 
     //현재 실행 할 애니메이션을 제외한 나머지 애니메이션 중지 함수
