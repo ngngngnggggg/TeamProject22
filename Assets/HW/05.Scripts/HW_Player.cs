@@ -34,6 +34,7 @@ public class HW_Player : MonoBehaviour
     [Header("벽타는 속도")] [SerializeField] private float climbspeed = 0.5f;
 
     [Header("벽을 타는지 확인")] [SerializeField] private bool isclimbing = false;
+    [SerializeField] private bool isclimbingUp = false;
     [Header("외줄 타는지 확인")] [SerializeField] private bool isSideStep = false;
     
    
@@ -53,9 +54,10 @@ public class HW_Player : MonoBehaviour
 
     private void Update()
     {
-        if (Move()) Run();
-        Grab();
-        Jump();
+            if (Move()) Run();
+            Grab();
+            Jump();
+        
         Climb();
 
         SideStep();
@@ -76,37 +78,39 @@ public class HW_Player : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private bool Move()
     {
-        //플레이어 이동
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
-        //누르는 방향으로 플레이어 회전
-        if(moveDir != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(moveDir);
-        }
+        if (isclimbing) return false;
         
-        speed = Input.GetKey(KeyCode.LeftShift) ? 3f : 1.5f;
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.C) && !isAction)
-        {
-            anim.SetTrigger("isSlide");
-            //애니메이션 동작 하는 동안에는 콜라이더를 Z축으로 0.5만큼 줄여서 슬라이딩 효과를 주는 코루틴 함수
-            StartCoroutine(Slide());
-        }
+            //플레이어 이동
+            float h = Input.GetAxis("Horizontal");
+            float v = Input.GetAxis("Vertical");
+            Debug.Log(h);
+            Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
+            //누르는 방향으로 플레이어 회전
+            if (moveDir != Vector3.zero && !isclimbing)
+            {
+                transform.rotation = Quaternion.LookRotation(moveDir);
+            }
+            else
+                isAction = false;
 
-        if (!isAction)
-        {
+            speed = Input.GetKey(KeyCode.LeftShift) ? 3f : 1.5f;
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.C) && !isAction)
+            {
+                anim.SetTrigger("isSlide");
+                //애니메이션 동작 하는 동안에는 콜라이더를 Z축으로 0.5만큼 줄여서 슬라이딩 효과를 주는 코루틴 함수
+                StartCoroutine(Slide());
+            }
+
             //플레이어 이동   
             transform.Translate(moveDir.normalized * (speed * Time.deltaTime), Space.World);
-        }
 
 
 
-        ChangeAnim(anim, moveDir, speed, canJump, hit);
+            ChangeAnim(anim, moveDir, speed, canJump, hit);
 
-        return h != 0;
+            return h != 0;
     }
-    
+
     //코루틴 슬라이드 함수
     IEnumerator Slide()
     {
@@ -191,7 +195,7 @@ public class HW_Player : MonoBehaviour
     private void Climb()
     {
 
-        if (isclimbing == false && Input.GetKeyDown(KeyCode.C))
+        if (!isclimbing && Input.GetKeyDown(KeyCode.C))
         {
             //Debug.Log("wallbool확인");
             if (Physics.Raycast(transform.position + (Vector3.up *0.7f), transform.forward, out hit, range))
@@ -199,35 +203,34 @@ public class HW_Player : MonoBehaviour
                 if (hit.transform.tag == "Wall")
                 {
                     isclimbing = true;
+                    isclimbingUp = true;
                 }
             }
         }
 
-        if (isclimbing)
+        if (isclimbingUp)
         {
             if (Physics.Raycast(transform.position + (Vector3.up *0.7f), transform.forward, out hit, range))
             {
                 if (hit.transform.tag == "Wall")
                 {
-
+                    //Quaternion endrot = Quaternion.Euler(0f, 90f, 0f);
+                    
                     transform.position += transform.up * Time.deltaTime * climbspeed;
+                    //transform.rotation = Quaternion.Lerp(transform.rotation, endrot, 1f);
                     //콜라이더와 중력을 비활성화 한다.
                     //cc.enabled = false;
                     rigid.useGravity = false;
                     //애니메이션 실행
-                    anim.SetBool("isClimbing", true);
-
-
+                    anim.SetTrigger("isClimbing");
                 }
                
             }
             else
             {
-                isclimbing = false;
-                
-                
+                isclimbingUp = false;
+                Debug.Log("123");
                 StartCoroutine(ClimbCoroutine());
-                
             }
         }
         
@@ -283,13 +286,15 @@ public class HW_Player : MonoBehaviour
      
         cc.enabled = true;
         rigid.useGravity = true;
+        
+        isclimbing = false;
     }
 
     private void SideStep()
     {
         
         
-        if (isSideStep == false && Input.GetKeyDown(KeyCode.C))
+        if (!isSideStep && Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("bool확인");
             if (Physics.Raycast(transform.position, -transform.up, out hit, range))

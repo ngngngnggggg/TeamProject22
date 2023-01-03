@@ -258,10 +258,11 @@ MonoBehaviour:
   jumpPower: 3
   Stone: {fileID: 0}
   Handpos: {fileID: 89102492}
+  isAction: 0
   range: 0.3
-  sticktowallforce: 10
   climbspeed: 1
   isclimbing: 0
+  isclimbingUp: 0
   isSideStep: 0
 --- !u!120 &971713119
 LineRenderer:
@@ -270,7 +271,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87699654730638108}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
