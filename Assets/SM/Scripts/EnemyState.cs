@@ -22,7 +22,6 @@ public class EnemyState : MonoBehaviour
 
     public State state = State.PATROL;
     public float attackDist = 15f;//공격 사정거리
-    public float huntDist = 50f;//공격 사정거리
 
     public float traceDist = 200f;//추적 사정거리
     public bool isDie = false;//사망유무 판단
@@ -49,8 +48,8 @@ public class EnemyState : MonoBehaviour
 
     private void Awake()
     {
-        animalTr = GameObject.FindGameObjectWithTag("ANIMAL").transform;
-        var player = GameObject.FindGameObjectWithTag("PLAYER");
+        //playerTr = GameObject.FindGameObjectWithTag("Player").transform;
+        var player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             //플레이어가 존재한다면 해당 오브젝트로 부터 Transform 추출
@@ -58,9 +57,9 @@ public class EnemyState : MonoBehaviour
         }
 
 
-        //moveAgent = GetComponent<EnemyMove>();
+        moveAgent = GetComponent<EnemyMove>();
         //animator = GetComponent<Animator>();
-        //EnemyFOV = GetComponent<EnemyFOV>();
+        enemyFOV = GetComponent<EnemyFOV>();
         ws = new WaitForSeconds(0.3f);
     }
 
@@ -114,7 +113,7 @@ public class EnemyState : MonoBehaviour
                 }
             }
 
-            //추적 반경 및 시야각에 있는지 판단 후 추적
+            //추적 반경 및 시야각에 있는지 판단 후 추적 
             else if (enemyFOV.isTracePlayer())
             {
                 state = State.TRACE;
@@ -144,24 +143,24 @@ public class EnemyState : MonoBehaviour
             {
                 case State.PATROL:
                     moveAgent.PATROLLING = true;
-                    animator.SetBool(hashRun, false);
-                    animator.SetBool(hashMove, true);
+                    //animator.SetBool(hashRun, false);
+                    //animator.SetBool(hashMove, true);
                     break;
 
                 case State.TRACE:
                     moveAgent.TRACETARGET = playerTr.position;
-                    animator.SetBool(hashMove, false);
-                    animator.SetBool(hashRun, true);
+                    //animator.SetBool(hashMove, false);
+                    //animator.SetBool(hashRun, true);
                     break;
 
 
                 case State.ATTACK:
                     if ((this.transform.position - playerTr.position).magnitude < attackDist)
                         moveAgent.Stop();
-
-                    animator.SetBool(hashMove, false);
-                    animator.SetBool(hashRun, false);
-                    animator.SetTrigger(hashAttack);
+                    Debug.Log("공격");
+                    //animator.SetBool(hashMove, false);
+                    //animator.SetBool(hashRun, false);
+                    //animator.SetTrigger(hashAttack);
                     break;
 
 
@@ -170,9 +169,9 @@ public class EnemyState : MonoBehaviour
                     this.gameObject.tag = "Untagged";
                     isDie = true;
                     moveAgent.Stop();
-                    animator.SetBool(hashRun, false);
-                    animator.SetBool(hashMove, false);
-                    animator.SetBool(hashDie, true);
+                    //animator.SetBool(hashRun, false);
+                    //animator.SetBool(hashMove, false);
+                    //animator.SetBool(hashDie, true);
                     GetComponent<BoxCollider>().enabled = false;
                     GetComponent<Rigidbody>().isKinematic = true;
                     Destroy(gameObject, 11f);
