@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 876490345}
   m_Layer: 0
   m_Name: Event
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1819,7 +1819,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4905776183778135172}
-  m_LocalRotation: {x: 0.30603868, y: 0.000001175423, z: -0.0000003778547, w: 0.9520191}
+  m_LocalRotation: {x: 0.30603865, y: 0.0000011754229, z: -0.00000037785472, w: 0.9520191}
   m_LocalPosition: {x: 5.5743504, y: -1.7879395, z: 1.7802486}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
