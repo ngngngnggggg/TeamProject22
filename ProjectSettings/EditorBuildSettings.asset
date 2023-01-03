@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/01. Scenes/SooBin.unity
+    guid: 0b9830d8f473549c283f246caf6cad60
+  - enabled: 1
+    path: Assets/01. Scenes/GameLoad.unity
+    guid: ba250f82d93e78e418c71105f6fce50f
+  - enabled: 1
     path: Assets/01. Scenes/HyunWoo.unity
     guid: b16f4dc7ead9c4ae3936e53e78273306
   m_configObjects: {}
