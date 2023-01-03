@@ -33,6 +33,8 @@ public class HW_Player : MonoBehaviour
     [Header("벽타는 속도")] [SerializeField] private float climbspeed = 0.5f;
 
     [Header("벽을 타는지 확인")] [SerializeField] private bool isclimbing = false;
+    [Header("외줄 타는지 확인")] [SerializeField] private bool isSideStep = false;
+    
    
 
     //플레이어가 벽을 감지하게 하는 레이 히트
@@ -54,6 +56,7 @@ public class HW_Player : MonoBehaviour
         Grab();
         Jump();
         Climb();
+        SideStep();
 
         // switch (animState)
         // {
@@ -165,6 +168,7 @@ public class HW_Player : MonoBehaviour
 
         if (isclimbing == false && Input.GetKeyDown(KeyCode.C))
         {
+            //Debug.Log("wallbool확인");
             if (Physics.Raycast(transform.position + (Vector3.up *0.7f), transform.forward, out hit, range))
             {
                 if (hit.transform.tag == "Wall")
@@ -200,13 +204,12 @@ public class HW_Player : MonoBehaviour
             }
         }
         
-        
     }
 
     private IEnumerator ClimbCoroutine()
     {
         anim.SetBool("isClimbing", false);
-        anim.SetTrigger("finish");
+        
 
         yield return new WaitForSeconds(0.5f);
         
@@ -249,30 +252,136 @@ public class HW_Player : MonoBehaviour
             yield return null;
         }
         
-       // transform.position += Vector3.up * 0.3f;
-      //  transform.position += Vector3.right * 0.42f;
-       // yield return new WaitForSeconds(1f);
+        // transform.position += Vector3.up * 0.3f;
+        //  transform.position += Vector3.right * 0.42f;
+        // yield return new WaitForSeconds(1f);
        
        
-       t=0f;
-       startpos = transform.position;
-       endpos = startpos + (Vector3.up * 0.3f);
-       while (t < 0.2f)
-       {
-           t += Time.deltaTime ;
-           transform.position = Vector3.Lerp(startpos, endpos, t);
-           yield return null;
-       }
+        t=0f;
+        startpos = transform.position;
+        endpos = startpos + (Vector3.up * 0.3f);
+        while (t < 0.2f)
+        {
+            t += Time.deltaTime ;
+            transform.position = Vector3.Lerp(startpos, endpos, t);
+            yield return null;
+        }
        
        
         //transform.position += Vector3.up * 0.1f;
-       // yield return new WaitForSeconds(0.2f);
+        // yield return new WaitForSeconds(0.2f);
         //transform.position += Vector3.up * 0.2f;
         cc.enabled = true;
         rigid.useGravity = true;
 
 
     }
+
+    private void SideStep()
+    {
+        if (isSideStep == false && Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("bool확인");
+            if (Physics.Raycast(transform.position + (Vector3.down), transform.forward, out hit, range))
+            {
+                Debug.Log("Ray확인");
+                if (hit.transform.tag == "Bridge")
+                {
+                    isSideStep = true;
+                }
+            }
+        }
+
+        if (isSideStep)
+        {
+            if (Physics.Raycast(transform.position + (Vector3.down), transform.forward, out hit, range))
+            {
+                if (hit.transform.tag == "Bridge")
+                {
+
+                    transform.position += transform.up * Time.deltaTime * climbspeed;
+                    //애니메이션 실행
+                    anim.SetBool("isSideStep", true);
+                    
+                }
+            }
+            else
+            {
+                isSideStep = false;
+                StartCoroutine(SideStepCoroutine());
+            }
+        }
+    }
+    
+    private IEnumerator SideStepCoroutine()
+    {
+        anim.SetBool("isSideStep", false);
+        
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        float t = 0f;
+        Vector3 startpos = transform.position;
+        Vector3 endpos = startpos + (Vector3.up * 0.1f)+(Vector3.right * 0.02f);
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+            transform.position = Vector3.Lerp(startpos, endpos, t);
+            yield return null;
+        }
+        //transform.position += Vector3.up * 0.1f;
+        //transform.position += Vector3.right * 0.02f;
+        
+        //yield return new WaitForSeconds(1f);
+        
+        
+        t=0f;
+        startpos = transform.position;
+        endpos = startpos + (Vector3.up * 0.2f)+(Vector3.right * 0.02f);
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+            transform.position = Vector3.Lerp(startpos, endpos, t);
+            yield return null;
+        }
+        
+        //transform.position += Vector3.up * 0.2f;
+        //transform.position += Vector3.right * 0.02f;
+        //yield return new WaitForSeconds(1f);
+        
+        t=0f;
+        startpos = transform.position;
+        endpos = startpos + (Vector3.up * 0.3f)+(Vector3.right * 0.42f);
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+            transform.position = Vector3.Lerp(startpos, endpos, t);
+            yield return null;
+        }
+        
+        // transform.position += Vector3.up * 0.3f;
+        //  transform.position += Vector3.right * 0.42f;
+        // yield return new WaitForSeconds(1f);
+       
+       
+        t=0f;
+        startpos = transform.position;
+        endpos = startpos + (Vector3.up * 0.3f);
+        while (t < 0.2f)
+        {
+            t += Time.deltaTime ;
+            transform.position = Vector3.Lerp(startpos, endpos, t);
+            yield return null;
+        }
+       
+       
+        //transform.position += Vector3.up * 0.1f;
+        // yield return new WaitForSeconds(0.2f);
+        //transform.position += Vector3.up * 0.2f;
+
+    }
+    
+    
 
 
 
@@ -284,8 +393,7 @@ public class HW_Player : MonoBehaviour
         //         anim.SetBool("isWalk", _moveDir != Vector3.zero);
         //         break;
         // }
-        
-        
+
         //플레이어의 속도가 0보다 클 때 Walking 애니메이션 실행
         //플레이어의 속도가 0일 때 Idle 애니메이션 실행
         anim.SetBool("isWalk", _moveDir != Vector3.zero);
@@ -300,27 +408,6 @@ public class HW_Player : MonoBehaviour
         anim.SetBool("RunningJump", _canJump);
         Debug.DrawRay(transform.position + Vector3.up, transform.forward * range, Color.red);
         
-            /*if (Physics.Raycast(transform.position + Vector3.up, transform.forward, out _hit, range))
-            {
-                Debug.Log(_hit.transform.tag);
-                if (_hit.transform.tag == "Wall"&& Input.GetKeyDown(KeyCode.G))
-                {
-                    if (!anim.GetBool("isClimbing"))
-                    {
-                        anim.SetBool("isClimbing",true);
-                        Debug.Log("1123");
-                    }
-                 
-                }
-                
-            } 
-            else
-            {
-                if (anim.GetBool("isClimbing"))
-                {
-                    anim.SetBool("isFinish", true);
-                }
-            }*/
     }
 
     //현재 실행 할 애니메이션을 제외한 나머지 애니메이션 중지 함수
