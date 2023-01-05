@@ -17,6 +17,8 @@ TagManager:
   - Stone
   - Tree
   - Effects
+  - Rope
+  - ENDROPE
   layers:
   - Default
   - TransparentFX
