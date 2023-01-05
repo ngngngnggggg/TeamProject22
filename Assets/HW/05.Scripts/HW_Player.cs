@@ -59,6 +59,7 @@ public class HW_Player : MonoBehaviour
     [SerializeField] private Transform startPos;
     [SerializeField] private MoveRope rope;
     private LineRenderer lr;
+    private Hand hand;
 
 
     //플레이어가 벽을 감지하게 하는 레이 히트
@@ -70,6 +71,7 @@ public class HW_Player : MonoBehaviour
         anim = GetComponent<Animator>();
         cc = GetComponent<CapsuleCollider>();
         lr = GetComponent<LineRenderer>();
+        hand = GetComponentInChildren<Hand>();
 
 
     }
@@ -410,7 +412,7 @@ public class HW_Player : MonoBehaviour
                         Debug.Log("tag가 로프");
                         isRope = true;
                         //애니메이션 실행
-                        anim.SetTrigger("isRope");
+                        anim.SetTrigger("isRopeS");
                         transform.SetParent(startPos);
                     }
                 }
@@ -420,11 +422,11 @@ public class HW_Player : MonoBehaviour
         if (isRope == true && rope.EndRope == false)
         {
             
-            lr.SetPosition(0, transform.position + new Vector3(0f,0.7f, 0f));
-            lr.SetPosition(1, startPos.position + new Vector3(0f, 0.3f,0f));
+            lr.SetPosition(0, hand.Gethandpos());
+            lr.SetPosition(1, startPos.position + new Vector3(0f, 0f,0f));
           
                 Debug.Log("hit rope");
-                anim.SetTrigger("isRope");
+                anim.SetTrigger("isRopeS");
                 rigid.useGravity = false;
                 rigid.isKinematic = true; //isRope가 아니면 해제 해줘야함
          
@@ -441,6 +443,7 @@ public class HW_Player : MonoBehaviour
             Destroy(lr);
             rigid.useGravity = true;
             rigid.isKinematic = false;
+            anim.SetTrigger("isRopeE");
             //StartCoroutine(RopeCoroutine());  
         }
             
