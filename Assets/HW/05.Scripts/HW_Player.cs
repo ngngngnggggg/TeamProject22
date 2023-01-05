@@ -17,7 +17,7 @@ public class HW_Player : MonoBehaviour
     //플레이어 점프 변수
     [SerializeField] private float jumpPower = 3.0f;
     [SerializeField] private GameObject Stone;
-    private bool endRope = false;
+    
 
     [SerializeField] private Transform Handpos;
 
@@ -49,8 +49,8 @@ public class HW_Player : MonoBehaviour
     [SerializeField] private bool isclimbingUp = false;
     [Header("외줄 타는지 확인")] [SerializeField] private bool isSideStep = false;
 
-    [Header("로프에 매달렸는지 확인")] [SerializeField]
-    private bool isRope = false;
+    [Header("로프에 매달렸는지 확인")] [SerializeField] private bool isRope = false;
+    [Header("로프에 끝났는지 확인")] [SerializeField] private bool endRope = false; 
     public bool IsRope
     {
         get { return isRope; }
@@ -472,7 +472,7 @@ public class HW_Player : MonoBehaviour
 
             //player Run Jump animation start
             anim.SetBool("RunningJump", _canJump);
-            Debug.DrawRay(transform.position, transform.forward, Color.red);
+            Debug.DrawRay(transform.position, transform.forward, Color.red);      
 
         }
 
