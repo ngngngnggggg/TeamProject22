@@ -7,7 +7,9 @@ public class MoveRope : MonoBehaviour
 {
     [SerializeField] private HW_Player player;
     [SerializeField] private Transform endPos;
+    private float speed;
     private bool endRope = false;
+    
     public bool EndRope
     {
         get { return endRope; }
@@ -15,12 +17,18 @@ public class MoveRope : MonoBehaviour
     
     private void Update()
     {
+        
         if (player.IsRope == true && transform.position != endPos.position && endRope == false)
         {
-            transform.position = Vector3.Lerp(transform.position, endPos.position, 0.01f);
+            speed += Time.deltaTime;
+            transform.position = Vector3.Lerp(transform.position, endPos.position, speed/500f);
+            //transform.position = Vector3.MoveTowards(transform.position, endPos.position, 5f * Time.deltaTime);
+            
+
         }
      
     }
+    
 
     private void OnTriggerEnter(Collider _other)
     {
@@ -28,6 +36,7 @@ public class MoveRope : MonoBehaviour
         {
             Debug.Log("hit");
             endRope = true;
+            
         }
     }
 }
