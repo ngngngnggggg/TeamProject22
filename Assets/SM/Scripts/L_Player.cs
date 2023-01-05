@@ -14,12 +14,6 @@ public class L_Player : MonoBehaviour
 
     Rigidbody body;                         // 컴포넌트에서 RigidBody를 받아올 변수
 
-
-    [SerializeField] private GameManager gameMng;
-
-    [SerializeField] private Renderer renderer;
-    [SerializeField] private Material mat;
-
     float h, v;
 
     // 유니티 실행과 동시에 한번 실행되는 함수
@@ -78,20 +72,6 @@ public class L_Player : MonoBehaviour
         {
             // isGround를 true로 변경
             isGround = true;
-        }
-    }
-
-    
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("SavePoint"))
-        {
-            Debug.Log("??");
-            gameMng.GameSave();
-            Renderer renderer = other.GetComponent<Renderer>();
-            renderer.material = mat;
-
         }
     }
 }
