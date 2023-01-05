@@ -51,6 +51,7 @@ public class HW_Player : MonoBehaviour
 
     [Header("로프에 매달렸는지 확인")] [SerializeField] private bool isRope = false;
     [Header("로프에 끝났는지 확인")] [SerializeField] private bool endRope = false; 
+    [Header("죽은상태 확인")] [SerializeField] private bool isdie = false; 
     public bool IsRope
     {
         get { return isRope; }
@@ -64,6 +65,12 @@ public class HW_Player : MonoBehaviour
 
     //플레이어가 벽을 감지하게 하는 레이 히트
     private RaycastHit hit;
+    
+    
+    [SerializeField] private GameManager gameMng;
+
+    //[SerializeField] private Renderer renderer;
+    [SerializeField] private Material mat;
                                     
     private void Start()
     {
@@ -103,7 +110,8 @@ public class HW_Player : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private bool Move()
     {
-        if (isclimbing) return false;
+        if (isclimbing || isdie) return false;
+        Debug.Log(("죽었냐"));
 
         //플레이어 이동
         float h = Input.GetAxis("Horizontal");
@@ -472,7 +480,11 @@ public class HW_Player : MonoBehaviour
 
             //player Run Jump animation start
             anim.SetBool("RunningJump", _canJump);
-            Debug.DrawRay(transform.position, transform.forward, Color.red);      
+            Debug.DrawRay(transform.position, transform.forward, Color.red);
+
+            
+            
+               
 
         }
 
@@ -486,5 +498,43 @@ public class HW_Player : MonoBehaviour
                 anim.ResetTrigger(_anim.name);
             }
         }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("SavePoint"))
+            {
+                Debug.Log("??");
+                gameMng.GameSave();
+                Renderer renderer = other.GetComponentInChildren<Renderer>();
+                renderer.material = mat;
 
+            }
+        }
+        // 태그에 닿으면 죽는 애니메이션
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("DeathZone"))
+            {
+                anim.SetBool("isDie", true);
+                Debug.Log("죽음");
+                isdie = true;
+                StartCoroutine(DieCoroutine() );
+
+
+
+
+            }
+        }
+    
+        IEnumerator DieCoroutine()
+        {
+            yield return new WaitForSeconds(3f);
+            gameMng.GameLoad();
+            yield return new WaitForSeconds(1f);
+            anim.SetBool("isDie", false);
+            
+            
+            isdie = false;
+            
+            
+        }
     }
