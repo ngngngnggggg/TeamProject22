@@ -437,6 +437,7 @@ public class HW_Player : MonoBehaviour
             Debug.Log("endrope");
             //isRope = false;
             transform.SetParent((null));
+            if(lr != null)
             Destroy(lr);
             rigid.useGravity = true;
             rigid.isKinematic = false;
