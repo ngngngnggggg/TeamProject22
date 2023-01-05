@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
 
+    [SerializeField] private Transform startPoint;
+
+    
     private void Start()
     {
          GameLoad();
@@ -18,10 +22,15 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerZ", player.transform.position.z);
         PlayerPrefs.Save(); 
 
-        Debug.Log("ÀúÀåµÊ");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½");
     }
     public void GameLoad()
     {
+        if(!PlayerPrefs.HasKey("PlayerX"))
+        {
+            ReStart();
+        }
+        
         if (!PlayerPrefs.HasKey("PlayerX"))
             return;
 
@@ -34,9 +43,9 @@ public class GameManager : MonoBehaviour
 
     public void ReStart()
     {
-        PlayerPrefs.SetFloat("PlayerX", -36.11f);
-        PlayerPrefs.SetFloat("PlayerY", 0.63f);
-        PlayerPrefs.SetFloat("PlayerZ", 0.35f);
+        PlayerPrefs.SetFloat("PlayerX", startPoint.position.x);
+        PlayerPrefs.SetFloat("PlayerY", startPoint.position.y + 0.5f);
+        PlayerPrefs.SetFloat("PlayerZ", startPoint.position.z);
 
         SceneManager.LoadScene(3);
     }
