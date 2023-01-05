@@ -6,6 +6,8 @@ public class SavePoint : MonoBehaviour
 {
     [SerializeField] private GameManager gameMng;
 
+    [SerializeField] private Renderer renderer;
+    [SerializeField] private Material mat;
 
     //private void OnCollisionEnter(Collision coll)
     //{
@@ -16,10 +18,13 @@ public class SavePoint : MonoBehaviour
     //}
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")  )
+        if (other.CompareTag("Player"))
         {
             Debug.Log("??");
             gameMng.GameSave();
+           // Renderer renderer = other.GetComponent<Renderer>();
+            renderer.material = mat;
+
         }
     }
 }
