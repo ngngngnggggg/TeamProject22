@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     public void ReStart()
     {
         PlayerPrefs.SetFloat("PlayerX", -36.11f);
-        PlayerPrefs.SetFloat("PlayerY", 1f);
+        PlayerPrefs.SetFloat("PlayerY", 0.63f);
         PlayerPrefs.SetFloat("PlayerZ", 0.35f);
 
         SceneManager.LoadScene(3);
