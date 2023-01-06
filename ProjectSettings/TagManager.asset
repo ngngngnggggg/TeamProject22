@@ -21,6 +21,7 @@ TagManager:
   - ENDROPE
   - DeathZone
   - SavePoint
+  - Cam2
   layers:
   - Default
   - TransparentFX
