@@ -623,15 +623,15 @@ PrefabInstance:
       objectReference: {fileID: 1918102061}
     - target: {fileID: 4905776183640116465, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7410916
+      value: 0.74109155
       objectReference: {fileID: 0}
     - target: {fileID: 4905776183640116465, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.41159627
+      value: 0.41159633
       objectReference: {fileID: 0}
     - target: {fileID: 4905776183640116465, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.46372455
+      value: -0.46372452
       objectReference: {fileID: 0}
     - target: {fileID: 4905776183640116465, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_LocalRotation.z
@@ -695,15 +695,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4905776183778135177, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7410916
+      value: 0.74109155
       objectReference: {fileID: 0}
     - target: {fileID: 4905776183778135177, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.41159627
+      value: 0.41159633
       objectReference: {fileID: 0}
     - target: {fileID: 4905776183778135177, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.46372455
+      value: -0.46372452
       objectReference: {fileID: 0}
     - target: {fileID: 4905776183778135177, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_LocalRotation.z
@@ -756,6 +756,10 @@ PrefabInstance:
     - target: {fileID: 7109497897733189336, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222981557640780820, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
