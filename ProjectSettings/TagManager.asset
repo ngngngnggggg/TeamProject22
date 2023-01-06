@@ -19,6 +19,8 @@ TagManager:
   - Effects
   - Rope
   - ENDROPE
+  - DeathZone
+  - SavePoint
   layers:
   - Default
   - TransparentFX
