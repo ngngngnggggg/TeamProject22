@@ -16,17 +16,15 @@ public class HW_Player : MonoBehaviour
     private float ropeTime;
     //플레이어 점프 변수
     [SerializeField] private float jumpPower = 3.0f;
-    [SerializeField] private GameObject Stone;
     
-
+    [SerializeField] private GameObject Stone;
     [SerializeField] private Transform Handpos;
 
     //플레이어 3d리지드바디
     private Rigidbody rigid;
-
     //플레이어 애니메이터
     private Animator anim;
-
+    //플레이어 캡슐 콜라이더
     private CapsuleCollider cc;
 
     //점프를 했는지 확인하는 변수
@@ -42,13 +40,11 @@ public class HW_Player : MonoBehaviour
     [Header("벽을 감지하는 레이 거리")] [SerializeField]
     private float range = 0.3f;
 
-    //[Header("벽에 힘을 주는 변수")] [SerializeField] private float sticktowallforce = 10f;
     [Header("벽타는 속도")] [SerializeField] private float climbspeed = 0.5f;
-
     [Header("벽을 타는지 확인")] [SerializeField] private bool isclimbing = false;
     [SerializeField] private bool isclimbingUp = false;
+    
     [Header("외줄 타는지 확인")] [SerializeField] private bool isSideStep = false;
-
     [Header("로프에 매달렸는지 확인")] [SerializeField] private bool isRope = false;
     [Header("로프에 끝났는지 확인")] [SerializeField] private bool endRope = false; 
     [Header("죽은상태 확인")] [SerializeField] private bool isdie = false; 
@@ -68,8 +64,6 @@ public class HW_Player : MonoBehaviour
     
     
     [SerializeField] private GameManager gameMng;
-
-    //[SerializeField] private Renderer renderer;
     [SerializeField] private Material mat;
                                     
     private void Start()
