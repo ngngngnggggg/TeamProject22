@@ -8,18 +8,20 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: JP_Roof_House_01
-  m_Shader: {fileID: 4800000, guid: 0e89c7b6e50f0ab4b83e50a72ae178fe, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords:
-  - _GIBLYSTYLIZE_ON
-  - _GRUNGECHANNEL_R
-  m_InvalidKeywords:
+  - _ALPHABLEND_ON
   - _METALLICGLOSSMAP
   - _NORMALMAP
+  m_InvalidKeywords:
+  - _GIBLYSTYLIZE_ON
+  - _GRUNGECHANNEL_R
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -73,7 +75,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _EnableGrunge: 0
     - _GhiblyIntensity: 0
     - _Ghibly_Exponent: 0.2
@@ -88,15 +90,15 @@ Material:
     - _Grunge_Max: 0.79
     - _Grunge_Min: 0.43
     - _Metallic: 0
-    - _Mode: 0
+    - _Mode: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _Softness: 0.73
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _UVSec: 0
-    - _ZWrite: 1
+    - _ZWrite: 0
     - __dirty: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
