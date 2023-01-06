@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/01. Scenes/GameLoad.unity
     guid: ba250f82d93e78e418c71105f6fce50f
   - enabled: 1
-    path: Assets/01. Scenes/12.26~1.6 Scenes/HyunWoo.unity
+    path: Assets/01. Scenes/12.26~1.6 Scenes/1.6 HyunWoo.unity
     guid: b16f4dc7ead9c4ae3936e53e78273306
   - enabled: 1
     path: Assets/01. Scenes/12.26~1.6 Scenes/SangMin.unity
