@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93eb11d056bae6548ba4febc1a748ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: HyunWoo
+  sceneName: Main
   slider: {fileID: 606263826}
 --- !u!114 &1386473694
 MonoBehaviour:
