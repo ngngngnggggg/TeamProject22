@@ -83,9 +83,7 @@ public class HW_Player : MonoBehaviour
         Grab();
         Jump();
         Rope();
-
         Climb();
-
         SideStep();
 
 
@@ -104,8 +102,8 @@ public class HW_Player : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private bool Move()
     {
-        if (isclimbing || isdie) return false;
-        Debug.Log(("죽었냐"));
+        if (isclimbing || isdie || isSideStep) return false;
+        
 
         //플레이어 이동
         float h = Input.GetAxis("Horizontal");
@@ -185,7 +183,7 @@ public class HW_Player : MonoBehaviour
                 hit.collider.GetComponent<Collider>().enabled = false;
                 //자식의 리지드바디를 비활성화
                 hit.collider.GetComponent<Rigidbody>().isKinematic = true;
-                //벽을 플레이어의 자식으로 만들면 플레이어가 벽을 움직일 수 있게
+                //돌을 플레이어의 자식으로 만들면 플레이어가 벽을 움직일 수 있게
                 hit.collider.transform.localPosition = new Vector3(0, 0, 0);
                 //isPick 애니메이션을 실행
                 anim.SetTrigger("isPick");
@@ -525,7 +523,7 @@ public class HW_Player : MonoBehaviour
             gameMng.GameLoad();
             yield return new WaitForSeconds(1f);
             anim.SetBool("isDie", false);
-            
+            yield return new WaitForSeconds(2.5f);
             
             isdie = false;
             
