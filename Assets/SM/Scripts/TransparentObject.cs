@@ -7,15 +7,20 @@ public class TransparentObject : MonoBehaviour
 {
     public bool IsTransparent { get; private set; } = false;
 
+    [SerializeField]
     private MeshRenderer[] renderers;
     private WaitForSeconds delay = new WaitForSeconds(0.001f);
     private WaitForSeconds resetDelay = new WaitForSeconds(0.005f);
+    [SerializeField]
     private const float THRESHOLD_ALPHA = 0.25f;
+    [SerializeField]
     private const float THRESHOLD_MAX_TIMER = 0.5f;
-
+    [SerializeField]
     private bool isReseting = false;
     private float timer = 0f;
+    [SerializeField]
     private Coroutine timeCheckCoroutine;
+    [SerializeField]
     private Coroutine resetCoroutine;
 
 

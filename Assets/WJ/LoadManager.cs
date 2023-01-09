@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LoadManager : MonoBehaviour
 {
-    public string sceneName = "HyunWoo";
+    [SerializeField] private string sceneName = "Main";
     public Slider slider; // 여기에 슬라이더 오브젝트 할당
     private AsyncOperation operation;
 
