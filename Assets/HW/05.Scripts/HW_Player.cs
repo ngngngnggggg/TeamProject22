@@ -15,7 +15,7 @@ public class HW_Player : MonoBehaviour
 
     private float ropeTime;
     //플레이어 점프 변수
-    [SerializeField] private float jumpPower = 3.5f;
+    [SerializeField] private float jumpPower = 3.0f;
     
     [SerializeField] private GameObject Stone;
     [SerializeField] private Transform Handpos;
@@ -38,7 +38,7 @@ public class HW_Player : MonoBehaviour
     private bool isSlide;
 
     [Header("벽을 감지하는 레이 거리")] [SerializeField]
-    private float range = 0.5f;
+    private float range = 0.3f;
 
     [Header("벽타는 속도")] [SerializeField] private float climbspeed = 0.5f;
     [Header("벽을 타는지 확인")] [SerializeField] private bool isclimbing = false;
@@ -222,10 +222,9 @@ public class HW_Player : MonoBehaviour
 
         if (!isclimbing && Input.GetKeyDown(KeyCode.C))
         {
-            Debug.Log("wall확인");
+            //Debug.Log("wallbool확인");
             if (Physics.Raycast(transform.position + (Vector3.up * 0.7f), transform.forward, out hit, range))
             {
-                Debug.Log("Ray확인");
                 if (hit.transform.tag == "Wall")
                 {
                     isclimbing = true;
@@ -405,7 +404,7 @@ public class HW_Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C))
             {
                 Debug.Log("C키 입력");
-                if (Physics.Raycast(transform.position + Vector3.up, transform.up, out hit, range + 1f))
+                if (Physics.Raycast(transform.position, transform.up, out hit, range + 1f))
                 {
                     Debug.Log("Ray확인");
                     if (hit.transform.gameObject.CompareTag("Rope"))
