@@ -57,6 +57,7 @@ public class HW_Player : MonoBehaviour
     [SerializeField] private MoveRope rope;
     private LineRenderer lr;
     private Hand hand;
+    public GameObject SavePointPanel;
 
 
     //플레이어가 벽을 감지하게 하는 레이 히트
@@ -490,19 +491,29 @@ public class HW_Player : MonoBehaviour
                 anim.ResetTrigger(_anim.name);
             }
         }
-        private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("SavePoint"))
         {
-            if (other.CompareTag("SavePoint"))
-            {
-                Debug.Log("??");
-                gameMng.GameSave();
-                Renderer renderer = other.GetComponentInChildren<Renderer>();
-                renderer.material = mat;
-
-            }
+            Debug.Log("??");
+            gameMng.GameSave();
+            Renderer renderer = other.GetComponentInChildren<Renderer>();
+            renderer.material = mat;
+            SavePointPanel.gameObject.SetActive(true);
         }
-        // 태그에 닿으면 죽는 애니메이션
-        private void OnCollisionEnter(Collision collision)
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+            if(other.CompareTag("SavePoint"))
+        {
+            SavePointPanel.gameObject.SetActive(false);
+        }
+    }
+
+    // 태그에 닿으면 죽는 애니메이션
+    private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("DeathZone"))
             {
