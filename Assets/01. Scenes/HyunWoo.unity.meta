@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Furniture/All models.unity.meta
+guid: efb7f46810bbe2a4880338426b6af4fa
+========
 guid: abefd6ba0332446a59bec5bd7f208fd8
+>>>>>>>> 6424e2f8ce620865dd51baaf53a7b73fe34b758e:Assets/01. Scenes/HyunWoo.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
