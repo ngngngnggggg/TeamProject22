@@ -26,16 +26,20 @@ public class Blinking : MonoBehaviour
         {
             GetComponent<Image>().color = new Color(0, 0, 0, time / 5 );
         }
-        else if(time < 9.2f)
+        else if(time < 9.0f)
         {
             map.SetActive(true);
             dream.SetActive(false);
-            GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            //GetComponent<Image>().color = new Color(0, 0, 0, 0);
             //map.SetActive(true);
         }
-        else if(time < 9.8f)
+        else if(time < 9.2f)
         {
-            GetComponent<Image>().color = new(0,0,0,255f);
+            GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        }
+        else if(time < 10f)
+        {
+            GetComponent<Image>().color = new Color(0,0,0,255f);
         }
         time += Time.deltaTime;
     }
