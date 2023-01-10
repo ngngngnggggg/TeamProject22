@@ -6,37 +6,65 @@ using UnityEngine.UI;
 public class Blinking : MonoBehaviour
 {
     public GameObject map;
+    public GameObject dream;
 
     // Start is called before the first frame update
     void Start()
     {
         //Image image =GetComponent<Image>();
-        StartCoroutine(blinking());
+        //StartCoroutine(blinking());
     }
+
+    // Update is called once per frame
+    float time = 0;
+    //GetComponent<Image>().color;
 
     // Update is called once per frame
     void Update()
     {
-        //StartCoroutine(blinking());
-    }
-    IEnumerator blinking()
-    {
-        int count = 0;
-        while (count < 20)
+        if (time < 8f)
         {
-            Debug.Log(count);
-            
-            Image image = GetComponent<Image>();
-            image.color = new Color(0, 0, 0, 0);
-            yield return new WaitForSeconds(0.1f);
-            image.color = new Color(10f, 100f, 10f, 100f);
-            yield return new WaitForSeconds(0.1f);
-            count++;
-            if(count >= 20)
-            {
-                map.SetActive(true);
-                
-            }
+            GetComponent<Image>().color = new Color(0, 0, 0, time / 5 );
         }
+        else if(time < 9.2f)
+        {
+            map.SetActive(true);
+            dream.SetActive(false);
+            GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            //map.SetActive(true);
+        }
+        else if(time < 9.8f)
+        {
+            GetComponent<Image>().color = new(0,0,0,255f);
+        }
+        time += Time.deltaTime;
+    }
+
+
+
+
+    //IEnumerator blinking()
+    //{
+    //    int count = 0;
+    //    while (count < 20)
+    //    {
+    //        Debug.Log(count);
+
+//        Image image = GetComponent<Image>();
+//        image.color = new Color(10f, 100f, 10f, 100f);
+//        yield return new WaitForSeconds(0.1f);
+//        image.color = new Color(0, 0, 0, 0);
+//        yield return new WaitForSeconds(0.1f);
+//        count++;
+//        if(count >= 20)
+//        {
+//            map.SetActive(true);
+
+//        }
+//    }
+//}
+    public void End()
+    {
+        //StartCoroutine(blinking());
     }
 }
