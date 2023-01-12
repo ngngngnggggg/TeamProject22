@@ -223,9 +223,10 @@ public class HW_Player : MonoBehaviour
 
         if (!isclimbing && Input.GetKeyDown(KeyCode.C))
         {
-            //Debug.Log("wallbool확인");
+            
             if (Physics.Raycast(transform.position + (Vector3.up * 0.7f), transform.forward, out hit, range))
             {
+                Debug.Log("wallbool확인");
                 if (hit.transform.tag == "Wall")
                 {
                     isclimbing = true;
