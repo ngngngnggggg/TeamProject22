@@ -37,7 +37,7 @@ public class Blinking : MonoBehaviour
         {
             GetComponent<Image>().color = new Color(0, 0, 0, 0);
         }
-        else if(time < 10f)
+        else if(10f < time)
         {
             GetComponent<Image>().color = new Color(0,0,0,255f);
         }

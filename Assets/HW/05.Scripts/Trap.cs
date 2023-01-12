@@ -9,10 +9,12 @@ public class Trap : MonoBehaviour
     public float fallSpeed = 1.0f;
     [SerializeField] private Bridge bridge;
     private Rigidbody rb;
+   
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>(); 
+        rb = GetComponent<Rigidbody>();
+        
     }
 
     private void Start()
@@ -26,5 +28,6 @@ public class Trap : MonoBehaviour
         {
             rb.useGravity = true;
         }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
     }
 }
