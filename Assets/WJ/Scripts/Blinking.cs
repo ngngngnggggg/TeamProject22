@@ -5,8 +5,21 @@ using UnityEngine.UI;
 
 public class Blinking : MonoBehaviour
 {
-    public GameObject map;
+    public GameObject Ruin;
     public GameObject dream;
+
+    private LoveHouse m_LoveHouse = null;
+    private SoloHouse m_SoloHouse = null;
+
+    private bool m_IsEnd = false;
+    
+    private void Awake()
+    {
+        Ruin.SetActive(true);
+        dream.SetActive(true);
+        m_LoveHouse = dream.GetComponent<LoveHouse>();
+        m_SoloHouse = Ruin.GetComponent<SoloHouse>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,19 +41,24 @@ public class Blinking : MonoBehaviour
         }
         else if (time <9.0f)
         {
-            map.SetActive(true);
-            dream.SetActive(false);
+            //Ruin.SetActive(true);
+            //dream.SetActive(false);
             //GetComponent<Image>().color = new Color(0, 0, 0, 0);
             //map.SetActive(true);
         }
         else if (time < 9.2f)
         {
-            GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            if (!m_IsEnd)
+            {
+                m_IsEnd = true;
+                End();
+            }
+
         }
-        else if (10f < time)
-        {
-            GetComponent<Image>().color = new Color(0, 0, 0, 255f);
-        }
+        //else if (10f < time)
+        //{
+        //    GetComponent<Image>().color = new Color(0, 0, 0, 255f);
+        //}
         time += Time.deltaTime;
     }
     //public void End()
@@ -71,28 +89,40 @@ public class Blinking : MonoBehaviour
 
 
 
-    //IEnumerator blinking()
-    //{
-    //    int count = 0;
-    //    while (count < 20)
-    //    {
-    //        Debug.Log(count);
+    IEnumerator blinking()
+    {
+        Image image = GetComponent<Image>();
 
-//        Image image = GetComponent<Image>();
-//        image.color = new Color(10f, 100f, 10f, 100f);
-//        yield return new WaitForSeconds(0.1f);
-//        image.color = new Color(0, 0, 0, 0);
-//        yield return new WaitForSeconds(0.1f);
-//        count++;
-//        if(count >= 20)
-//        {
-//            map.SetActive(true);
+        int count = 0;
+        while (count < 10)
+        {
+            //Debug.Log(count);
 
-//        }
-//    }
-//}
-    //public void End()
-    //{
-        //StartCoroutine(blinking());
-    //}
+            image.color = Color.black;
+            yield return new WaitForSeconds(0.05f);
+            m_LoveHouse.SetRenderers(true);
+            m_SoloHouse.SetRenderers(false);
+            image.color = new Color(0, 0, 0, 0); // 보이기
+
+            yield return new WaitForSeconds(0.05f);
+
+            image.color = Color.black;
+            yield return new WaitForSeconds(0.05f);
+            m_LoveHouse.SetRenderers(false);
+            m_SoloHouse.SetRenderers(true);
+            image.color = new Color(0, 0, 0, 0); // 보이기
+            yield return new WaitForSeconds(0.05f);
+
+            count++;
+            //if (count >= 20)
+            //{
+            //    map.SetActive(true);
+
+            //}
+        }
+    }
+    public void End()
+    {
+        StartCoroutine(blinking());
+    }
 }
