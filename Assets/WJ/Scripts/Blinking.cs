@@ -22,35 +22,11 @@ public class Blinking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (time < 8f)
-        //{
-        //    GetComponent<Image>().color = new Color(0, 0, 0, time / 5 );
-        //}
-        //else if(9.0f < time)
-        //{
-        //    map.SetActive(true);
-        //    dream.SetActive(false);
-        //    //GetComponent<Image>().color = new Color(0, 0, 0, 0);
-        //    //map.SetActive(true);
-        //}
-        //else if(time < 9.2f)
-        //{
-        //    GetComponent<Image>().color = new Color(0, 0, 0, 0);
-        //}
-        //else if(10f < time)
-        //{
-        //    GetComponent<Image>().color = new Color(0,0,0,255f);
-        //}
-        //time += Time.deltaTime;
-    }
-    public void End()
-    {
-        //time = 0f;
         if (time < 8f)
         {
             GetComponent<Image>().color = new Color(0, 0, 0, time / 5);
         }
-        else if (9.0f < time)
+        else if (time <9.0f)
         {
             map.SetActive(true);
             dream.SetActive(false);
@@ -67,6 +43,30 @@ public class Blinking : MonoBehaviour
         }
         time += Time.deltaTime;
     }
+    //public void End()
+    //{
+    //    //time = 0f;
+    //    if (time < 8f)
+    //    {
+    //        GetComponent<Image>().color = new Color(0, 0, 0, time / 5);
+    //    }
+    //    else if (9.0f < time)
+    //    {
+    //        map.SetActive(true);
+    //        dream.SetActive(false);
+    //        //GetComponent<Image>().color = new Color(0, 0, 0, 0);
+    //        //map.SetActive(true);
+    //    }
+    //    else if (time < 9.2f)
+    //    {
+    //        GetComponent<Image>().color = new Color(0, 0, 0, 0);
+    //    }
+    //    else if (10f < time)
+    //    {
+    //        GetComponent<Image>().color = new Color(0, 0, 0, 255f);
+    //    }
+    //    time += Time.deltaTime;
+    //}
 
 
 

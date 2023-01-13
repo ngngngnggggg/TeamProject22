@@ -2,24 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SkyboxChanger : MonoBehaviour
 {
     public Material newSkybox;
     private Material currentSkybox;
-    public Blinking ui;
-
+    public GameObject ui;
+    float time = 0f;
+    private GameObject player;
     private void Start()
     {
-        ui = GetComponent<Blinking>();
+        player = GameObject.FindGameObjectWithTag("Player");
         currentSkybox = RenderSettings.skybox;
+        
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.name == "Player")
-        { 
-        ui.End();
-        RenderSettings.skybox = newSkybox;
+        {
+            player.GetComponent<HW_Player>().enabled = false;
+            time += Time.deltaTime;
+            ui.SetActive(true);
+            if(5f < time)
+            {
+
+            RenderSettings.skybox = newSkybox;
+            }
         }
     }
 
