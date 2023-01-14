@@ -6,6 +6,7 @@ public class Cubepuzzle : MonoBehaviour
 {
     //[SerializeField] private GameObject ps;
     private BoxCollider boxcollider;
+   
     
     private void Start()
     {
@@ -35,6 +36,10 @@ public class Cubepuzzle : MonoBehaviour
         boxcollider.enabled = true;
     }
     
+    
+
+
+
 }
     
     
