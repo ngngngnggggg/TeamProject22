@@ -11,6 +11,8 @@ public class CubeColor : MonoBehaviour
     public Material mat;
     public Material originMat;
     public bool success = false;
+    [SerializeField] private ResetColor resetcolor;
+    [SerializeField] private Material answerMat;
 
 
     private void Start()
@@ -26,6 +28,7 @@ public class CubeColor : MonoBehaviour
         {
             success = true;
             StartCoroutine(transform.GetChild(0).GetComponent<HW_ParticleDrop>().ParticleDrop());
+            this.GetComponent<BoxCollider>().enabled = false;
             // mat = transform.GetChild(0).GetComponent<HW_ParticleDrop>().mat;
             // mr.material = mat;
         }
@@ -34,7 +37,15 @@ public class CubeColor : MonoBehaviour
     public void ChangeColor(Material _mat)
     {
         mat = _mat;
-        mr.material = mat;
+        if (answerMat == mat)
+        {
+            resetcolor.count++;
+        }
+        else
+        {
+            resetcolor.count--;
+        }
+            mr.material = mat;
     }
     
     public void ResetColor()
@@ -42,5 +53,7 @@ public class CubeColor : MonoBehaviour
         mr.material = originMat;
         mat = originMat;
         success = false;
+        this.GetComponent<BoxCollider>().enabled = true;
+        resetcolor.count = 0;
     }
 }
