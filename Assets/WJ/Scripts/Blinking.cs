@@ -5,8 +5,21 @@ using UnityEngine.UI;
 
 public class Blinking : MonoBehaviour
 {
-    public GameObject map;
+    public GameObject Ruin;
     public GameObject dream;
+
+    private LoveHouse m_LoveHouse = null;
+    private SoloHouse m_SoloHouse = null;
+
+    private bool m_IsEnd = false;
+    
+    private void Awake()
+    {
+        Ruin.SetActive(true);
+        dream.SetActive(true);
+        m_LoveHouse = dream.GetComponent<LoveHouse>();
+        m_SoloHouse = Ruin.GetComponent<SoloHouse>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -24,51 +37,92 @@ public class Blinking : MonoBehaviour
     {
         if (time < 8f)
         {
-            GetComponent<Image>().color = new Color(0, 0, 0, time / 5 );
+            GetComponent<Image>().color = new Color(0, 0, 0, time / 5);
         }
-        else if(time < 9.0f)
+        else if (time <9.0f)
         {
-            map.SetActive(true);
-            dream.SetActive(false);
+            //Ruin.SetActive(true);
+            //dream.SetActive(false);
             //GetComponent<Image>().color = new Color(0, 0, 0, 0);
             //map.SetActive(true);
         }
-        else if(time < 9.2f)
+        else if (time < 9.2f)
         {
-            GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            if (!m_IsEnd)
+            {
+                m_IsEnd = true;
+                End();
+            }
+
         }
-        else if(10f < time)
-        {
-            GetComponent<Image>().color = new Color(0,0,0,255f);
-        }
+        //else if (10f < time)
+        //{
+        //    GetComponent<Image>().color = new Color(0, 0, 0, 255f);
+        //}
         time += Time.deltaTime;
     }
-
-
-
-
-    //IEnumerator blinking()
+    //public void End()
     //{
-    //    int count = 0;
-    //    while (count < 20)
+    //    //time = 0f;
+    //    if (time < 8f)
     //    {
-    //        Debug.Log(count);
+    //        GetComponent<Image>().color = new Color(0, 0, 0, time / 5);
+    //    }
+    //    else if (9.0f < time)
+    //    {
+    //        map.SetActive(true);
+    //        dream.SetActive(false);
+    //        //GetComponent<Image>().color = new Color(0, 0, 0, 0);
+    //        //map.SetActive(true);
+    //    }
+    //    else if (time < 9.2f)
+    //    {
+    //        GetComponent<Image>().color = new Color(0, 0, 0, 0);
+    //    }
+    //    else if (10f < time)
+    //    {
+    //        GetComponent<Image>().color = new Color(0, 0, 0, 255f);
+    //    }
+    //    time += Time.deltaTime;
+    //}
 
-//        Image image = GetComponent<Image>();
-//        image.color = new Color(10f, 100f, 10f, 100f);
-//        yield return new WaitForSeconds(0.1f);
-//        image.color = new Color(0, 0, 0, 0);
-//        yield return new WaitForSeconds(0.1f);
-//        count++;
-//        if(count >= 20)
-//        {
-//            map.SetActive(true);
 
-//        }
-//    }
-//}
+
+
+    IEnumerator blinking()
+    {
+        Image image = GetComponent<Image>();
+
+        int count = 0;
+        while (count < 10)
+        {
+            //Debug.Log(count);
+
+            image.color = Color.black;
+            yield return new WaitForSeconds(0.05f);
+            m_LoveHouse.SetRenderers(true);
+            m_SoloHouse.SetRenderers(false);
+            image.color = new Color(0, 0, 0, 0); // 보이기
+
+            yield return new WaitForSeconds(0.05f);
+
+            image.color = Color.black;
+            yield return new WaitForSeconds(0.05f);
+            m_LoveHouse.SetRenderers(false);
+            m_SoloHouse.SetRenderers(true);
+            image.color = new Color(0, 0, 0, 0); // 보이기
+            yield return new WaitForSeconds(0.05f);
+
+            count++;
+            //if (count >= 20)
+            //{
+            //    map.SetActive(true);
+
+            //}
+        }
+    }
     public void End()
     {
-        //StartCoroutine(blinking());
+        StartCoroutine(blinking());
     }
 }
