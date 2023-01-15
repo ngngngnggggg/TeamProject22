@@ -26,7 +26,6 @@ public class SkyboxChanger : MonoBehaviour
             ui.SetActive(true);
             if(5f < time)
             {
-
             RenderSettings.skybox = newSkybox;
             }
         }
