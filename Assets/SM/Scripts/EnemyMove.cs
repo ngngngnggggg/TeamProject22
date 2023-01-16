@@ -14,7 +14,7 @@ public class EnemyMove : MonoBehaviour
     private Transform animalTr = null;
     private NavMeshAgent agent = null;
     private readonly float patrolSpeed = 1.5f;//순찰속도
-    private readonly float traceSpeed = 8f;//추적속도
+    private readonly float traceSpeed = 4f;//추적속도
     private readonly float chaseSpeed = 5f;//추적속도
     private float damping = 1f; // 회전값 속도 조절 계수
     private bool _patrolling = false;
