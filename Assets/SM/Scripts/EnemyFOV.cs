@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyFOV : MonoBehaviour
 {
     [Range(0, 360)]
-    public float viewAngle = 100f; // 시야각
-    public float viewRange = 20f; // 시야범위
+    public float viewAngle = 80f; // 시야각
+    public float viewRange = 10f; // 시야범위
 
     [Header("플레이어 판단에 필요한 변수")]
     private Transform playerTr = null;
@@ -60,7 +60,7 @@ public class EnemyFOV : MonoBehaviour
         Vector3 dir = (playerTr.position - transform.position).normalized;
         if (Physics.Raycast(transform.position, dir, out hit, viewRange, playerLayer))
         {
-            isView = hit.collider.CompareTag("PLAYER");
+            isView = hit.collider.CompareTag("Player");
         }
         return isView;
     }
