@@ -86,6 +86,7 @@ public class HW_Player : MonoBehaviour
         Rope();
         Climb();
         SideStep();
+        LayDown();
 
 
         // switch (animState)
@@ -246,7 +247,7 @@ public class HW_Player : MonoBehaviour
                     transform.position += transform.up * Time.deltaTime * climbspeed;
                     //transform.rotation = Quaternion.Lerp(transform.rotation, endrot, 1f);
                     //콜라이더와 중력을 비활성화 한다.
-                    //cc.enabled = false;
+                    cc.enabled = false;
                     rigid.useGravity = false;
                     //애니메이션 실행
                     anim.SetTrigger("isClimbing");
@@ -256,8 +257,10 @@ public class HW_Player : MonoBehaviour
             else
             {
                 isclimbingUp = false;
+                
                 // Debug.Log("123");
                 StartCoroutine(ClimbCoroutine());
+                
             }
         }
 
@@ -313,8 +316,9 @@ public class HW_Player : MonoBehaviour
 
         cc.enabled = true;
         rigid.useGravity = true;
-
+        
         isclimbing = false;
+        
     }
 
     private void SideStep()
@@ -452,6 +456,44 @@ public class HW_Player : MonoBehaviour
         
     }
 
+    private void LayDown()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //아래쪽으로 레이 쏴서 태그가 Bad면
+            if (Physics.Raycast(transform.position, -transform.up, out hit, range))
+            {
+                if (hit.transform.tag == "Bad")
+                {
+                    StartCoroutine(LayDownCoroutine());
+                    
+                }
+                else if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    
+                }
+            }
+        }
+    }
+    
+    IEnumerator LayDownCoroutine()
+    {
+        //cc.direction = 1;
+        anim.SetBool("isLay", true);
+        yield return new WaitForSeconds(0.3f);
+        cc.radius = 0.26f;
+        cc.height = 0.5f;
+        
+        
+
+        //rigid.useGravity = false;
+        //yield return new WaitForSeconds(1.1f);
+
+
+        // anim.SetBool("isLay", false);
+        // cc.direction = 1;
+        // cc.radius = 0.5f;
+    }
 
     private void ChangeAnim(Animator anim, Vector3 _moveDir, float _speed, bool _canJump, RaycastHit _hit)
         {
@@ -507,7 +549,7 @@ public class HW_Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-            if(other.CompareTag("SavePoint"))
+        if(other.CompareTag("SavePoint"))
         {
             SavePointPanel.gameObject.SetActive(false);
         }

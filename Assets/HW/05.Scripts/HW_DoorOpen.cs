@@ -14,7 +14,6 @@ public class HW_DoorOpen : MonoBehaviour
         {
             door.transform.rotation = Quaternion.Lerp(door.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime);
             
-            
         }
     }
 

@@ -26,6 +26,7 @@ TagManager:
   - Cubepuzzle
   - Cube
   - Stage
+  - Bad
   layers:
   - Default
   - TransparentFX
