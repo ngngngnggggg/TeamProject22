@@ -49,8 +49,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Player
+  - Enemy
   - EnvironmentObject
   - 
   - 
