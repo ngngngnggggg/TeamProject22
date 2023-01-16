@@ -25,6 +25,8 @@ TagManager:
   - SavedText
   - Cubepuzzle
   - Cube
+  - Enemy
+  - Hint
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,7 @@ public class SavePoint : MonoBehaviour
     //    }
     //}
     private void OnTriggerEnter(Collider other)
-    {
+    {   
         if (other.CompareTag("Player")  )
         {
             Debug.Log("??");

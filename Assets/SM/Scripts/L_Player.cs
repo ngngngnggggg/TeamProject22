@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.PlayerLoop;
@@ -11,14 +12,16 @@ using Vector3 = UnityEngine.Vector3;
 public class L_Player : MonoBehaviour
 {
     //플레이어 이동 변수
-    [SerializeField] private float speed = 1.5f;
+    [SerializeField] private float speed = 2.5f;
 
     private float ropeTime;
     //플레이어 점프 변수
-    [SerializeField] private float jumpPower = 3.0f;
+    [SerializeField] private float jumpPower = 7f;
 
     [SerializeField] private GameObject Stone;
     [SerializeField] private Transform Handpos;
+
+    [SerializeField] private StoneCut[] stone;
 
     //플레이어 3d리지드바디
     private Rigidbody rigid;
@@ -39,6 +42,8 @@ public class L_Player : MonoBehaviour
     [Header("슬라이딩을 하고 있는지 확인")]
     [SerializeField]
     private bool isSlide;
+
+    private int count = 1;
 
     [Header("벽을 감지하는 레이 거리")]
     [SerializeField]
@@ -61,7 +66,7 @@ public class L_Player : MonoBehaviour
     [SerializeField] private MoveRope rope;
     private LineRenderer lr;
     private Hand hand;
-
+    private GameObject attachGo = null;
 
     //플레이어가 벽을 감지하게 하는 레이 히트
     private RaycastHit hit;
@@ -69,6 +74,10 @@ public class L_Player : MonoBehaviour
 
     [SerializeField] private GameManager gameMng;
     [SerializeField] private Material mat;
+    //[SerializeField] private Material enemy1;
+    //[SerializeField] private Material enemy2;
+    //[SerializeField] private Material enemy3;
+
 
     private void Start()
     {
@@ -122,7 +131,7 @@ public class L_Player : MonoBehaviour
         else
             isSlide = false;
 
-        speed = Input.GetKey(KeyCode.LeftShift) ? 3f : 1.5f;
+        speed = Input.GetKey(KeyCode.LeftShift) ? 7f : 2.5f;
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.C) && !isSlide)
         {
             anim.SetTrigger("isSlide");
@@ -217,8 +226,19 @@ public class L_Player : MonoBehaviour
             anim.SetTrigger("isThrow");
 
         }
+
+        if(Input.GetKeyDown(KeyCode.G))
+           
+         {
+            Stone.transform.SetParent(null);
+            Stone.GetComponent<Collider>().enabled = true;
+            Stone.GetComponent<Rigidbody>().isKinematic = false;
+            anim.SetTrigger("isPick");
+        }
     }
 
+
+    
 
     // ReSharper disable Unity.PerformanceAnalysis
     private void Climb()
@@ -502,6 +522,50 @@ public class L_Player : MonoBehaviour
             gameMng.GameSave();
             Renderer renderer = other.GetComponentInChildren<Renderer>();
             renderer.material = mat;
+        }
+        if (other.CompareTag("Enemy") )
+        {
+            //if (other.GetComponent<Objdata>().num == 1 || numClear)
+            //{
+            //    numClear = true;
+            //    if (other.GetComponent<Objdata>().num == 2 || numClear)
+            //    {
+            //        if (other.GetComponent<Objdata>().num == 3)
+            //            Debug.Log("성공");
+            //    }
+            //    else
+            //        other.GetComponent<EnemyState2>().enabled = true;
+            //}
+            //else
+            //    other.GetComponent<EnemyState2>().enabled = true;
+           
+                if (other.GetComponent<Objdata>().num == count)
+                {
+                    other.GetComponent<Objdata>().num = 0;
+                    other.GetComponent<Objdata>().ChangeColor();
+                    count++;
+
+
+                if (count == 4)
+                {
+                    foreach (var t in stone)
+                    {
+                        t.DestroyStone();
+                    }
+                    return;
+                }
+
+            }
+                else if (other.GetComponent<Objdata>().num == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    other.GetComponent<EnemyMove>().enabled = true;
+                    other.GetComponent<EnemyState2>().enabled = true;
+                }
+            
 
         }
     }
@@ -520,6 +584,8 @@ public class L_Player : MonoBehaviour
 
         }
     }
+
+    
 
     IEnumerator DieCoroutine()
     {
