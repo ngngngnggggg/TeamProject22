@@ -22,6 +22,9 @@ TagManager:
   - DeathZone
   - SavePoint
   - Cam2
+  - SavedText
+  - Cubepuzzle
+  - Cube
   layers:
   - Default
   - TransparentFX
