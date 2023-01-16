@@ -52,9 +52,11 @@ public class Blinking : MonoBehaviour
             {
                 m_IsEnd = true;
                 End();
-            }
+            } 
 
         }
+        //Debug.Log("o"+ time);
+        
         //else if (10f < time)
         //{
         //    GetComponent<Image>().color = new Color(0, 0, 0, 255f);
@@ -87,15 +89,17 @@ public class Blinking : MonoBehaviour
     //}
 
 
-
+    
 
     IEnumerator blinking()
     {
         Image image = GetComponent<Image>();
-
+        Text text = GetComponentInChildren<Text>();
+        bool on = true;
         int count = 0;
-        while (count < 10)
+        while (count < 10 && on == true)
         {
+            //Debug.Log("On" + on);
             //Debug.Log(count);
 
             image.color = Color.black;
@@ -112,14 +116,38 @@ public class Blinking : MonoBehaviour
             m_SoloHouse.SetRenderers(true);
             image.color = new Color(0, 0, 0, 0); // º¸ÀÌ±â
             yield return new WaitForSeconds(0.05f);
-
+            
             count++;
+            
+            //if(count >= 9)
+            //{
+            //    image.color = Color.black;
+            //    text.text = "Thank you for Play";
+
+            //}
             //if (count >= 20)
             //{
             //    map.SetActive(true);
 
             //}
         }
+        on= false;
+        while(on == false)
+        {
+
+            //Debug.Log("off" + on);
+            image.color = new Color(0, 0, 0, 0);
+            yield return new WaitForSeconds(1f);
+            image.color = Color.black;
+            yield return new WaitForSeconds(0.05f);
+            text.text = "Thank you for Play";
+            yield return new WaitForSeconds(2f);
+            Application.Quit();
+            yield break;
+        }
+        
+        
+
     }
     public void End()
     {
