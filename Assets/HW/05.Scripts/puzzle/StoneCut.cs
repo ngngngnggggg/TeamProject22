@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StoneCut : MonoBehaviour
@@ -26,3 +23,4 @@ public class StoneCut : MonoBehaviour
     }
     
 }
+  

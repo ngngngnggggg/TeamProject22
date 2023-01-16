@@ -21,7 +21,7 @@ public class EnemyState2 : MonoBehaviour
     }
 
     public State state = State.STAY;
-    public float attackDist = 30f;//공격 사정거리
+    public float attackDist = 100f;//공격 사정거리
 
     public float traceDist = 200f;//추적 사정거리
     public bool isDie = false;//사망유무 판단
