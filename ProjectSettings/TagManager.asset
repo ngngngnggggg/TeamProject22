@@ -26,9 +26,7 @@ TagManager:
   - Cubepuzzle
   - Cube
   - Stage
-  - Enemy
-  - Hint
-  - Light
+  - Bad
   layers:
   - Default
   - TransparentFX

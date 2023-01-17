@@ -47,7 +47,11 @@ public class HW_Player : MonoBehaviour
     [Header("외줄 타는지 확인")] [SerializeField] private bool isSideStep = false;
     [Header("로프에 매달렸는지 확인")] [SerializeField] private bool isRope = false;
     [Header("로프에 끝났는지 확인")] [SerializeField] private bool endRope = false; 
+    [Header("누운상태 확인")][SerializeField] private bool islaying = false;
     [Header("죽은상태 확인")] [SerializeField] private bool isdie = false; 
+
+    public bool Getislaying { get { return islaying; } }
+
     public bool IsRope
     {
         get { return isRope; }
@@ -86,6 +90,7 @@ public class HW_Player : MonoBehaviour
         Rope();
         Climb();
         SideStep();
+        LayDown();
 
 
         // switch (animState)
@@ -103,7 +108,7 @@ public class HW_Player : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private bool Move()
     {
-        if (isclimbing || isdie || isSideStep) return false;
+        if (isclimbing || isdie || isSideStep || islaying || isRope) return false;
         
 
         //플레이어 이동
@@ -246,7 +251,7 @@ public class HW_Player : MonoBehaviour
                     transform.position += transform.up * Time.deltaTime * climbspeed;
                     //transform.rotation = Quaternion.Lerp(transform.rotation, endrot, 1f);
                     //콜라이더와 중력을 비활성화 한다.
-                    //cc.enabled = false;
+                    cc.enabled = false;
                     rigid.useGravity = false;
                     //애니메이션 실행
                     anim.SetTrigger("isClimbing");
@@ -256,8 +261,10 @@ public class HW_Player : MonoBehaviour
             else
             {
                 isclimbingUp = false;
+                
                 // Debug.Log("123");
                 StartCoroutine(ClimbCoroutine());
+                
             }
         }
 
@@ -313,8 +320,9 @@ public class HW_Player : MonoBehaviour
 
         cc.enabled = true;
         rigid.useGravity = true;
-
+        
         isclimbing = false;
+        
     }
 
     private void SideStep()
@@ -452,6 +460,53 @@ public class HW_Player : MonoBehaviour
         
     }
 
+    private void LayDown()
+    {
+        if (!islaying && Input.GetKeyDown(KeyCode.Z))
+        {
+                  //아래쪽으로 레이 쏴서 태그가 Bad면
+            if (Physics.Raycast(transform.position, -transform.up, out hit, range)) 
+            {
+                if (hit.transform.tag == "Bad")
+                {
+                        islaying = true;
+                        //StartCoroutine(LayDownCoroutine());
+                }
+            }
+        }
+
+        if (islaying)
+        {
+            if (Physics.Raycast(transform.position, -transform.up, out hit, range))
+            {
+                if (hit.transform.tag == "Bad")
+                {
+                    anim.SetBool("isLay", true);
+                    //cc.direction = 3;
+                    //cc.radius = 0.26f;
+                    cc.height = 0.5f;
+                }
+
+            }
+            else if (Input.GetKeyDown(KeyCode.X))
+            {
+                //rigid.constraints = RigidbodyConstraints.FreezePositionY;
+                StartCoroutine(LayDownCoroutine());
+            }
+            
+        }
+        
+    }
+    
+    IEnumerator LayDownCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        islaying = false;
+        anim.SetBool("isLay", false);
+        cc.height = 1.929797f;
+        
+        
+    }
 
     private void ChangeAnim(Animator anim, Vector3 _moveDir, float _speed, bool _canJump, RaycastHit _hit)
         {
@@ -507,7 +562,7 @@ public class HW_Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-            if(other.CompareTag("SavePoint"))
+        if(other.CompareTag("SavePoint"))
         {
             SavePointPanel.gameObject.SetActive(false);
         }

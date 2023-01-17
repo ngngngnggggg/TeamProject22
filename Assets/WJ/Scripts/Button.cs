@@ -21,7 +21,7 @@ public class Button : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            door.Open();
+            StartCoroutine(door.Open());
         }
 
     }

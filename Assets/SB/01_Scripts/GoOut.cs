@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class GoOut : MonoBehaviour
 {
-    public bool WakeUp = false;
-    private Door door;
+    Animator animator;
+    public bool IsOpen;
 
-    // Start is called before the first frame update
     void Start()
     {
-        door = GameObject.FindWithTag("Door").GetComponent<Door>();
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(WakeUp == true)
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            door.Open();
+            animator.SetBool("IsOpen", true);
         }
     }
 }

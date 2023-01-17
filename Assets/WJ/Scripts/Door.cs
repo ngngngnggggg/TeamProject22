@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public Door door;
     Animator animator;
-    
-    
+    [SerializeField] GameObject[] environments;
+    [SerializeField] private HW_Player player;
+
+    int count = 1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -17,17 +21,44 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.X) && player.Getislaying)
+        {
+            count++;
+            StartCoroutine(Open());
+            foreach(GameObject environment in environments)
+            {
+                environment.SetActive(!environment.activeSelf);
+            }
+        }
     }
-    public void Open()
+    public IEnumerator Open()
     {
-
-        animator.SetBool("IsOpen",true);
-
+        if (count == 1)
+        {
+            if (player.Getislaying)
+            {
+                yield return new WaitForSeconds(2f);
+            }
+            animator.SetBool("IsOpen", true);
+        }
+        yield return null;
     }
     public void Close()
     {
-        animator.SetBool("IsOpen", false);
+        if (count == 1)
+        {
+            animator.SetBool("IsOpen", false);
+            count--;
+        }
     }
-    
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            door.transform.rotation = Quaternion.Lerp(door.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime);
+
+        }
+    }
+
 }
