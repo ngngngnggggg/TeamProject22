@@ -1634,7 +1634,7 @@ CapsuleCollider:
   m_Radius: 0.36
   m_Height: 1.9297966
   m_Direction: 1
-  m_Center: {x: 0.00000007688028, y: 0.94, z: 0.017925806}
+  m_Center: {x: 0, y: 0.94, z: 0}
 --- !u!95 &4194927251590586813
 Animator:
   serializedVersion: 4
@@ -1697,6 +1697,7 @@ MonoBehaviour:
   isSideStep: 0
   isRope: 0
   endRope: 0
+  islaying: 0
   isdie: 0
   startPos: {fileID: 0}
   rope: {fileID: 0}

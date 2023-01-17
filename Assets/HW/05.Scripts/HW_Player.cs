@@ -47,6 +47,7 @@ public class HW_Player : MonoBehaviour
     [Header("외줄 타는지 확인")] [SerializeField] private bool isSideStep = false;
     [Header("로프에 매달렸는지 확인")] [SerializeField] private bool isRope = false;
     [Header("로프에 끝났는지 확인")] [SerializeField] private bool endRope = false; 
+    [Header("누운상태 확인")][SerializeField] private bool islaying = false;
     [Header("죽은상태 확인")] [SerializeField] private bool isdie = false; 
     public bool IsRope
     {
@@ -104,7 +105,7 @@ public class HW_Player : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private bool Move()
     {
-        if (isclimbing || isdie || isSideStep) return false;
+        if (isclimbing || isdie || isSideStep || islaying || isRope) return false;
         
 
         //플레이어 이동
@@ -458,41 +459,50 @@ public class HW_Player : MonoBehaviour
 
     private void LayDown()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (!islaying && Input.GetKeyDown(KeyCode.Z))
         {
-            //아래쪽으로 레이 쏴서 태그가 Bad면
+                  //아래쪽으로 레이 쏴서 태그가 Bad면
+            if (Physics.Raycast(transform.position, -transform.up, out hit, range)) 
+            {
+                if (hit.transform.tag == "Bad")
+                {
+                        islaying = true;
+                        //StartCoroutine(LayDownCoroutine());
+                }
+            }
+        }
+
+        if (islaying)
+        {
             if (Physics.Raycast(transform.position, -transform.up, out hit, range))
             {
                 if (hit.transform.tag == "Bad")
                 {
-                    StartCoroutine(LayDownCoroutine());
-                    
+                    anim.SetBool("isLay", true);
+                    //cc.direction = 3;
+                    //cc.radius = 0.26f;
+                    cc.height = 0.5f;
                 }
-                else if (Input.GetKeyDown(KeyCode.Z))
-                {
-                    
-                }
+
             }
+            else if (Input.GetKeyDown(KeyCode.X))
+            {
+                //rigid.constraints = RigidbodyConstraints.FreezePositionY;
+                StartCoroutine(LayDownCoroutine());
+            }
+            
         }
+        
     }
     
     IEnumerator LayDownCoroutine()
     {
-        //cc.direction = 1;
-        anim.SetBool("isLay", true);
-        yield return new WaitForSeconds(0.3f);
-        cc.radius = 0.26f;
-        cc.height = 0.5f;
+        yield return new WaitForSeconds(0.5f);
+        islaying = false;
+        anim.SetBool("isLay", false);
+        cc.height = 1.929797f;
         
         
-
-        //rigid.useGravity = false;
-        //yield return new WaitForSeconds(1.1f);
-
-
-        // anim.SetBool("isLay", false);
-        // cc.direction = 1;
-        // cc.radius = 0.5f;
     }
 
     private void ChangeAnim(Animator anim, Vector3 _moveDir, float _speed, bool _canJump, RaycastHit _hit)
