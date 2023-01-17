@@ -27,6 +27,7 @@ TagManager:
   - Cube
   - Stage
   - Bad
+  - divingrope
   layers:
   - Default
   - TransparentFX

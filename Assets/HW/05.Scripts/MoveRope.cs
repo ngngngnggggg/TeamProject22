@@ -9,19 +9,21 @@ public class MoveRope : MonoBehaviour
     [SerializeField] private Transform endPos;
     private float speed;
     private bool endRope = false;
-    
+    private Rigidbody rb;
+
     public bool EndRope
     {
         get { return endRope; }
     }
-    
+
     private void Update()
     {
         
         if (player.IsRope == true && transform.position != endPos.position && endRope == false)
         {
             speed += Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, endPos.position, speed/500f);
+            transform.position = Vector3.MoveTowards(transform.position, endPos.position, speed * Time.deltaTime * 2);
+            //transform.position = Vector3.Lerp(transform.position, endPos.position, speed);
             //transform.position = Vector3.MoveTowards(transform.position, endPos.position, 5f * Time.deltaTime);
             
 
