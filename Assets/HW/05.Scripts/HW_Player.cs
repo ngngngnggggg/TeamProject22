@@ -49,6 +49,9 @@ public class HW_Player : MonoBehaviour
     [Header("로프에 끝났는지 확인")] [SerializeField] private bool endRope = false; 
     [Header("누운상태 확인")][SerializeField] private bool islaying = false;
     [Header("죽은상태 확인")] [SerializeField] private bool isdie = false; 
+
+    public bool Getislaying { get { return islaying; } }
+
     public bool IsRope
     {
         get { return isRope; }
