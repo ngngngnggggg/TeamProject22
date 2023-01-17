@@ -6,6 +6,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.PlayerLoop;
+using static UnityEditor.Progress;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
@@ -78,6 +79,10 @@ public class L_Player : MonoBehaviour
     //[SerializeField] private Material enemy2;
     //[SerializeField] private Material enemy3;
 
+    GameObject nearObject;
+
+    //public GameObject[] item;
+    //public bool[] hasitem;
 
     private void Start()
     {
@@ -86,7 +91,7 @@ public class L_Player : MonoBehaviour
         cc = GetComponent<CapsuleCollider>();
         lr = GetComponent<LineRenderer>();
         hand = GetComponentInChildren<Hand>();
-
+        
 
     }
 
@@ -249,8 +254,10 @@ public class L_Player : MonoBehaviour
             //Debug.Log("wallbool확인");
             if (Physics.Raycast(transform.position + (Vector3.up * 0.7f), transform.forward, out hit, range))
             {
+                Debug.Log("wallbool확인");
                 if (hit.transform.tag == "Wall")
                 {
+                    Debug.Log("wallbool확인2");
                     isclimbing = true;
                     isclimbingUp = true;
                 }
@@ -548,10 +555,7 @@ public class L_Player : MonoBehaviour
 
                 if (count == 4)
                 {
-                    foreach (var t in stone)
-                    {
-                        t.DestroyStone();
-                    }
+                    StartCoroutine(DestroyStone());
                     return;
                 }
 
@@ -568,6 +572,21 @@ public class L_Player : MonoBehaviour
             
 
         }
+        if (other.gameObject.tag == "Light")
+        {
+            {
+                Destroy(other.gameObject);
+            }
+            transform.GetChild(1).gameObject.SetActive(true);
+        }
+
+        if (other.gameObject.tag == "Key")
+        {
+            {
+                Destroy(other.gameObject);
+            }
+            transform.GetChild(2).gameObject.SetActive(true);
+        }
     }
     // 태그에 닿으면 죽는 애니메이션
     private void OnCollisionEnter(Collision collision)
@@ -578,14 +597,21 @@ public class L_Player : MonoBehaviour
             Debug.Log("죽음");
             isdie = true;
             StartCoroutine(DieCoroutine());
-
-
-
-
         }
-    }
+
 
     
+
+    }
+
+    IEnumerator DestroyStone()
+    {
+        yield return new WaitForSeconds(3f);
+        foreach (var t in stone)
+        {
+            t.DestroyStone();
+        }
+    }
 
     IEnumerator DieCoroutine()
     {
@@ -599,4 +625,34 @@ public class L_Player : MonoBehaviour
 
 
     }
+
+
+    void Interation()
+    {
+
+    }
+
+
+
+
+
+
+
+
+
+    //void Interation()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.G) && nearObject != null)
+    //    {
+    //        if (nearObject.tag == "item")
+    //        {
+    //            Item item = nearObject.GetComponent<L_Item>();
+    //            //Item item = gameObj.GetComponent<L_Item>();
+    //            int weaponIndex = item.value;
+    //            hasitem[weaponIndex] = true;
+
+    //            Destroy(nearObject);
+    //        }
+    //    }
+    //}
 }

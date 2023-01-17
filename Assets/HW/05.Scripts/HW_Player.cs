@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.PlayerLoop;
@@ -15,8 +14,6 @@ public class HW_Player : MonoBehaviour
     [SerializeField] private float speed = 1.5f;
 
     private float ropeTime;
-        
-    
     //플레이어 점프 변수
     [SerializeField] private float jumpPower = 3.0f;
     
@@ -49,12 +46,12 @@ public class HW_Player : MonoBehaviour
     
     [Header("외줄 타는지 확인")] [SerializeField] private bool isSideStep = false;
     [Header("로프에 매달렸는지 확인")] [SerializeField] private bool isRope = false;
-
-    [Header("로프에 매달렸는지 확인")] [SerializeField] private bool isRopeWater = false;
     [Header("로프에 끝났는지 확인")] [SerializeField] private bool endRope = false; 
     [Header("누운상태 확인")][SerializeField] private bool islaying = false;
     [Header("죽은상태 확인")] [SerializeField] private bool isdie = false; 
-    [Header("isWater 확인")] [SerializeField] private bool isWater = false; 
+
+    public bool Getislaying { get { return islaying; } }
+
     public bool IsRope
     {
         get { return isRope; }
@@ -137,12 +134,13 @@ public class HW_Player : MonoBehaviour
 
         //플레이어 이동   
         transform.Translate(moveDir.normalized * (speed * Time.deltaTime), Space.World);
+
+
+
         ChangeAnim(anim, moveDir, speed, canJump, hit);
 
         return h != 0;
     }
-    
-    
 
     //코루틴 슬라이드 함수
     IEnumerator Slide()
@@ -419,7 +417,7 @@ public class HW_Player : MonoBehaviour
                 if (Physics.Raycast(transform.position, transform.up, out hit, range + 1f))
                 {
                     Debug.Log("Ray확인");
-                    if (hit.transform.gameObject.CompareTag("Rope") || hit.transform.gameObject.CompareTag("divingrope"))
+                    if (hit.transform.gameObject.CompareTag("Rope"))
                     {
                         Debug.Log("tag가 로프");
                         isRope = true;
@@ -441,43 +439,22 @@ public class HW_Player : MonoBehaviour
                 anim.SetTrigger("isRopeS");
                 rigid.useGravity = false;
                 rigid.isKinematic = true; //isRope가 아니면 해제 해줘야함
-                RaycastHit _hit;
-                if (Physics.Raycast(transform.position, Vector3.down, out _hit, 10f))
-                {
-                    //Debug.Log(_hit.transform.gameObject.tag);
-                    if (_hit.transform.gameObject.tag == "Untagged")
-                    {
-                        isRopeWater = true;
-                    }
-                }
          
 
         
         }
-        else if (rope.EndRope == true && isRopeWater == false) 
+        else if(rope.EndRope == true)
         {
             
             Debug.Log("endrope");
-            isRope = false;
+            //isRope = false;
             transform.SetParent((null));
             if(lr != null)
-                Destroy(lr);
+            Destroy(lr);
             rigid.useGravity = true;
             rigid.isKinematic = false;
             anim.SetTrigger("isRopeE");
-            
             //StartCoroutine(RopeCoroutine());  
-        }
-        else if (rope.EndRope == true && isRopeWater == true)
-        {
-            Debug.Log("endropeWater");
-            isRopeWater = false;
-            transform.SetParent((null));
-            if(lr != null)
-                Destroy(lr);
-            rigid.useGravity = true;
-            rigid.isKinematic = false;
-            anim.SetTrigger("isRopeWater");
         }
             
         
@@ -561,7 +538,7 @@ public class HW_Player : MonoBehaviour
         }
 
         //현재 실행 할 애니메이션을 제외한 나머지 애니메이션 중지 함수
-    private void StopAnim(Animator anim, string _animName)
+        private void StopAnim(Animator anim, string _animName)
         {
             //현재 실행 할 애니메이션을 제외한 나머지 애니메이션 중지
             foreach (var _anim in anim.runtimeAnimatorController.animationClips)
