@@ -21,9 +21,9 @@ public class EnemyState2 : MonoBehaviour
     }
 
     public State state = State.STAY;
-    public float attackDist = 100f;//공격 사정거리
+    public float attackDist;//공격 사정거리
 
-    public float traceDist = 200f;//추적 사정거리
+    public float traceDist;//추적 사정거리
     public bool isDie = false;//사망유무 판단
     public LayerMask playerLayer;
     public LayerMask EnemyLayer;
@@ -108,13 +108,14 @@ public class EnemyState2 : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("111");
                     state = State.TRACE;
                 }
             }
-
             //추적 반경 및 시야각에 있는지 판단 후 추적 
             else if (enemyFOV.isTracePlayer())
             {
+                Debug.Log("222");
                 state = State.TRACE;
             }
 

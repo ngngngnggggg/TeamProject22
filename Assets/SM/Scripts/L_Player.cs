@@ -104,7 +104,7 @@ public class L_Player : MonoBehaviour
         Climb();
         SideStep();
 
-
+        //Debug.DrawRay(transform.position + (Vector3.up * 3f), transform.forward, Color.red);
         // switch (animState)
         // {
         //     case EAnim.Walk:
@@ -252,7 +252,8 @@ public class L_Player : MonoBehaviour
         if (!isclimbing && Input.GetKeyDown(KeyCode.C))
         {
             //Debug.Log("wallbool확인");
-            if (Physics.Raycast(transform.position + (Vector3.up * 0.7f), transform.forward, out hit, range))
+           
+            if (Physics.Raycast(transform.position + (Vector3.up * 2f), transform.forward, out hit, range))
             {
                 Debug.Log("wallbool확인");
                 if (hit.transform.tag == "Wall")
@@ -503,7 +504,7 @@ public class L_Player : MonoBehaviour
 
         //player Run Jump animation start
         anim.SetBool("RunningJump", _canJump);
-        Debug.DrawRay(transform.position, transform.forward, Color.red);
+        //Debug.DrawRay(transform.position, transform.forward, Color.red);
 
 
 
