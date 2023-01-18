@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class HW_Water : MonoBehaviour
 {
-    public static bool isWater = false;
+    
+    [SerializeField] private HW_Player player;
     
     [SerializeField] private float waterDrag; //물속 중력
     [SerializeField] private float originDrag; //물에서 나왔을 때 원래의 중력
@@ -22,7 +23,7 @@ public class HW_Water : MonoBehaviour
     {
         originColor = RenderSettings.fogColor;
         originFogDensity = RenderSettings.fogDensity;
-        anim = GetComponent<Animator>();
+        
 
         originDrag = 0;
     }
@@ -32,6 +33,8 @@ public class HW_Water : MonoBehaviour
         if (other.transform.tag == "Player")
         {
             GetWater(other);
+            other.GetComponent<Animator>().SetTrigger("isDive");
+            other.GetComponent<HW_Player>().isWater = true;
         }
     }
     
@@ -39,7 +42,7 @@ public class HW_Water : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
-            swimming(other);
+           
         }
     }
     
@@ -53,38 +56,33 @@ public class HW_Water : MonoBehaviour
     
     private void GetWater(Collider _player)
     {
-        isWater = true;
+       
         _player.transform.GetComponent<Rigidbody>().drag = waterDrag;
-        StartCoroutine(WaterChangeColor());
+        StartCoroutine(WaterChangeColor(_player.gameObject));
     }
     
-    private void swimming(Collider _player)
-    {
-        if (isWater)
-        {
-            
-        }
-    }
     
     //1초 후 색상 변경 코루틴 함수
-private IEnumerator WaterChangeColor()
+private IEnumerator WaterChangeColor(GameObject _player)
     {
         yield return new WaitForSeconds(1f);
         RenderSettings.fogColor = waterColor;
         RenderSettings.fogDensity = waterFogDensity;
+        player.isDive = false;
+        yield return new WaitForSeconds(0.5f);
+        _player.GetComponent<Animator>().SetTrigger("isDive");
+        _player.GetComponent<Rigidbody>().useGravity = false;
     }
     
     
     
     private void GetOutWater(Collider _player)
     {
-        if (isWater)
-        {
-            isWater = false;
+        
             _player.transform.GetComponent<Rigidbody>().drag = originDrag;
             
             RenderSettings.fogColor = originColor;
             RenderSettings.fogDensity = originFogDensity;
-        }
+        
     }
 }

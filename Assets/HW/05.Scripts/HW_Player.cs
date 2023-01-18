@@ -10,6 +10,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class HW_Player : MonoBehaviour
 {
+    [SerializeField] private HW_Water _water;
     
     //플레이어 이동 변수
     [SerializeField] private float speed = 1.5f;
@@ -47,9 +48,14 @@ public class HW_Player : MonoBehaviour
 
     [Header("외줄 타는지 확인")] [SerializeField] private bool isSideStep = false;
     [Header("로프에 매달렸는지 확인")] [SerializeField] private bool isRope = false;
+    [SerializeField] private bool isRopeWater = false;
     [Header("로프에 끝났는지 확인")] [SerializeField] private bool endRope = false;
     [Header("누운상태 확인")][SerializeField] private bool islaying = false;
     [Header("죽은상태 확인")] [SerializeField] private bool isdie = false;
+    [Header("다이빙 상태인지 확인")] public bool isDive = false;
+    [Header("물속인지 확인")] public bool isWater = false;
+    
+
 
     public bool Getislaying { get { return islaying; } }
 
@@ -71,6 +77,7 @@ public class HW_Player : MonoBehaviour
 
     [SerializeField] private GameManager gameMng;
     [SerializeField] private Material mat;
+    
 
     private void Start()
     {
@@ -79,8 +86,6 @@ public class HW_Player : MonoBehaviour
         cc = GetComponent<CapsuleCollider>();
         lr = GetComponent<LineRenderer>();
         hand = GetComponentInChildren<Hand>();
-
-
     }
 
     private void Update()
@@ -92,24 +97,14 @@ public class HW_Player : MonoBehaviour
         Climb();
         SideStep();
         LayDown();
-
-
-        // switch (animState)
-        // {
-        //     case EAnim.Walk:
-        //         if ( Move()) Run();
-        //         break;
-        //     case EAnim.Grab:
-        //         Grab();
-        //         break;
-        // }
+        Swimming();
     }
 
     //플레이어 이동 함수
     // ReSharper disable Unity.PerformanceAnalysis
     private bool Move()
     {
-        if (isclimbing || isdie || isSideStep || islaying || isRope) return false;
+        if (isclimbing || isdie || isSideStep || islaying || isRope || isRopeWater || isDive || isWater) return false;
 
 
         //플레이어 이동
@@ -132,15 +127,38 @@ public class HW_Player : MonoBehaviour
             //애니메이션 동작 하는 동안에는 콜라이더를 Z축으로 0.5만큼 줄여서 슬라이딩 효과를 주는 코루틴 함수
             StartCoroutine(Slide());
         }
-
+        
+        
         //플레이어 이동
         transform.Translate(moveDir.normalized * (speed * Time.deltaTime), Space.World);
-
-
-
         ChangeAnim(anim, moveDir, speed, canJump, hit);
 
+        
+
+        
         return h != 0;
+    }
+
+
+    private void Swimming()
+    {
+        float _speed = 0.5f;
+        
+            if (isWater)
+            {
+                float h = Input.GetAxis("Horizontal");
+                float v = Input.GetAxis("Vertical");
+
+                Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
+                //누르는 방향으로 플레이어 회전
+                if (moveDir != Vector3.zero)
+                {
+                    transform.rotation = Quaternion.LookRotation(moveDir);
+                }
+                transform.Translate(moveDir.normalized * (_speed * Time.deltaTime), Space.World);
+                //속도가 0이 아니면 애니메이션 실행
+                anim.SetBool("isSwimming", moveDir != Vector3.zero);
+            }
     }
 
     //코루틴 슬라이드 함수
@@ -171,7 +189,6 @@ public class HW_Player : MonoBehaviour
         {
             rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
         }
-
     }
 
     //플레이어 오브젝트 그랩 함수
@@ -407,6 +424,7 @@ public class HW_Player : MonoBehaviour
 
 
     //로프에 매달리기
+    // ReSharper disable Unity.PerformanceAnalysis
     private void Rope()
     {
         //점프를 하고 있고 제자리 점프 애니메이션이 실행 중일때
@@ -418,7 +436,7 @@ public class HW_Player : MonoBehaviour
                 if (Physics.Raycast(transform.position, transform.up, out hit, range + 1f))
                 {
                     Debug.Log("Ray확인");
-                    if (hit.transform.gameObject.CompareTag("Rope"))
+                    if (hit.transform.gameObject.CompareTag("Rope") || hit.transform.gameObject.CompareTag("divingrope"))
                     {
                         Debug.Log("tag가 로프");
                         isRope = true;
@@ -441,23 +459,44 @@ public class HW_Player : MonoBehaviour
                 rigid.useGravity = false;
                 rigid.isKinematic = true; //isRope가 아니면 해제 해줘야함
 
+                RaycastHit _hit;
+                if (Physics.Raycast(transform.position, Vector3.down, out _hit, 10f))
+                {
+                    Debug.Log(_hit.transform.gameObject.tag);
+                    if (_hit.transform.gameObject.tag == "Untagged")
+                    {
+                        isRopeWater = true;
+                    }
+                }
+
 
 
         }
-        else if(rope.EndRope == true)
+        else if(rope.EndRope == true && isRopeWater == false)
         {
 
             Debug.Log("endrope");
-            //isRope = false;
+            isRope = false;
             transform.SetParent((null));
             if(lr != null)
             Destroy(lr);
             rigid.useGravity = true;
             rigid.isKinematic = false;
             anim.SetTrigger("isRopeE");
-            //StartCoroutine(RopeCoroutine());
         }
-
+        else if (rope.EndRope == true && isRopeWater == true)
+        {
+            Debug.Log("endropeWater");
+            isRopeWater = false;
+            isDive = true;
+            transform.SetParent((null));
+            if(lr != null)
+                Destroy(lr);
+            rigid.useGravity = true;
+            rigid.isKinematic = false;
+            anim.SetTrigger("isRopeWater");
+        }
+        
 
     }
 
@@ -558,7 +597,6 @@ public class HW_Player : MonoBehaviour
             renderer.material = mat;
             SavePointPanel.gameObject.SetActive(true);
         }
-
     }
 
     private void OnTriggerExit(Collider other)
@@ -578,10 +616,6 @@ public class HW_Player : MonoBehaviour
                 Debug.Log("죽음");
                 isdie = true;
                 StartCoroutine(DieCoroutine() );
-
-
-
-
             }
         }
 
@@ -594,7 +628,5 @@ public class HW_Player : MonoBehaviour
             yield return new WaitForSeconds(2.5f);
 
             isdie = false;
-
-
         }
     }
