@@ -64,18 +64,7 @@ public class EnemyFOV : MonoBehaviour
         }
         return isView;
     }
-    public bool isViewAnimal()
-    {
-        bool isView = false;
-        RaycastHit hit; // 충돌 정보 저장 변수
-
-        Vector3 _dir = (playerTr.position - transform.position).normalized;
-        if (Physics.Raycast(animalTr.position, _dir, out hit, viewRange, layerMask))
-        {
-            isView = hit.collider.CompareTag("ANIMAL");
-        }
-        return isView;
-    }
+   
 }
 
 
