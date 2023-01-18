@@ -10,13 +10,14 @@ using Vector3 = UnityEngine.Vector3;
 
 public class HW_Player : MonoBehaviour
 {
+    
     //플레이어 이동 변수
     [SerializeField] private float speed = 1.5f;
 
     private float ropeTime;
     //플레이어 점프 변수
     [SerializeField] private float jumpPower = 3.0f;
-    
+
     [SerializeField] private GameObject Stone;
     [SerializeField] private Transform Handpos;
 
@@ -43,13 +44,12 @@ public class HW_Player : MonoBehaviour
     [Header("벽타는 속도")] [SerializeField] private float climbspeed = 0.5f;
     [Header("벽을 타는지 확인")] [SerializeField] private bool isclimbing = false;
     [SerializeField] private bool isclimbingUp = false;
-    
+
     [Header("외줄 타는지 확인")] [SerializeField] private bool isSideStep = false;
     [Header("로프에 매달렸는지 확인")] [SerializeField] private bool isRope = false;
-    [Header("로프에 끝났는지 확인")] [SerializeField] private bool endRope = false; 
+    [Header("로프에 끝났는지 확인")] [SerializeField] private bool endRope = false;
     [Header("누운상태 확인")][SerializeField] private bool islaying = false;
-    [Header("죽은상태 확인")] [SerializeField] private bool isdie = false; 
-    [Header("물속인지 확인")] [SerializeField] private bool isWater = false; 
+    [Header("죽은상태 확인")] [SerializeField] private bool isdie = false;
 
     public bool Getislaying { get { return islaying; } }
 
@@ -67,11 +67,11 @@ public class HW_Player : MonoBehaviour
 
     //플레이어가 벽을 감지하게 하는 레이 히트
     private RaycastHit hit;
-    
-    
+
+
     [SerializeField] private GameManager gameMng;
     [SerializeField] private Material mat;
-                                    
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
@@ -110,7 +110,8 @@ public class HW_Player : MonoBehaviour
     private bool Move()
     {
         if (isclimbing || isdie || isSideStep || islaying || isRope) return false;
-        
+
+
         //플레이어 이동
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -131,16 +132,15 @@ public class HW_Player : MonoBehaviour
             //애니메이션 동작 하는 동안에는 콜라이더를 Z축으로 0.5만큼 줄여서 슬라이딩 효과를 주는 코루틴 함수
             StartCoroutine(Slide());
         }
-        //플레이어 이동   
+
+        //플레이어 이동
         transform.Translate(moveDir.normalized * (speed * Time.deltaTime), Space.World);
+
+
+
         ChangeAnim(anim, moveDir, speed, canJump, hit);
-        if (isWater)
-        {
-            anim.SetTrigger("isSwimming");
-        }
-        
+
         return h != 0;
-        
     }
 
     //코루틴 슬라이드 함수
@@ -229,7 +229,7 @@ public class HW_Player : MonoBehaviour
 
         if (!isclimbing && Input.GetKeyDown(KeyCode.C))
         {
-            
+
             if (Physics.Raycast(transform.position + (Vector3.up * 0.7f), transform.forward, out hit, range))
             {
                 Debug.Log("wallbool확인");
@@ -262,10 +262,10 @@ public class HW_Player : MonoBehaviour
             else
             {
                 isclimbingUp = false;
-                
+
                 // Debug.Log("123");
                 StartCoroutine(ClimbCoroutine());
-                
+
             }
         }
 
@@ -321,9 +321,9 @@ public class HW_Player : MonoBehaviour
 
         cc.enabled = true;
         rigid.useGravity = true;
-        
+
         isclimbing = false;
-        
+
     }
 
     private void SideStep()
@@ -418,7 +418,7 @@ public class HW_Player : MonoBehaviour
                 if (Physics.Raycast(transform.position, transform.up, out hit, range + 1f))
                 {
                     Debug.Log("Ray확인");
-                    if (hit.transform.gameObject.CompareTag("Rope") || hit.transform.gameObject.CompareTag("divingrope"))
+                    if (hit.transform.gameObject.CompareTag("Rope"))
                     {
                         Debug.Log("tag가 로프");
                         isRope = true;
@@ -432,21 +432,21 @@ public class HW_Player : MonoBehaviour
 
         if (isRope == true && rope.EndRope == false)
         {
-            
+
             lr.SetPosition(0, hand.Gethandpos());
             lr.SetPosition(1, startPos.position + new Vector3(0f, 0f,0f));
-          
+
                 Debug.Log("hit rope");
                 anim.SetTrigger("isRopeS");
                 rigid.useGravity = false;
                 rigid.isKinematic = true; //isRope가 아니면 해제 해줘야함
-         
 
-        
+
+
         }
         else if(rope.EndRope == true)
         {
-            
+
             Debug.Log("endrope");
             //isRope = false;
             transform.SetParent((null));
@@ -455,10 +455,10 @@ public class HW_Player : MonoBehaviour
             rigid.useGravity = true;
             rigid.isKinematic = false;
             anim.SetTrigger("isRopeE");
-            //StartCoroutine(RopeCoroutine());  
+            //StartCoroutine(RopeCoroutine());
         }
-            
-        
+
+
     }
 
     private void LayDown()
@@ -466,7 +466,7 @@ public class HW_Player : MonoBehaviour
         if (!islaying && Input.GetKeyDown(KeyCode.Z))
         {
                   //아래쪽으로 레이 쏴서 태그가 Bad면
-            if (Physics.Raycast(transform.position, -transform.up, out hit, range)) 
+            if (Physics.Raycast(transform.position, -transform.up, out hit, range))
             {
                 if (hit.transform.tag == "Bad")
                 {
@@ -494,19 +494,19 @@ public class HW_Player : MonoBehaviour
                 //rigid.constraints = RigidbodyConstraints.FreezePositionY;
                 StartCoroutine(LayDownCoroutine());
             }
-            
+
         }
-        
+
     }
-    
+
     IEnumerator LayDownCoroutine()
     {
         yield return new WaitForSeconds(0.5f);
         islaying = false;
         anim.SetBool("isLay", false);
         cc.height = 1.929797f;
-        
-        
+
+
     }
 
     private void ChangeAnim(Animator anim, Vector3 _moveDir, float _speed, bool _canJump, RaycastHit _hit)
@@ -532,9 +532,9 @@ public class HW_Player : MonoBehaviour
             anim.SetBool("RunningJump", _canJump);
             Debug.DrawRay(transform.position, transform.forward, Color.red);
 
-            
-            
-               
+
+
+
 
         }
 
@@ -584,7 +584,7 @@ public class HW_Player : MonoBehaviour
 
             }
         }
-    
+
         IEnumerator DieCoroutine()
         {
             yield return new WaitForSeconds(3f);
@@ -592,9 +592,9 @@ public class HW_Player : MonoBehaviour
             yield return new WaitForSeconds(1f);
             anim.SetBool("isDie", false);
             yield return new WaitForSeconds(2.5f);
-            
+
             isdie = false;
-            
-            
+
+
         }
     }
