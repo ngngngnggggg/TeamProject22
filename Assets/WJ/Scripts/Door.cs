@@ -9,7 +9,7 @@ public class Door : MonoBehaviour
     [SerializeField] GameObject[] environments;
     [SerializeField] private HW_Player player;
 
-    int count = 1;
+    public int count = 1;
 
 
     // Start is called before the first frame update
@@ -45,11 +45,10 @@ public class Door : MonoBehaviour
     }
     public void Close()
     {
-        if (count == 1)
-        {
+        //if (count == 1)
+        //{
             animator.SetBool("IsOpen", false);
-            count--;
-        }
+        //}
     }
 
     private void OnTriggerStay(Collider other)
