@@ -10,6 +10,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class HW_Player : MonoBehaviour
 {
+    [SerializeField] private GameObject dive; 
     [SerializeField] private HW_Water _water;
     //플레이어 이동 변수
     [SerializeField] private float speed = 1.5f;
@@ -24,7 +25,7 @@ public class HW_Player : MonoBehaviour
     //플레이어 3d리지드바디
     private Rigidbody rigid;
     //플레이어 애니메이터
-    private Animator anim;
+    public Animator anim;
     //플레이어 캡슐 콜라이더
     private CapsuleCollider cc;
 
@@ -53,6 +54,7 @@ public class HW_Player : MonoBehaviour
     [Header("죽은상태 확인")] [SerializeField] private bool isdie = false;
     [Header("다이빙 상태인지 확인")] public bool isDive = false;
     [Header("물속인지 확인")] public bool isWater = false;
+    private bool isStanding = false;
 
     public bool Getislaying { get { return islaying; } }
 
@@ -96,7 +98,7 @@ public class HW_Player : MonoBehaviour
         SideStep();
         LayDown();
         Swimming();
-
+        Debug.DrawRay(transform.position+ (Vector3.up * 0.3f), transform.forward, Color.red);
 
         // switch (animState)
         // {
@@ -113,39 +115,47 @@ public class HW_Player : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private bool Move()
     {
-        if (isclimbing || isdie || isSideStep || islaying || isRope || isRopeWater || isDive || isWater) return false;
+       
+        
+            if (isclimbing || isdie || isSideStep || islaying || isRope || isRopeWater || isDive || isWater || isStanding)
+                return false;
 
 
-        //플레이어 이동
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+            //플레이어 이동
+            float h = Input.GetAxis("Horizontal");
+            float v = Input.GetAxis("Vertical");
 
-        Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
-        //누르는 방향으로 플레이어 회전
-        if (moveDir != Vector3.zero && !isclimbing)
-        {
-            transform.rotation = Quaternion.LookRotation(moveDir);
-        }
-        else
-            isSlide = false;
+            Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
+            //누르는 방향으로 플레이어 회전
+            if (moveDir != Vector3.zero && !isclimbing)
+            {
+                transform.rotation = Quaternion.LookRotation(moveDir);
+            }
+            else
+                isSlide = false;
 
-        speed = Input.GetKey(KeyCode.LeftShift) ? 3f : 1.5f;
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.C) && !isSlide)
-        {
-            anim.SetTrigger("isSlide");
-            //애니메이션 동작 하는 동안에는 콜라이더를 Z축으로 0.5만큼 줄여서 슬라이딩 효과를 주는 코루틴 함수
-            StartCoroutine(Slide());
-        }
+            speed = Input.GetKey(KeyCode.LeftShift) ? 3f : 1.5f;
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.C) && !isSlide)
+            {
+                anim.SetTrigger("isSlide");
+                //애니메이션 동작 하는 동안에는 콜라이더를 Z축으로 0.5만큼 줄여서 슬라이딩 효과를 주는 코루틴 함수
+                StartCoroutine(Slide());
+            }
 
-        //플레이어 이동
-        transform.Translate(moveDir.normalized * (speed * Time.deltaTime), Space.World);
-        ChangeAnim(anim, moveDir, speed, canJump, hit);
-        return h != 0;
-    }
+            //플레이어 이동
+            transform.Translate(moveDir.normalized * (speed * Time.deltaTime), Space.World);
+            ChangeAnim(anim, moveDir, speed, canJump, hit);
+            return h != 0;
+        
+    
+}
     private void Swimming()
     {
+        if (isclimbing) return;
+        
         float _speed;
         float _jumpPower = 0.4f;
+        
         _speed = Input.GetKey(KeyCode.LeftShift) ? 3f : 0.5f;
 
         if (isWater)
@@ -155,9 +165,7 @@ public class HW_Player : MonoBehaviour
                 rigid.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
                 rigid.useGravity = false;
             }
-            else
-                rigid.useGravity = true;
-            
+           
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
 
@@ -173,10 +181,73 @@ public class HW_Player : MonoBehaviour
             anim.SetBool("isSwimming", moveDir != Vector3.zero);
             //LeftShift를 누르면 빠른수영 애니메이션
             anim.SetBool("isFastSwimming", Input.GetKey(KeyCode.LeftShift));
+            //태그가 WaterLean이고 Space를 눌렀을 때 애니메이션 실행
             
-            
+
         }
     }
+    //물속에서 올라갈 때 중력을 끄고 애니메이션 실행
+    public IEnumerator WaterLean()
+    {
+        Debug.Log("enterCoroutine");
+        anim.SetTrigger("isClimbing");
+        rigid.useGravity = false;
+        isWater = false;
+        //cc.enabled = false;
+        
+        yield return new WaitForSeconds(0.5f);
+
+        float t = 0f;
+        Vector3 startpos = transform.position;
+        Vector3 endpos = startpos + (Vector3.up * 0.1f) + (Vector3.right * 0.02f);
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+            transform.position = Vector3.Lerp(startpos, endpos, t);
+            yield return null;
+        }
+
+        t = 0f;
+        startpos = transform.position;
+        endpos = startpos + (Vector3.up * 0.2f) + (Vector3.right * 0.02f);
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+            transform.position = Vector3.Lerp(startpos, endpos, t);
+            yield return null;
+        }
+
+        t = 0f;
+        startpos = transform.position;
+        endpos = startpos + (Vector3.up * 0.3f) + (Vector3.right * 0.42f);
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+            transform.position = Vector3.Lerp(startpos, endpos, t);
+            yield return null;
+        }
+
+        t = 0f;
+        startpos = transform.position;
+        endpos = startpos + (Vector3.up * 0.3f);
+        while (t < 0.2f)
+        {
+            t += Time.deltaTime;
+            transform.position = Vector3.Lerp(startpos, endpos, t);
+            yield return null;
+        }
+
+        
+        rigid.useGravity = true;
+        //cc.enabled = true;
+
+       
+        // yield return new WaitForSeconds(5f);
+        //dive.SetActive(false);
+        
+    }
+    
+    
 
     //코루틴 슬라이드 함수
     IEnumerator Slide()
@@ -582,7 +653,7 @@ public class HW_Player : MonoBehaviour
 
             //player Run Jump animation start
             anim.SetBool("RunningJump", _canJump);
-            Debug.DrawRay(transform.position, transform.forward, Color.red);
+            
 
 
 
@@ -649,5 +720,18 @@ public class HW_Player : MonoBehaviour
 
 
         }
-    }
+
+
+        public void PlayerStop()
+        {
+            isStanding = true;
+        }
+
+        public void PlayerMove()
+        {
+            isStanding = false;
+        }
+        
+
+}
 
