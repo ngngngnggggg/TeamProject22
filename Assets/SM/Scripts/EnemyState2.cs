@@ -164,7 +164,7 @@ public class EnemyState2 : MonoBehaviour
                     animator.SetBool(hashAttack, true);
                     break;
 
-
+    
 
                 case State.DIE:
                     this.gameObject.tag = "Untagged";

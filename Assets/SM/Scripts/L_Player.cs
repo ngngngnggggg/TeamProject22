@@ -218,7 +218,7 @@ public class L_Player : MonoBehaviour
         {
             Debug.Log("1242314123123412344123412341234123123");
             //돌을 던지면 돌의 부모를 비활성화
-            Stone.transform.SetParent(null);
+            Stone.transform.SetParent(null);    
             //돌의 콜라이더를 활성화
             Stone.GetComponent<Collider>().enabled = true;
             //돌의 리지드바디를 활성화
@@ -583,7 +583,7 @@ public class L_Player : MonoBehaviour
         {
             {
                 Destroy(other.gameObject);
-            }
+            } 
             transform.GetChild(2).gameObject.SetActive(true);
         }
     }
