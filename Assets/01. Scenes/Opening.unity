@@ -7263,6 +7263,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 64.891
       objectReference: {fileID: 0}
+    - target: {fileID: 5813293129223055784, guid: d5e532dcf3c0ab042b911ac69b987be0, type: 3}
+      propertyPath: m_Text
+      value: Return
+      objectReference: {fileID: 0}
     - target: {fileID: 5813293129383879205, guid: d5e532dcf3c0ab042b911ac69b987be0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -7359,6 +7363,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5813293130935297666, guid: d5e532dcf3c0ab042b911ac69b987be0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fc07f0c0cccd0444cbf7f10aa0b66f9d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5e532dcf3c0ab042b911ac69b987be0, type: 3}
 --- !u!224 &5813293129896613839 stripped
