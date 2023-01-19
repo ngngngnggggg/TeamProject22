@@ -28,6 +28,7 @@ TagManager:
   - Stage
   - Bad
   - divingrope
+  - WaterLean
   layers:
   - Default
   - TransparentFX
