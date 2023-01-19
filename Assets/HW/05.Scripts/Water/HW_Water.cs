@@ -39,8 +39,9 @@ public class HW_Water : MonoBehaviour
         if (other.transform.tag == "Player")
         {
             GetWater(other);
-            other.GetComponent<Animator>().SetTrigger("isDive");
+            //other.GetComponent<Animator>().SetTrigger("isDive");
             other.GetComponent<HW_Player>().isWater = true;
+            
             Debug.Log("Enter");
         }
     }
@@ -57,18 +58,22 @@ public class HW_Water : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
+            Debug.Log("endSwim");
             other.GetComponent<HW_Player>().isWater = false;
             other.GetComponent<Rigidbody>().useGravity = true;
-            
-            //other.GetComponent<Rigidbody>().useGravity = true;
+            other.GetComponent<Animator>().SetTrigger("endSwim");
             GetOutWater(other);
             boxCollider.enabled = false;
-            //StopAllCoroutines();
             Invoke("OnCollider",5f);
+          
 
         }
     }
 
+    private void OffCollider()
+    {
+        boxCollider.enabled = false;
+    }
     private void OnCollider()
     {
         boxCollider.enabled = true;
@@ -91,7 +96,6 @@ private IEnumerator WaterChangeColor(GameObject _player)
         RenderSettings.fogDensity = waterFogDensity;
         player.isDive = false;
         yield return new WaitForSeconds(0.5f);
-        _player.GetComponent<Animator>().SetTrigger("isDive");
         _player.GetComponent<Rigidbody>().useGravity = false;
     }
     
@@ -102,7 +106,7 @@ private IEnumerator WaterChangeColor(GameObject _player)
         
         _player.transform.GetComponent<Rigidbody>().drag = originDrag;
         
-        player.anim.SetTrigger("isSwimmingUp");    
+        
         RenderSettings.fogColor = originColor;
         RenderSettings.fogDensity = originFogDensity;
         
