@@ -34,7 +34,7 @@ public class HW_Player : MonoBehaviour
     private bool canJump;
 
     [Header("바닥에 붙어 있는지 확인")] [SerializeField]
-    private bool isGround;
+    public bool isGround;
 
     [Header("슬라이딩을 하고 있는지 확인")] [SerializeField]
     private bool isSlide;
@@ -214,7 +214,7 @@ public class HW_Player : MonoBehaviour
     
     private void Jump()
     {
-        isGround = Physics.Raycast(transform.position, Vector3.down, 0.3f);
+        isGround = Physics.Raycast(transform.position, Vector3.down, 0.1f);
         canJump = Input.GetKeyDown(KeyCode.Space) && isGround;
         if (canJump && !isWater)
         {
@@ -256,7 +256,7 @@ public class HW_Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("1242314123123412344123412341234123123");
+            
             //돌을 던지면 돌의 부모를 비활성화
             Stone.transform.SetParent(null);
             //돌의 콜라이더를 활성화
@@ -284,7 +284,7 @@ public class HW_Player : MonoBehaviour
 
             if (Physics.Raycast(transform.position + (Vector3.up * 0.7f), transform.forward, out hit, range))
             {
-                Debug.Log("wallbool확인");
+                
                 if (hit.transform.tag == "Wall")
                 {
                     isclimbing = true;
@@ -316,7 +316,7 @@ public class HW_Player : MonoBehaviour
             {
                 isclimbingUp = false;
 
-                // Debug.Log("123");
+                
                 StartCoroutine(ClimbCoroutine());
 
             }
@@ -469,13 +469,13 @@ public class HW_Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.C))
             {
-                Debug.Log("C키 입력");
+               
                 if (Physics.Raycast(transform.position, transform.up, out hit, range + 1f))
                 {
-                    Debug.Log("Ray확인");
+                    
                     if (hit.transform.gameObject.CompareTag("Rope") || hit.transform.gameObject.CompareTag("divingrope"))
                     {
-                        Debug.Log("tag가 로프");
+                        
                         isRope = true;
                         //애니메이션 실행
                         anim.SetTrigger("isRopeS");
@@ -491,14 +491,14 @@ public class HW_Player : MonoBehaviour
             lr.SetPosition(0, hand.Gethandpos());
             lr.SetPosition(1, startPos.position + new Vector3(0f, 0f,0f));
 
-                Debug.Log("hit rope");
+                
                 anim.SetTrigger("isRopeS");
                 rigid.useGravity = false;
                 rigid.isKinematic = true; //isRope가 아니면 해제 해줘야함
                 RaycastHit _hit;
                 if (Physics.Raycast(transform.position, Vector3.down, out _hit, 10f))
                 {
-                    Debug.Log(_hit.transform.gameObject.tag);
+                    
                     if (_hit.transform.gameObject.tag == "Water")
                     {
                         isRopeWater = true;
@@ -508,7 +508,7 @@ public class HW_Player : MonoBehaviour
         else if(rope.EndRope == true && isRopeWater == false)
         {
 
-            Debug.Log("endrope");
+          
             isRope = false;
             transform.SetParent((null));
             if(lr != null)
@@ -519,7 +519,7 @@ public class HW_Player : MonoBehaviour
         }
         else if (rope.EndRope == true && isRopeWater == true)
         {
-            Debug.Log("endropeWater");
+            
             isRopeWater = false;
             isDive = true;
             transform.SetParent((null));
@@ -616,7 +616,7 @@ public class HW_Player : MonoBehaviour
     {
         if (other.CompareTag("SavePoint"))
         {
-            Debug.Log("??");
+           
             gameMng.GameSave();
             Renderer renderer = other.GetComponentInChildren<Renderer>();
             renderer.material = mat;
@@ -639,7 +639,7 @@ public class HW_Player : MonoBehaviour
             if (collision.gameObject.CompareTag("DeathZone"))
             {
                 anim.SetBool("isDie", true);
-                Debug.Log("죽음");
+                
                 isdie = true;
                 StartCoroutine(DieCoroutine() );
 
