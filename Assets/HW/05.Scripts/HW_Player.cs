@@ -55,6 +55,7 @@ public class HW_Player : MonoBehaviour
     [Header("다이빙 상태인지 확인")] public bool isDive = false;
     [Header("물속인지 확인")] public bool isWater = false;
     private bool isStanding = false;
+    private bool inWater = false;
 
     public bool Getislaying { get { return islaying; } }
 
@@ -99,16 +100,7 @@ public class HW_Player : MonoBehaviour
         LayDown();
         Swimming();
         Debug.DrawRay(transform.position+ (Vector3.up * 0.3f), transform.forward, Color.red);
-
-        // switch (animState)
-        // {
-        //     case EAnim.Walk:
-        //         if ( Move()) Run();
-        //         break;
-        //     case EAnim.Grab:
-        //         Grab();
-        //         break;
-        // }
+       
     }
 
     //플레이어 이동 함수
@@ -186,69 +178,8 @@ public class HW_Player : MonoBehaviour
 
         }
     }
-    //물속에서 올라갈 때 중력을 끄고 애니메이션 실행
-    public IEnumerator WaterLean()
-    {
-        Debug.Log("enterCoroutine");
-        anim.SetTrigger("isClimbing");
-        rigid.useGravity = false;
-        isWater = false;
-        //cc.enabled = false;
-        
-        yield return new WaitForSeconds(0.5f);
-
-        float t = 0f;
-        Vector3 startpos = transform.position;
-        Vector3 endpos = startpos + (Vector3.up * 0.1f) + (Vector3.right * 0.02f);
-        while (t < 1f)
-        {
-            t += Time.deltaTime;
-            transform.position = Vector3.Lerp(startpos, endpos, t);
-            yield return null;
-        }
-
-        t = 0f;
-        startpos = transform.position;
-        endpos = startpos + (Vector3.up * 0.2f) + (Vector3.right * 0.02f);
-        while (t < 1f)
-        {
-            t += Time.deltaTime;
-            transform.position = Vector3.Lerp(startpos, endpos, t);
-            yield return null;
-        }
-
-        t = 0f;
-        startpos = transform.position;
-        endpos = startpos + (Vector3.up * 0.3f) + (Vector3.right * 0.42f);
-        while (t < 1f)
-        {
-            t += Time.deltaTime;
-            transform.position = Vector3.Lerp(startpos, endpos, t);
-            yield return null;
-        }
-
-        t = 0f;
-        startpos = transform.position;
-        endpos = startpos + (Vector3.up * 0.3f);
-        while (t < 0.2f)
-        {
-            t += Time.deltaTime;
-            transform.position = Vector3.Lerp(startpos, endpos, t);
-            yield return null;
-        }
-
-        
-        rigid.useGravity = true;
-        //cc.enabled = true;
-
-       
-        // yield return new WaitForSeconds(5f);
-        //dive.SetActive(false);
-        
-    }
     
     
-
     //코루틴 슬라이드 함수
     IEnumerator Slide()
     {
@@ -269,6 +200,7 @@ public class HW_Player : MonoBehaviour
         //speed = Input.GetKey(KeyCode.LeftShift) ? 3.0f : 1.5f;
     }
 
+    
     private void Jump()
     {
         isGround = Physics.Raycast(transform.position, Vector3.down, 0.3f);
@@ -550,7 +482,7 @@ public class HW_Player : MonoBehaviour
                 if (Physics.Raycast(transform.position, Vector3.down, out _hit, 10f))
                 {
                     Debug.Log(_hit.transform.gameObject.tag);
-                    if (_hit.transform.gameObject.tag == "Untagged")
+                    if (_hit.transform.gameObject.tag == "Water")
                     {
                         isRopeWater = true;
                     }
@@ -634,12 +566,7 @@ public class HW_Player : MonoBehaviour
 
     private void ChangeAnim(Animator anim, Vector3 _moveDir, float _speed, bool _canJump, RaycastHit _hit)
         {
-            // switch (animState)
-            // {
-            //     case EAnim.Walk:
-            //         anim.SetBool("isWalk", _moveDir != Vector3.zero);
-            //         break;
-            // }
+            
 
             //플레이어의 속도가 0보다 클 때 Walking 애니메이션 실행
             //플레이어의 속도가 0일 때 Idle 애니메이션 실행
@@ -726,7 +653,7 @@ public class HW_Player : MonoBehaviour
         {
             isStanding = true;
         }
-
+        
         public void PlayerMove()
         {
             isStanding = false;

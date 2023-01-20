@@ -10,8 +10,9 @@ public class Cam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cam = GameObject.FindGameObjectWithTag("Cam2").GetComponent<CinemachineVirtualCamera>();
+        //cam = GameObject.FindGameObjectWithTag("Cam2").GetComponent<CinemachineVirtualCamera>();
         bc = GetComponent<BoxCollider>();
+        cam = GetComponentInChildren<CinemachineVirtualCamera>();
     }
 
     // Update is called once per frame

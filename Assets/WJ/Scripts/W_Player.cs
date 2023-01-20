@@ -10,49 +10,49 @@ using Vector3 = UnityEngine.Vector3;
 
 public class W_Player : MonoBehaviour
 {
-    //ÇÃ·¹ÀÌ¾î ÀÌµ¿ º¯¼ö
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private float speed = 1.5f;
 
     private float ropeTime;
-    //ÇÃ·¹ÀÌ¾î Á¡ÇÁ º¯¼ö
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private float jumpPower = 3.0f;
 
     [SerializeField] private GameObject Stone;
     [SerializeField] private Transform Handpos;
 
-    //ÇÃ·¹ÀÌ¾î 3d¸®Áöµå¹Ùµð
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ 3dï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½
     private Rigidbody rigid;
-    //ÇÃ·¹ÀÌ¾î ¾Ö´Ï¸ÞÀÌÅÍ
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½
     private Animator anim;
-    //ÇÃ·¹ÀÌ¾î Ä¸½¶ ÄÝ¶óÀÌ´õ
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ä¸ï¿½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½
     private CapsuleCollider cc;
 
-    //Á¡ÇÁ¸¦ Çß´ÂÁö È®ÀÎÇÏ´Â º¯¼ö
-    [Header("Á¡ÇÁ¸¦ ÇÏ°í ÀÖ´ÂÁö È®ÀÎ")]
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½")]
     [SerializeField]
     private bool canJump;
 
-    [Header("¹Ù´Ú¿¡ ºÙ¾î ÀÖ´ÂÁö È®ÀÎ")]
+    [Header("ï¿½Ù´Ú¿ï¿½ ï¿½Ù¾ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½")]
     [SerializeField]
     private bool isGround;
 
-    [Header("½½¶óÀÌµùÀ» ÇÏ°í ÀÖ´ÂÁö È®ÀÎ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½")]
     [SerializeField]
     private bool isSlide;
 
-    [Header("º®À» °¨ÁöÇÏ´Â ·¹ÀÌ °Å¸®")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½")]
     [SerializeField]
     private float range = 0.3f;
 
-    [Header("º®Å¸´Â ¼Óµµ")][SerializeField] private float climbspeed = 0.5f;
-    [Header("º®À» Å¸´ÂÁö È®ÀÎ")][SerializeField] private bool isclimbing = false;
+    [Header("ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½Óµï¿½")][SerializeField] private float climbspeed = 0.5f;
+    [Header("ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½")][SerializeField] private bool isclimbing = false;
     [SerializeField] private bool isclimbingUp = false;
 
-    [Header("¿ÜÁÙ Å¸´ÂÁö È®ÀÎ")][SerializeField] private bool isSideStep = false;
-    [Header("·ÎÇÁ¿¡ ¸Å´Þ·È´ÂÁö È®ÀÎ")][SerializeField] private bool isRope = false;
-    [Header("·ÎÇÁ¿¡ ³¡³µ´ÂÁö È®ÀÎ")][SerializeField] private bool endRope = false;
-    [Header("´©¿î»óÅÂ È®ÀÎ")][SerializeField] private bool islaying = false;
-    [Header("Á×Àº»óÅÂ È®ÀÎ")][SerializeField] private bool isdie = false;
+    [Header("ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½")][SerializeField] private bool isSideStep = false;
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å´Þ·È´ï¿½ï¿½ï¿½ È®ï¿½ï¿½")][SerializeField] private bool isRope = false;
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½")][SerializeField] private bool endRope = false;
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½")][SerializeField] private bool islaying = false;
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½")][SerializeField] private bool isdie = false;
     [SerializeField] ParticleSystem particle;
 
     public bool Getislaying { get { return islaying; } }
@@ -69,7 +69,7 @@ public class W_Player : MonoBehaviour
     public GameObject SavePointPanel;
 
 
-    //ÇÃ·¹ÀÌ¾î°¡ º®À» °¨ÁöÇÏ°Ô ÇÏ´Â ·¹ÀÌ È÷Æ®
+    //ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®
     private RaycastHit hit;
 
 
@@ -92,7 +92,7 @@ public class W_Player : MonoBehaviour
         if (Move()) Run();
         Grab();
         Jump();
-        Rope();
+        //Rope();
         Climb();
         SideStep();
         LayDown();
@@ -109,19 +109,19 @@ public class W_Player : MonoBehaviour
         // }
     }
 
-    //ÇÃ·¹ÀÌ¾î ÀÌµ¿ ÇÔ¼ö
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ìµï¿½ ï¿½Ô¼ï¿½
     // ReSharper disable Unity.PerformanceAnalysis
     private bool Move()
     {
         if (isclimbing || isdie || isSideStep || islaying || isRope) return false;
 
 
-        //ÇÃ·¹ÀÌ¾î ÀÌµ¿
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ìµï¿½
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
         Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
-        //´©¸£´Â ¹æÇâÀ¸·Î ÇÃ·¹ÀÌ¾î È¸Àü
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ È¸ï¿½ï¿½
         if (moveDir != Vector3.zero && !isclimbing)
         {
             transform.rotation = Quaternion.LookRotation(moveDir);
@@ -147,11 +147,11 @@ public class W_Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.C) && !isSlide)
         {
             anim.SetTrigger("isSlide");
-            //¾Ö´Ï¸ÞÀÌ¼Ç µ¿ÀÛ ÇÏ´Â µ¿¾È¿¡´Â ÄÝ¶óÀÌ´õ¸¦ ZÃàÀ¸·Î 0.5¸¸Å­ ÁÙ¿©¼­ ½½¶óÀÌµù È¿°ú¸¦ ÁÖ´Â ÄÚ·çÆ¾ ÇÔ¼ö
+            //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½È¿ï¿½ï¿½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0.5ï¿½ï¿½Å­ ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ú·ï¿½Æ¾ ï¿½Ô¼ï¿½
             StartCoroutine(Slide());
         }
 
-        //ÇÃ·¹ÀÌ¾î ÀÌµ¿   
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ìµï¿½   
         transform.Translate(moveDir.normalized * (speed * Time.deltaTime), Space.World);
 
 
@@ -161,7 +161,7 @@ public class W_Player : MonoBehaviour
         return h != 0;
     }
 
-    //ÄÚ·çÆ¾ ½½¶óÀÌµå ÇÔ¼ö
+    //ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô¼ï¿½
     IEnumerator Slide()
     {
         isSlide = true;
@@ -175,10 +175,10 @@ public class W_Player : MonoBehaviour
     }
 
 
-    //ÇÃ·¹ÀÌ¾î ´Þ¸®±â ÇÔ¼ö
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     private void Run()
     {
-        //LShiftÅ°¸¦ ´©¸£¸é 3.0ÀÇ ¼Óµµ·Î ´Þ¸®°í ¶¼¸é 1.5ÀÇ ¼Óµµ·Î °È±â
+        //LShiftÅ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3.0ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1.5ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½È±ï¿½
         //speed = Input.GetKey(KeyCode.LeftShift) ? 3.0f : 1.5f;
     }
 
@@ -193,27 +193,27 @@ public class W_Player : MonoBehaviour
 
     }
 
-    //ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ® ±×·¦ ÇÔ¼ö
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½×·ï¿½ ï¿½Ô¼ï¿½
     // ReSharper disable Unity.PerformanceAnalysis
     private void Grab()
     {
-        //ÇÃ·¹ÀÌ¾î°¡ ¿ÀºêÁ§Æ®À» °¨ÁöÇÏ¸é
+        //ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½
         if (Physics.Raycast(transform.position, transform.forward, out hit, range) && Input.GetKey(KeyCode.E))
         {
-            //µ¹À» °¨ÁöÇÏ¸é µ¹À» ±×·¦
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½
             if (hit.collider.CompareTag("Stone"))
             {
-                //µ¹À» ±×·¦ÇÏ¸é µ¹À» ÇÃ·¹ÀÌ¾î ÀÚ½ÄÀ¸·Î ¸¸µé°í
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
                 hit.collider.transform.SetParent(Handpos);
-                //ÀÚ½ÄÀÇ ÄÝ¶óÀÌ´õ¸¦ ºñÈ°¼ºÈ­
+                //ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
                 hit.collider.GetComponent<Collider>().enabled = false;
-                //ÀÚ½ÄÀÇ ¸®Áöµå¹Ùµð¸¦ ºñÈ°¼ºÈ­
+                //ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
                 hit.collider.GetComponent<Rigidbody>().isKinematic = true;
-                //µ¹À» ÇÃ·¹ÀÌ¾îÀÇ ÀÚ½ÄÀ¸·Î ¸¸µé¸é ÇÃ·¹ÀÌ¾î°¡ º®À» ¿òÁ÷ÀÏ ¼ö ÀÖ°Ô
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½
                 hit.collider.transform.localPosition = new Vector3(0, 0, 0);
-                //isPick ¾Ö´Ï¸ÞÀÌ¼ÇÀ» ½ÇÇà
+                //isPick ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 anim.SetTrigger("isPick");
-                //isPick ¾Ö´Ï¸ÞÀÌ¼ÇÀ» ½ÇÇàÇÒ ¶§ ´Ù¸¥ ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇàÀ» ¸·±â À§ÇØ
+                //isPick ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 anim.SetBool("isWalk", false);
                 anim.SetBool("isRun", false);
                 anim.SetBool("isJump", false);
@@ -227,15 +227,15 @@ public class W_Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("1242314123123412344123412341234123123");
-            //µ¹À» ´øÁö¸é µ¹ÀÇ ºÎ¸ð¸¦ ºñÈ°¼ºÈ­
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
             Stone.transform.SetParent(null);
-            //µ¹ÀÇ ÄÝ¶óÀÌ´õ¸¦ È°¼ºÈ­
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­
             Stone.GetComponent<Collider>().enabled = true;
-            //µ¹ÀÇ ¸®Áöµå¹Ùµð¸¦ È°¼ºÈ­
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½ È°ï¿½ï¿½È­
             Stone.GetComponent<Rigidbody>().isKinematic = false;
-            //µ¹ÀÇ ¸®Áöµå¹Ùµð¿¡ ÈûÀ» °¡ÇÔ
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Stone.GetComponent<Rigidbody>().AddForce(transform.forward * 5f, ForceMode.Impulse);
-            //Throw ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+            //Throw ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
             anim.SetTrigger("isThrow");
 
         }
@@ -251,7 +251,7 @@ public class W_Player : MonoBehaviour
 
             if (Physics.Raycast(transform.position + (Vector3.up * 0.7f), transform.forward, out hit, range))
             {
-                Debug.Log("wallboolÈ®ÀÎ");
+                Debug.Log("wallboolÈ®ï¿½ï¿½");
                 if (hit.transform.tag == "Wall")
                 {
                     isclimbing = true;
@@ -270,10 +270,10 @@ public class W_Player : MonoBehaviour
 
                     transform.position += transform.up * Time.deltaTime * climbspeed;
                     //transform.rotation = Quaternion.Lerp(transform.rotation, endrot, 1f);
-                    //ÄÝ¶óÀÌ´õ¿Í Áß·ÂÀ» ºñÈ°¼ºÈ­ ÇÑ´Ù.
+                    //ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ ï¿½ß·ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½Ñ´ï¿½.
                     cc.enabled = false;
                     rigid.useGravity = false;
-                    //¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+                    //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
                     anim.SetTrigger("isClimbing");
                 }
 
@@ -377,7 +377,7 @@ public class W_Player : MonoBehaviour
                     Quaternion startrot = transform.rotation;
                     Quaternion endrot = Quaternion.Euler(0f, 0f, 0f);
 
-                    //¿ÀºêÁ§Æ®°¡ x¹æÇâÀ¸·Î ÀÌµ¿ÇÑ´Ù
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ñ´ï¿½
                     Vector3 startpos = transform.position;
                     Vector3 endpos = startpos + (Vector3.right * 0.5f);
                     anim.SetBool("isSideStep", true);
@@ -397,7 +397,7 @@ public class W_Player : MonoBehaviour
                     Quaternion startrot = transform.rotation;
                     Quaternion endrot = Quaternion.Euler(0f, 180f, 0f);
 
-                    //¿ÀºêÁ§Æ®°¡ x¹æÇâÀ¸·Î ÀÌµ¿ÇÑ´Ù
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ñ´ï¿½
                     Vector3 startpos = transform.position;
                     Vector3 endpos = startpos + (Vector3.left * 0.5f);
                     anim.SetBool("isSideStep", true);
@@ -425,23 +425,23 @@ public class W_Player : MonoBehaviour
 
 
 
-    //·ÎÇÁ¿¡ ¸Å´Þ¸®±â
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å´Þ¸ï¿½ï¿½ï¿½
     private void Rope()
     {
-        //Á¡ÇÁ¸¦ ÇÏ°í ÀÖ°í Á¦ÀÚ¸® Á¡ÇÁ ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ½ÇÇà ÁßÀÏ¶§
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¶ï¿½
         if (isGround == false)
         {
             if (Input.GetKeyDown(KeyCode.C))
             {
-                Debug.Log("CÅ° ÀÔ·Â");
+                Debug.Log("CÅ° ï¿½Ô·ï¿½");
                 if (Physics.Raycast(transform.position, transform.up, out hit, range + 1f))
                 {
-                    Debug.Log("RayÈ®ÀÎ");
+                    Debug.Log("RayÈ®ï¿½ï¿½");
                     if (hit.transform.gameObject.CompareTag("Rope"))
                     {
-                        Debug.Log("tag°¡ ·ÎÇÁ");
+                        Debug.Log("tagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
                         isRope = true;
-                        //¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+                        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
                         anim.SetTrigger("isRopeS");
                         transform.SetParent(startPos);
                     }
@@ -458,7 +458,7 @@ public class W_Player : MonoBehaviour
             Debug.Log("hit rope");
             anim.SetTrigger("isRopeS");
             rigid.useGravity = false;
-            rigid.isKinematic = true; //isRope°¡ ¾Æ´Ï¸é ÇØÁ¦ ÇØÁà¾ßÇÔ
+            rigid.isKinematic = true; //isRopeï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 
@@ -484,7 +484,7 @@ public class W_Player : MonoBehaviour
     {
         if (!islaying && Input.GetKeyDown(KeyCode.Z))
         {
-            //¾Æ·¡ÂÊÀ¸·Î ·¹ÀÌ ½÷¼­ ÅÂ±×°¡ Bad¸é
+            //ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Â±×°ï¿½ Badï¿½ï¿½
             if (Physics.Raycast(transform.position, -transform.up, out hit, range))
             {
                 if (hit.transform.tag == "Bad")
@@ -537,11 +537,11 @@ public class W_Player : MonoBehaviour
         //         break;
         // }
 
-        //ÇÃ·¹ÀÌ¾îÀÇ ¼Óµµ°¡ 0º¸´Ù Å¬ ¶§ Walking ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
-        //ÇÃ·¹ÀÌ¾îÀÇ ¼Óµµ°¡ 0ÀÏ ¶§ Idle ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ Å¬ ï¿½ï¿½ Walking ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ Idle ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         anim.SetBool("isWalk", _moveDir != Vector3.zero);
 
-        //ÇÃ·¹ÀÌ¾îÀÇ ¼Óµµ°¡ 0º¸´Ù Å©°í, ¿ÞÂÊ ½¬ÇÁÆ®¸¦ ´­·¶À» ¶§ isRun ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ isRun ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         anim.SetBool("isRun", Input.GetKey(KeyCode.LeftShift) && _moveDir != Vector3.zero);
 
         //Player Jump animation start
@@ -557,10 +557,10 @@ public class W_Player : MonoBehaviour
 
     }
 
-    //ÇöÀç ½ÇÇà ÇÒ ¾Ö´Ï¸ÞÀÌ¼ÇÀ» Á¦¿ÜÇÑ ³ª¸ÓÁö ¾Ö´Ï¸ÞÀÌ¼Ç ÁßÁö ÇÔ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     private void StopAnim(Animator anim, string _animName)
     {
-        //ÇöÀç ½ÇÇà ÇÒ ¾Ö´Ï¸ÞÀÌ¼ÇÀ» Á¦¿ÜÇÑ ³ª¸ÓÁö ¾Ö´Ï¸ÞÀÌ¼Ç ÁßÁö
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         foreach (var _anim in anim.runtimeAnimatorController.animationClips)
         {
             if (_anim.name == _animName) continue;
@@ -588,13 +588,13 @@ public class W_Player : MonoBehaviour
         }
     }
 
-    // ÅÂ±×¿¡ ´êÀ¸¸é Á×´Â ¾Ö´Ï¸ÞÀÌ¼Ç
+    // ï¿½Â±×¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×´ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("DeathZone"))
         {
             anim.SetBool("isDie", true);
-            Debug.Log("Á×À½");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½");
             isdie = true;
             StartCoroutine(DieCoroutine());
 
