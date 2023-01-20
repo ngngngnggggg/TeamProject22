@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;// Editor 클래스 상속받기 위해
-
+#endif
 
 [CustomEditor(typeof(EnemyFOV))]
 public class FOVEditor : Editor
