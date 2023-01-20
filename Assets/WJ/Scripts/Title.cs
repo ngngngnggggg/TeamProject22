@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-    public string startSceneName = "SooBin";
+    public string startSceneName = "Main";
    // public string loadSceneName = "GameLoad";
 
     public void ClickStart()

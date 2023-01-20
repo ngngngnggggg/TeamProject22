@@ -7389,7 +7389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5813293129715140116, guid: d5e532dcf3c0ab042b911ac69b987be0, type: 3}
       propertyPath: startSceneName
-      value: SooBin
+      value: Main
       objectReference: {fileID: 0}
     - target: {fileID: 5813293129715140118, guid: d5e532dcf3c0ab042b911ac69b987be0, type: 3}
       propertyPath: m_Camera
