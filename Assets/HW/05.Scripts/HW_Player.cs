@@ -56,6 +56,7 @@ public class HW_Player : MonoBehaviour
     [Header("물속인지 확인")] public bool isWater = false;
     private bool isStanding = false;
     private bool inWater = false;
+    [SerializeField] private bool isWalk = false;
 
     public bool Getislaying { get { return islaying; } }
 
@@ -133,9 +134,19 @@ public class HW_Player : MonoBehaviour
                 //애니메이션 동작 하는 동안에는 콜라이더를 Z축으로 0.5만큼 줄여서 슬라이딩 효과를 주는 코루틴 함수
                 StartCoroutine(Slide());
             }
-
-            //플레이어 이동
-            transform.Translate(moveDir.normalized * (speed * Time.deltaTime), Space.World);
+            
+            if(h != 0 || v != 0)
+            {
+                isWalk = true;
+                transform.Translate(moveDir.normalized * (speed * Time.deltaTime), Space.World);
+            }
+            else
+            {
+                isWalk = false;
+            }
+            
+            
+            
             ChangeAnim(anim, moveDir, speed, canJump, hit);
             return h != 0;
         
@@ -262,9 +273,12 @@ public class HW_Player : MonoBehaviour
 
 
     // ReSharper disable Unity.PerformanceAnalysis
-    private void Climb()
+    private bool Climb()
     {
-
+        
+        if (isSideStep ||isStanding || isWalk)
+            return false;
+        
         if (!isclimbing && Input.GetKeyDown(KeyCode.C))
         {
 
@@ -275,6 +289,7 @@ public class HW_Player : MonoBehaviour
                 {
                     isclimbing = true;
                     isclimbingUp = true;
+                   
                 }
             }
         }
@@ -306,6 +321,8 @@ public class HW_Player : MonoBehaviour
 
             }
         }
+
+        return isclimbing;
 
     }
 
@@ -581,9 +598,6 @@ public class HW_Player : MonoBehaviour
             //player Run Jump animation start
             anim.SetBool("RunningJump", _canJump);
             
-
-
-
 
 
         }
