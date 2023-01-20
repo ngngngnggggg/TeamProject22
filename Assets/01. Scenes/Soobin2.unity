@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.017657362, g: 0.011063282, b: 0.05104236, a: 1}
+  m_IndirectSpecularColor: {r: 0.06274425, g: 0.06274425, b: 0.06274425, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -267,7 +267,7 @@ Transform:
   - {fileID: 1653279913}
   - {fileID: 1172873038}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &69225882
 PrefabInstance:
@@ -834,6 +834,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcf6bd49f6f22574da3b8992af8c81b3, type: 3}
+--- !u!4 &219928056 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 215409568576187996, guid: 192abbf021e88a34d83b77be59f9edf3, type: 3}
+  m_PrefabInstance: {fileID: 1815936138}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &233209231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,13 +1427,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345971566}
   m_LocalRotation: {x: 0.25723708, y: -0, z: -0, w: 0.9663484}
-  m_LocalPosition: {x: 17.349, y: 3.904, z: 32.354}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.16647275, y: 2.644, z: -0.63416624}
+  m_LocalScale: {x: 0.089549564, y: 0.43801868, z: 0.20375742}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 828044345}
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_Father: {fileID: 219928056}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 29.812, y: 0, z: 0}
 --- !u!4 &374648918 stripped
 Transform:
@@ -1909,7 +1914,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &528748874
 PrefabInstance:
@@ -3810,7 +3815,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1146904161
 PrefabInstance:
@@ -6185,7 +6190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 215409568576187996, guid: 192abbf021e88a34d83b77be59f9edf3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.49
+      value: 15.67
       objectReference: {fileID: 0}
     - target: {fileID: 215409568576187996, guid: 192abbf021e88a34d83b77be59f9edf3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7625,7 +7630,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2125941025
 PrefabInstance:
@@ -10349,11 +10354,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa824284721954679ab57d0eb605cb9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dive: {fileID: 0}
   _water: {fileID: 0}
   speed: 1.5
   jumpPower: 3
   Stone: {fileID: 0}
   Handpos: {fileID: 1978710695}
+  anim: {fileID: 0}
   canJump: 0
   isGround: 0
   isSlide: 0
