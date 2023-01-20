@@ -4,22 +4,18 @@ public class StoneCut : MonoBehaviour
 {
     [SerializeField] private GameObject stone;
     
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            // Destroy(gameObject);
-            // //삭제된 위치에 프리펩 생성
-            // Instantiate(stone, transform.position, Quaternion.identity);
-        }
-    }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void DestroyStone()
     {
+        Invoke("InVokeStone", 3f);
+    }
+
+    void InVokeStone()
+    {
         Destroy(gameObject);
-        //삭제된 위치에 프리펩 생성
         GameObject _stone = Instantiate(stone, transform.position, Quaternion.identity);
-        Destroy(_stone, 3f);
+        Destroy(_stone, 1f);
     }
     
 }

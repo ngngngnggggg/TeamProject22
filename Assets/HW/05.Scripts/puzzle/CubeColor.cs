@@ -44,7 +44,7 @@ public class CubeColor : MonoBehaviour
         {
             resetcolor.count--;
         }
-            mr.material = mat;
+        mr.material = mat;
     }
     
     public void ResetColor()
