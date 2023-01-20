@@ -5,27 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-    public string startSceneName = "HyunWoo";
-    public string loadSceneName = "GameLoad";
+    public string startSceneName = "SooBin";
+   // public string loadSceneName = "GameLoad";
 
     public void ClickStart()
     {
-        Debug.Log("·Îµù");
+        Debug.Log("ï¿½Îµï¿½");
         SceneManager.LoadScene(startSceneName);
 
 
 
-    }
+    }  
 
     public void ClickLoad()
     {
-        Debug.Log("·Îµå");
-        SceneManager.LoadScene(loadSceneName);
+        Debug.Log("ï¿½Îµï¿½");
+        SceneManager.LoadScene(startSceneName);
     }
 
     public void ClickExit()
     {
-        Debug.Log("°ÔÀÓ Á¾·á");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         Application.Quit();
     }
 }

@@ -100,18 +100,7 @@ public class HW_Player : MonoBehaviour
         LayDown();
         Swimming();
         Debug.DrawRay(transform.position+ (Vector3.up * 0.3f), transform.forward, Color.red);
-        //PlayerInWater();
-       // SwimAnim(inWater);
-
-        // switch (animState)
-        // {
-        //     case EAnim.Walk:
-        //         if ( Move()) Run();
-        //         break;
-        //     case EAnim.Grab:
-        //         Grab();
-        //         break;
-        // }
+       
     }
 
     //플레이어 이동 함수
@@ -211,33 +200,7 @@ public class HW_Player : MonoBehaviour
         //speed = Input.GetKey(KeyCode.LeftShift) ? 3.0f : 1.5f;
     }
 
-    /*private void PlayerInWater()
-    {
-        RaycastHit hit_2;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit_2, 1f))
-        {
-          
-           if( hit_2.transform.gameObject.CompareTag("Water"))
-           {
-               Debug.Log("123");
-               inWater = true;
-           }
-           else
-           {
-               inWater = false;
-           }
-        }
-    }
-
-    private void SwimAnim(bool _inWater)
-    {
-        if (_inWater == true)
-        {
-            anim.SetTrigger("isSwim");
-        }
-     
-        
-    }*/
+    
     private void Jump()
     {
         isGround = Physics.Raycast(transform.position, Vector3.down, 0.3f);
@@ -603,12 +566,7 @@ public class HW_Player : MonoBehaviour
 
     private void ChangeAnim(Animator anim, Vector3 _moveDir, float _speed, bool _canJump, RaycastHit _hit)
         {
-            // switch (animState)
-            // {
-            //     case EAnim.Walk:
-            //         anim.SetBool("isWalk", _moveDir != Vector3.zero);
-            //         break;
-            // }
+            
 
             //플레이어의 속도가 0보다 클 때 Walking 애니메이션 실행
             //플레이어의 속도가 0일 때 Idle 애니메이션 실행
