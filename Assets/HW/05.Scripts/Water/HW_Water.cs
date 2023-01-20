@@ -30,33 +30,47 @@ public class HW_Water : MonoBehaviour
         originColor = RenderSettings.fogColor;
         originFogDensity = RenderSettings.fogDensity;
         originDrag = 0;
+        //시작시 자식 비활성화
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
-
-  
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Player")
+        if (other.transform.CompareTag("Player"))
         {
+            Debug.Log("물에 들어감");
             GetWater(other);
             //other.GetComponent<Animator>().SetTrigger("isDive");
             other.GetComponent<HW_Player>().isWater = true;
-            
+            if (other.GetComponent<HW_Player>().isWater = true == true)
+            {
+                //자식 활성화
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    transform.GetChild(i).gameObject.SetActive(true);
+                }
+            }
+
+            other.GetComponent<Animator>().SetTrigger("isWaterIdle");
             Debug.Log("Enter");
         }
     }
+
+    //물속에선 isGround가 false가 되어야 하므로
     
     private void OnTriggerStay(Collider other)
     {
-        if (other.transform.tag == "Player")
+        if (other.transform.CompareTag("Player"))
         {
-           
+            other.GetComponent<HW_Player>().isGround = false;
         }
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.tag == "Player")
+        if (other.transform.CompareTag("Player"))
         {
             Debug.Log("endSwim");
             other.GetComponent<HW_Player>().isWater = false;
@@ -65,11 +79,27 @@ public class HW_Water : MonoBehaviour
             GetOutWater(other);
             boxCollider.enabled = false;
             Invoke("OnCollider",5f);
-          
+            //자식 비활성화
+            OffChildSetActive();
+            Invoke("OnChildSetActive", 3f);
 
         }
     }
 
+    public void OffChildSetActive()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+    private void OnChildSetActive()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+        }
+    }
     private void OffCollider()
     {
         boxCollider.enabled = false;
@@ -105,7 +135,7 @@ private IEnumerator WaterChangeColor(GameObject _player)
     {
         
         _player.transform.GetComponent<Rigidbody>().drag = originDrag;
-        
+        _player.GetComponent<HW_Player>().isGround = true;
         
         RenderSettings.fogColor = originColor;
         RenderSettings.fogDensity = originFogDensity;

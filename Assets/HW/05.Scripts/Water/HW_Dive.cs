@@ -6,6 +6,7 @@ using UnityEngine;
 public class HW_Dive : MonoBehaviour
 {
     [SerializeField] private HW_Player _player;
+    [SerializeField] private HW_Water _water;
     private BoxCollider boxCollider;
 
 
@@ -21,11 +22,22 @@ public class HW_Dive : MonoBehaviour
             {
                 other.gameObject.GetComponent<Animator>().SetTrigger("isDive");
             }
+
+            OffWaterWall();
             boxCollider.enabled = false;
             Invoke("OnCollider",2f);
         }
     }
 
+    private void OnWaterWall()
+    {
+        GameObject.Find("WaterWall").SetActive(true);
+    }
+    
+    private void OffWaterWall()
+    {
+        GameObject.Find("WaterWall").SetActive(false);
+    }
     
     private void OffCollider()
     {
