@@ -7,6 +7,7 @@ using UnityEngine;
 public class HW_Water : MonoBehaviour
 {
     [SerializeField] private HW_Player player;
+    [SerializeField] private ParticleSystem waterParticles;
 
     [SerializeField] private GameObject Map;
     
@@ -42,10 +43,12 @@ public class HW_Water : MonoBehaviour
     {
         if (other.transform.CompareTag("Player"))
         {
+            
             Map.SetActive(false);
             Debug.Log("물에 들어감");
             GetWater(other);
-            //other.GetComponent<Animator>().SetTrigger("isDive");
+            //player에 상속되어있는 파티클 실행
+            player.GetComponent<HW_Player>().particle.Play();
             other.GetComponent<HW_Player>().isWater = true;
             if (other.GetComponent<HW_Player>().isWater = true == true)
             {
@@ -76,6 +79,7 @@ public class HW_Water : MonoBehaviour
         if (other.transform.CompareTag("Player"))
         {
             Debug.Log("endSwim");
+            player.GetComponent<HW_Player>().particle.Stop();
             other.GetComponent<HW_Player>().isWater = false;
             other.GetComponent<Rigidbody>().useGravity = true;
             other.GetComponent<Animator>().SetTrigger("endSwim");

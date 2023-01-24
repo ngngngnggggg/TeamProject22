@@ -27,7 +27,7 @@ public class HW_Dive : MonoBehaviour
             {
                 other.gameObject.GetComponent<Animator>().SetTrigger("isDive");
             }
-            
+            _player.GetComponent<HW_Player>().particle.Play();
             OffWaterWall();
             boxCollider.enabled = false;
             Invoke("OnCollider",2f);

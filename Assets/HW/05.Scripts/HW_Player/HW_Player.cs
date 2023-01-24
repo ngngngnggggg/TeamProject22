@@ -9,11 +9,14 @@ using UnityEngine.PlayerLoop;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
+
 public class HW_Player : MonoBehaviour
 {
     [SerializeField] private GameObject dive; 
     [SerializeField] private HW_Water _water;
     
+    //파티클 변수
+    [SerializeField] public ParticleSystem particle;
     
     
     //플레이어 이동 변수
@@ -93,7 +96,8 @@ public class HW_Player : MonoBehaviour
         cc = GetComponent<CapsuleCollider>();
         lr = GetComponent<LineRenderer>();
         hand = GetComponentInChildren<Hand>();
-        
+        particle.Stop();
+
 
 
     }
@@ -159,6 +163,7 @@ public class HW_Player : MonoBehaviour
         
     
 }
+    [Obsolete("Obsolete")]
     private void Swimming()
     {
         if (isclimbing) return;
@@ -167,7 +172,7 @@ public class HW_Player : MonoBehaviour
         float _jumpPower = 0.4f;
         
         _speed = Input.GetKey(KeyCode.LeftShift) ? 3f : 0.5f;
-
+        
         if (isWater)
         {
             if (Input.GetKey(KeyCode.Space))
@@ -191,9 +196,18 @@ public class HW_Player : MonoBehaviour
             anim.SetBool("isSwimming", moveDir != Vector3.zero);
             //LeftShift를 누르면 빠른수영 애니메이션
             anim.SetBool("isFastSwimming", Input.GetKey(KeyCode.LeftShift));
-            //태그가 WaterLean이고 Space를 눌렀을 때 애니메이션 실행
+            if(moveDir == Vector3.zero)
+            {
+                //particle.emission = 20으로 만들기
+                particle.emissionRate = 10;
+            }
+            else if (Input.GetKey(KeyCode.LeftShift) || moveDir != Vector3.zero)
+            {
+                particle.emissionRate = 100;
+            }
             
-
+         
+           
         }
     }
     
