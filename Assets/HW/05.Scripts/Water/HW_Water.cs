@@ -7,6 +7,8 @@ using UnityEngine;
 public class HW_Water : MonoBehaviour
 {
     [SerializeField] private HW_Player player;
+
+    [SerializeField] private GameObject Map;
     
     [SerializeField] private float waterDrag; //물속 중력
     [SerializeField] private float originDrag; //물에서 나왔을 때 원래의 중력
@@ -40,6 +42,7 @@ public class HW_Water : MonoBehaviour
     {
         if (other.transform.CompareTag("Player"))
         {
+            Map.SetActive(false);
             Debug.Log("물에 들어감");
             GetWater(other);
             //other.GetComponent<Animator>().SetTrigger("isDive");

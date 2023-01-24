@@ -18,14 +18,20 @@ public class HW_Dive : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+           
             if(Input.GetKey(KeyCode.LeftShift))
             {
                 other.gameObject.GetComponent<Animator>().SetTrigger("isDive");
             }
-
+            else if (Input.GetKey(KeyCode.A))
+            {
+                other.gameObject.GetComponent<Animator>().SetTrigger("isDive");
+            }
+            
             OffWaterWall();
             boxCollider.enabled = false;
             Invoke("OnCollider",2f);
+            
         }
     }
 
