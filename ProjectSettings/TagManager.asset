@@ -30,6 +30,7 @@ TagManager:
   - divingrope
   - WaterLean
   - Water
+  - PuzzleParticle
   layers:
   - Default
   - TransparentFX

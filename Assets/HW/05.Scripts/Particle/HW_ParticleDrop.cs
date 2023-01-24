@@ -11,6 +11,7 @@ public class HW_ParticleDrop : MonoBehaviour
     [SerializeField] private CubeColor color;
     [SerializeField] private Material mat;
     
+  
 
     private Rigidbody rb;
 
@@ -34,6 +35,7 @@ public class HW_ParticleDrop : MonoBehaviour
         rb.velocity = Vector3.zero;
             ps.gameObject.SetActive(true);
             ps.Play();
+           
 
         if (color.success)
         {

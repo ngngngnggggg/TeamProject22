@@ -10,12 +10,17 @@ public class ResetColor : MonoBehaviour
     [SerializeField] private StoneCut[] stone;
     [SerializeField] private Cubepuzzle puzzle;
      [SerializeField]private HW_ParticleExplosion explosion;
+     
+     
+     [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip audioClip;
+    
     public int count = 0;
     private ParticleSystem ps;
 
     private void Start()
     {
-        //stones = GetComponentsInChildren<StoneCut>();
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -27,11 +32,10 @@ public class ResetColor : MonoBehaviour
                 foreach (var t in stone)
                 {
                     t.DestroyStone();
-                    Invoke("EndPuzzle", 4f);
+                    Invoke("EndPuzzle", 6f);
                 }
-                //카메라 전환 실패작
-                //puzzle.GetComponent<Cubepuzzle>().OffCemara();
-                //puzzle.GetComponent<Cubepuzzle>().OffAudioListener();
+                //audioSource.PlayOneShot(audioClip);
+                    Invoke("ExplosionSound", 3f);
                 explosion.GetComponent<HW_ParticleExplosion>().ParticleSpawn();
                 return;
             }
@@ -41,7 +45,12 @@ public class ResetColor : MonoBehaviour
         }
     }
 
-  
+
+    private void ExplosionSound()
+    {
+        //OnTriggerExit 함수가 실행 될때 사운드 실행
+        audioSource.PlayOneShot(audioClip);
+    }
 
     private void EndPuzzle()
     {

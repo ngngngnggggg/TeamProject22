@@ -16,6 +16,9 @@ public class Cubepuzzle : MonoBehaviour
     [SerializeField] private GameObject cam;
     [SerializeField] private HW_Player player;
     
+    // [SerializeField] private AudioSource audioSource;
+    // [SerializeField] private AudioClip audioClip;
+    
     private void Start()
     {
         boxcollider = GetComponent<BoxCollider>();

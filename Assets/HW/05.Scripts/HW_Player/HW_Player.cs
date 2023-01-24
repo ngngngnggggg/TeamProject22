@@ -19,6 +19,8 @@ public class HW_Player : MonoBehaviour
     [SerializeField] public ParticleSystem particle;
     
     
+    
+    
     //플레이어 이동 변수
     [SerializeField] private float speed = 1.5f;
 
@@ -63,7 +65,7 @@ public class HW_Player : MonoBehaviour
     [Header("물속인지 확인")] public bool isWater = false;
     private bool isStanding = false;
     private bool inWater = false;
-    [SerializeField] private bool isWalk = false;
+    [Header("걷는중")][SerializeField] private bool isWalk = false;
     
     
     
@@ -97,9 +99,6 @@ public class HW_Player : MonoBehaviour
         lr = GetComponent<LineRenderer>();
         hand = GetComponentInChildren<Hand>();
         particle.Stop();
-
-
-
     }
 
     private void Update()
@@ -135,9 +134,12 @@ public class HW_Player : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(moveDir);
             }
             else
+            {
                 isSlide = false;
+            }
 
             speed = Input.GetKey(KeyCode.LeftShift) ? 3f : 1.5f;
+            
             if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.C) && !isSlide)
             {
                 
@@ -150,14 +152,18 @@ public class HW_Player : MonoBehaviour
             {
                 isWalk = true;
                 transform.Translate(moveDir.normalized * (speed * Time.deltaTime), Space.World);
+                
             }
             else
             {
                 isWalk = false;
+              
             }
             
             
-            
+
+
+
             ChangeAnim(anim, moveDir, speed, canJump, hit);
             return h != 0;
         
@@ -172,6 +178,8 @@ public class HW_Player : MonoBehaviour
         float _jumpPower = 0.4f;
         
         _speed = Input.GetKey(KeyCode.LeftShift) ? 3f : 0.5f;
+        
+        
         
         if (isWater)
         {
@@ -241,7 +249,6 @@ public class HW_Player : MonoBehaviour
         {
             rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
         }
-
     }
 
     //플레이어 오브젝트 그랩 함수
@@ -609,6 +616,9 @@ public class HW_Player : MonoBehaviour
             //플레이어의 속도가 0보다 클 때 Walking 애니메이션 실행
             //플레이어의 속도가 0일 때 Idle 애니메이션 실행
             anim.SetBool("isWalk", _moveDir != Vector3.zero);
+            //isWalk 애니메이션이 실행 중일 때, Walk 사운드 재생
+            //isWalk 애니메이션이 실행 중이 아닐 때, Walk 사운드 중지
+            
 
             //플레이어의 속도가 0보다 크고, 왼쪽 쉬프트를 눌렀을 때 isRun 애니메이션 실행
             anim.SetBool("isRun", Input.GetKey(KeyCode.LeftShift) && _moveDir != Vector3.zero);

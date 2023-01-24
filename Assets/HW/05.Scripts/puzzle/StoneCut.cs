@@ -15,7 +15,7 @@ public class StoneCut : MonoBehaviour
     {
         Destroy(gameObject);
         GameObject _stone = Instantiate(stone, transform.position, Quaternion.identity);
-        Destroy(_stone, 1f);
+        Destroy(_stone, 3f);
     }
     
 }
