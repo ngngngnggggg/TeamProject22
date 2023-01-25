@@ -29,10 +29,15 @@ public class GameManager : MonoBehaviour
         if(!PlayerPrefs.HasKey("PlayerX"))
         {
             ReStart();
+            Debug.Log("리셋");
         }
-        
+        Debug.Log(PlayerPrefs.GetFloat("PlayerX"));
+
         if (!PlayerPrefs.HasKey("PlayerX"))
+        {
+            PlayerPrefs.DeleteAll();
             return;
+        }
 
         float x = PlayerPrefs.GetFloat("PlayerX");
         float y = PlayerPrefs.GetFloat("PlayerY");
@@ -47,7 +52,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerY", startPoint.position.y + 0.5f);
         PlayerPrefs.SetFloat("PlayerZ", startPoint.position.z);
 
-        SceneManager.LoadScene(3);
+        //SceneManager.LoadScene(3);
     }
 }
      

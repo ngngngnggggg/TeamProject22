@@ -76,6 +76,7 @@ public class L_Player : MonoBehaviour
     //[SerializeField] private Material enemy1;
     //[SerializeField] private Material enemy2;
     //[SerializeField] private Material enemy3;
+    public bool hasKey;
 
     GameObject nearObject;
 
@@ -573,18 +574,18 @@ public class L_Player : MonoBehaviour
         }
         if (other.gameObject.tag == "Light")
         {
-            {
+            
                 Destroy(other.gameObject);
-            }
+            
             transform.GetChild(1).gameObject.SetActive(true);
         }
 
         if (other.gameObject.tag == "Key")
         {
-            {
+            
                 Destroy(other.gameObject);
-            } 
-            transform.GetChild(2).gameObject.SetActive(true);
+            
+            hasKey = true;
         }
     }
     // 태그에 닿으면 죽는 애니메이션

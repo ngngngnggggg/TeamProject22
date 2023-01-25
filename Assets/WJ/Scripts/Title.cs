@@ -11,10 +11,8 @@ public class Title : MonoBehaviour
     public void ClickStart()
     {
         Debug.Log("�ε�");
+        PlayerPrefs.DeleteKey("PlayerX");
         SceneManager.LoadScene(startSceneName);
-
-
-
     }  
 
     public void ClickLoad()
