@@ -30,6 +30,10 @@ TagManager:
   - divingrope
   - WaterLean
   - Water
+  - Enemy
+  - Light
+  - Hint
+  - Key
   layers:
   - Default
   - TransparentFX

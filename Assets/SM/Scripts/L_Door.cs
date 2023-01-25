@@ -5,14 +5,17 @@ using UnityEngine;
 public class L_Door : MonoBehaviour
 {
     [SerializeField] private GameObject door;
-    public bool hasKey;
+    [SerializeField] private L_Player Player;
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && hasKey)
+        if (other.CompareTag("Player") && Player.hasKey)
         {
             door.transform.rotation = Quaternion.Lerp(door.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime);
 
         }
     }
+
+
+
 }
