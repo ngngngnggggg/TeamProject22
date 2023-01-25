@@ -1340,7 +1340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -1378,7 +1378,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.093
+    value: 0.34
   fastMode:
     overrideState: 0
     value: 0
@@ -1394,19 +1394,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
   intensity:
     overrideState: 1
-    value: 2.6
+    value: 0.74
   threshold:
     overrideState: 1
-    value: 0.8
+    value: 0.56
   softKnee:
     overrideState: 1
-    value: 0.03
+    value: 0.04
   clamp:
     overrideState: 0
     value: 65472

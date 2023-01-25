@@ -13,6 +13,7 @@ public class CubeColor : MonoBehaviour
     [SerializeField] private ResetColor resetcolor;
     [SerializeField] private Material answerMat;
 
+    
 
     private void Start()
     {
@@ -44,7 +45,7 @@ public class CubeColor : MonoBehaviour
         {
             resetcolor.count--;
         }
-            mr.material = mat;
+        mr.material = mat;
     }
     
     public void ResetColor()
