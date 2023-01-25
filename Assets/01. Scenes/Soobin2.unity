@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.017666858, g: 0.011070914, b: 0.051051173, a: 1}
+  m_IndirectSpecularColor: {r: 0.017657362, g: 0.011063282, b: 0.05104236, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1517,8 +1517,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433713927}
-  m_LocalRotation: {x: 0.09237912, y: 0.004119444, z: -0.00038218807, w: 0.9957153}
-  m_LocalPosition: {x: 35.56021, y: 3, z: 29.681557}
+  m_LocalRotation: {x: 0.092379116, y: 0.0041198474, z: -0.00038222552, w: 0.9957153}
+  m_LocalPosition: {x: 35.560207, y: 3, z: 29.681557}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2139,7 +2139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1408598146}
-  m_PathPosition: 0.14672916
+  m_PathPosition: 0.14672908
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -5716,7 +5716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 984987868234543689, guid: a6aa08e56b7c1d84585725f1095ae80a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.011001587
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 984987868234543689, guid: a6aa08e56b7c1d84585725f1095ae80a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7606,8 +7606,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117624148}
-  m_LocalRotation: {x: 0.09237912, y: 0.004119444, z: -0.00038218807, w: 0.9957153}
-  m_LocalPosition: {x: 35.56021, y: 3, z: 29.681557}
+  m_LocalRotation: {x: 0.092379116, y: 0.0041198474, z: -0.00038222552, w: 0.9957153}
+  m_LocalPosition: {x: 35.560207, y: 3, z: 29.681557}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10450,6 +10450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dive: {fileID: 0}
   _water: {fileID: 0}
+  particle: {fileID: 0}
   speed: 1.5
   jumpPower: 3
   Stone: {fileID: 0}
@@ -10470,6 +10471,7 @@ MonoBehaviour:
   isdie: 0
   isDive: 0
   isWater: 0
+  isWalk: 0
   startPos: {fileID: 1130801077}
   rope: {fileID: 1130801076}
   SavePointPanel: {fileID: 0}
