@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.134081, g: 0.18191808, b: 0.18750766, a: 1}
+  m_IndirectSpecularColor: {r: 0.13410307, g: 0.18184192, b: 0.18746044, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -409,7 +409,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70960637}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &70960639
 Camera:
   m_ObjectHideFlags: 0
@@ -460,7 +460,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70960637}
-  m_LocalRotation: {x: 0.10283895, y: 0.06712359, z: -0.0069557396, w: 0.9924063}
+  m_LocalRotation: {x: 0.10283897, y: 0.067123614, z: -0.006955743, w: 0.9924063}
   m_LocalPosition: {x: -28.613445, y: 1.65, z: -15.842203}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1264,6 +1264,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m  (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
 --- !u!4 &166042772 stripped
@@ -1647,7 +1651,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204911847}
-  m_LocalRotation: {x: 0.10283895, y: 0.06712359, z: -0.0069557396, w: 0.9924063}
+  m_LocalRotation: {x: 0.10283897, y: 0.067123614, z: -0.006955743, w: 0.9924063}
   m_LocalPosition: {x: -28.613445, y: 1.65, z: -15.842203}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1865,6 +1869,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
@@ -2645,6 +2653,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
 --- !u!4 &461319909 stripped
@@ -2797,6 +2809,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m  (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
@@ -4189,6 +4205,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m  (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
 --- !u!4 &729013421 stripped
@@ -4325,6 +4345,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
@@ -4566,6 +4590,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m  (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
@@ -4931,6 +4959,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'JP_Sidewalk_1x2m '
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
 --- !u!4 &808369275 stripped
@@ -5176,6 +5208,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 509026944}
     m_Modifications:
+    - target: {fileID: 126522, guid: 0c33235d8e4ec124b8f0e17c87b30ee1, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 197152, guid: 0c33235d8e4ec124b8f0e17c87b30ee1, type: 3}
       propertyPath: m_Name
       value: house_aband
@@ -6040,6 +6076,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m  (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
 --- !u!4 &1055958090 stripped
@@ -6267,6 +6307,141 @@ MonoBehaviour:
   SavePointPanel: {fileID: 0}
   gameMng: {fileID: 0}
   mat: {fileID: 0}
+--- !u!114 &1072677342 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8708070510803585840, guid: 07687c6b059d44692bbf25a82773df05, type: 3}
+  m_PrefabInstance: {fileID: 1617492868}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072677331}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa824284721954679ab57d0eb605cb9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1072677347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072677331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 232119b9ba54d524eac1c24bbb6eaf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip:
+  - {fileID: 8300000, guid: a4c990d600c825542a9d2763b63976fd, type: 3}
+  - {fileID: 8300000, guid: a4c990d600c825542a9d2763b63976fd, type: 3}
+  - {fileID: 8300000, guid: 8e0fa202579ea804fbaedd4a5e477f3b, type: 3}
+  - {fileID: 8300000, guid: 8e0fa202579ea804fbaedd4a5e477f3b, type: 3}
+  - {fileID: 8300000, guid: 521d221c8f77e464296590cabd4a67a0, type: 3}
+  - {fileID: 8300000, guid: 50132a14ddfec1a48abf0ffbfd85945e, type: 3}
+  - {fileID: 8300000, guid: 8b229e09e435d4450bac7feea718894b, type: 3}
+  - {fileID: 8300000, guid: 6083e9974fe7e8942a190dbbee18027e, type: 3}
+  - {fileID: 8300000, guid: 7fad258e268ba4c889b3e4aa766bdf4a, type: 3}
+  - {fileID: 8300000, guid: 92381d6f0a3104cd090b3c843529d17e, type: 3}
+  - {fileID: 8300000, guid: 92381d6f0a3104cd090b3c843529d17e, type: 3}
+  - {fileID: 8300000, guid: 1fc2680016950435b98f682b6b780e3f, type: 3}
+  - {fileID: 8300000, guid: 4d87c8695151f4b6480d2dd68cbb1116, type: 3}
+  player: {fileID: 1072677342}
+  w_Player: {fileID: 1072677339}
+--- !u!82 &1072677348
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072677331}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1077537618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7025,6 +7200,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
 --- !u!4 &1196598227 stripped
@@ -7177,6 +7356,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m  (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
@@ -7346,6 +7529,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
@@ -7572,6 +7759,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m  (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
 --- !u!4 &1263400967 stripped
@@ -7788,6 +7979,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
@@ -8071,6 +8266,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
 --- !u!4 &1341254653 stripped
@@ -8233,6 +8432,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 91898527}
     m_Modifications:
+    - target: {fileID: 118350, guid: b3a53a0efb7c50848b26f6eea91284bb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 177342, guid: b3a53a0efb7c50848b26f6eea91284bb, type: 3}
       propertyPath: m_Name
       value: house_ruined
@@ -8240,6 +8443,14 @@ PrefabInstance:
     - target: {fileID: 177342, guid: b3a53a0efb7c50848b26f6eea91284bb, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 177342, guid: b3a53a0efb7c50848b26f6eea91284bb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 189916, guid: b3a53a0efb7c50848b26f6eea91284bb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 400338, guid: b3a53a0efb7c50848b26f6eea91284bb, type: 3}
       propertyPath: m_RootOrder
@@ -9211,6 +9422,152 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7402e47da5ace364a8d210c4bf513af1, type: 3}
+--- !u!1 &1559642853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1559642856}
+  - component: {fileID: 1559642855}
+  - component: {fileID: 1559642854}
+  m_Layer: 0
+  m_Name: MapBGM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1559642854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559642853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737a671a5fd7d4a81ad88a57b2408840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1559642855}
+  audioClips:
+  - {fileID: 8300000, guid: 9d36bf3c13d2f4561bf85073aa8ada3e, type: 3}
+  - {fileID: 8300000, guid: 25e7784b656c34c7cac18770838175de, type: 3}
+  player: {fileID: 1072677339}
+--- !u!82 &1559642855
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559642853}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1559642856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559642853}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.179528, y: -36.84003, z: 136.71924}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 83
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1585255972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9394,6 +9751,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
@@ -9734,6 +10095,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
 --- !u!4 &1713412106 stripped
@@ -9813,6 +10178,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
@@ -10073,6 +10442,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
 --- !u!4 &1763484157 stripped
@@ -10316,6 +10689,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m  (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
@@ -10889,7 +11266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 135810904}
-  m_PathPosition: 0.023840195
+  m_PathPosition: 0.023840189
   m_PositionUnits: 0
   m_PathOffset: {x: 0.00000007390969, y: 0, z: -0.61999893}
   m_XDamping: 0
@@ -11079,6 +11456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f86ae12c79cc344a9a637169049162f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 0}
   newSkybox: {fileID: 2100000, guid: 2039a0ad0a9d05549928b70362f54902, type: 2}
   ui: {fileID: 1067792089}
 --- !u!4 &1981569473 stripped
@@ -11178,6 +11556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ruin: {fileID: 91898526}
   dream: {fileID: 509026943}
+  sound: {fileID: 1559642854}
 --- !u!4 &2005606911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 440950, guid: 10efb94c6bff2ac4ead891c26d371ef4, type: 3}
@@ -11195,9 +11574,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 109866, guid: 92639011d2d4c504e80f68a4f024006f, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 172090, guid: 92639011d2d4c504e80f68a4f024006f, type: 3}
       propertyPath: m_Name
       value: house_stairs
+      objectReference: {fileID: 0}
+    - target: {fileID: 172090, guid: 92639011d2d4c504e80f68a4f024006f, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 428892, guid: 92639011d2d4c504e80f68a4f024006f, type: 3}
       propertyPath: m_RootOrder
@@ -11299,6 +11686,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m  (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
@@ -11571,6 +11962,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
       propertyPath: m_Name
       value: JP_Sidewalk_1x2m  (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebea62175d8fe0468720bc28c6426ff, type: 3}
@@ -12071,7 +12466,7 @@ GameObject:
   - component: {fileID: 2146432556}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

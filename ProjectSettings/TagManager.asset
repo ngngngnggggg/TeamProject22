@@ -31,6 +31,11 @@ TagManager:
   - WaterLean
   - Water
   - PuzzleParticle
+  - Enemy
+  - Light
+  - Hint
+  - Key
+  - Concrete
   layers:
   - Default
   - TransparentFX

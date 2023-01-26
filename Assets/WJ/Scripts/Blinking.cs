@@ -12,6 +12,8 @@ public class Blinking : MonoBehaviour
     private SoloHouse m_SoloHouse = null;
 
     private bool m_IsEnd = false;
+
+    [SerializeField] private WJ_Sound sound;
     
     private void Awake()
     {
@@ -101,12 +103,12 @@ public class Blinking : MonoBehaviour
         {
             //Debug.Log("On" + on);
             //Debug.Log(count);
-
+            sound.PlayBGM2();
             image.color = Color.black;
             yield return new WaitForSeconds(0.05f);
             m_LoveHouse.SetRenderers(true);
             m_SoloHouse.SetRenderers(false);
-            image.color = new Color(0, 0, 0, 0); // º¸ÀÌ±â
+            image.color = new Color(0, 0, 0, 0); // ï¿½ï¿½ï¿½Ì±ï¿½
 
             yield return new WaitForSeconds(0.05f);
 
@@ -114,7 +116,7 @@ public class Blinking : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
             m_LoveHouse.SetRenderers(false);
             m_SoloHouse.SetRenderers(true);
-            image.color = new Color(0, 0, 0, 0); // º¸ÀÌ±â
+            image.color = new Color(0, 0, 0, 0); // ï¿½ï¿½ï¿½Ì±ï¿½
             yield return new WaitForSeconds(0.05f);
             
             count++;

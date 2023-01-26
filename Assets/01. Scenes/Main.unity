@@ -512,37 +512,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82409285}
   m_Mesh: {fileID: 8295497860965372051, guid: b27ae5ce671bc6f4ba639f282840404a, type: 3}
---- !u!1 &125581725
+--- !u!1 &125581725 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 8318497493586730757, guid: ccd9560dcdcc8ef408b1d152aa8ddacd, type: 3}
   m_PrefabInstance: {fileID: 797877523}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 125581726}
-  m_Layer: 0
-  m_Name: 
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &125581726
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125581725}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 176282106}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &151518426
 GameObject:
   m_ObjectHideFlags: 3
@@ -733,7 +707,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1586784291}
-  - {fileID: 125581726}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1175,11 +1148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4905776183640116465, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.008951596
+      value: 0.008951541
       objectReference: {fileID: 0}
     - target: {fileID: 4905776183640116465, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0030762844
+      value: -0.0030762653
       objectReference: {fileID: 0}
     - target: {fileID: 4905776183778135176, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_CustomBlends
@@ -1247,11 +1220,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4905776183778135177, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.008951596
+      value: 0.008951541
       objectReference: {fileID: 0}
     - target: {fileID: 4905776183778135177, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0030762844
+      value: -0.0030762653
       objectReference: {fileID: 0}
     - target: {fileID: 5347874197101844214, guid: 23b069bdf50eb43e7a9bc0b9d56f321b, type: 3}
       propertyPath: m_Name
@@ -3261,14 +3234,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a4c990d600c825542a9d2763b63976fd, type: 3}
   - {fileID: 8300000, guid: 8e0fa202579ea804fbaedd4a5e477f3b, type: 3}
   - {fileID: 8300000, guid: 8e0fa202579ea804fbaedd4a5e477f3b, type: 3}
-  - {fileID: 8300000, guid: 6644f979f0030447ea3368554e2e493f, type: 3}
+  - {fileID: 8300000, guid: 521d221c8f77e464296590cabd4a67a0, type: 3}
   - {fileID: 8300000, guid: 50132a14ddfec1a48abf0ffbfd85945e, type: 3}
-  - {fileID: 8300000, guid: 055d595fa942b4eea8422ee6a9fe3224, type: 3}
+  - {fileID: 8300000, guid: 8b229e09e435d4450bac7feea718894b, type: 3}
   - {fileID: 8300000, guid: 6083e9974fe7e8942a190dbbee18027e, type: 3}
-  - {fileID: 8300000, guid: 12c66ca69c7944e95aa419d49f9fa25b, type: 3}
-  - {fileID: 8300000, guid: 5aa8e4d5b49ff4321a11b35cdbc7ef8b, type: 3}
-  - {fileID: 8300000, guid: 5aa8e4d5b49ff4321a11b35cdbc7ef8b, type: 3}
-  - {fileID: 8300000, guid: d1e8dcefb974246768cbaabd055f02a6, type: 3}
+  - {fileID: 8300000, guid: 7fad258e268ba4c889b3e4aa766bdf4a, type: 3}
+  - {fileID: 8300000, guid: 92381d6f0a3104cd090b3c843529d17e, type: 3}
+  - {fileID: 8300000, guid: 92381d6f0a3104cd090b3c843529d17e, type: 3}
+  - {fileID: 8300000, guid: 1fc2680016950435b98f682b6b780e3f, type: 3}
   - {fileID: 8300000, guid: 4d87c8695151f4b6480d2dd68cbb1116, type: 3}
   player: {fileID: 1918102059}
 --- !u!82 &1918102065

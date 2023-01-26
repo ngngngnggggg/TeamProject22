@@ -10,6 +10,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class W_Player : MonoBehaviour
 {
+    [SerializeField] private WJ_Sound sound;
     //�÷��̾� �̵� ����
     [SerializeField] private float speed = 1.5f;
 
@@ -83,6 +84,7 @@ public class W_Player : MonoBehaviour
         cc = GetComponent<CapsuleCollider>();
         lr = GetComponent<LineRenderer>();
         hand = GetComponentInChildren<Hand>();
+        sound.PlayBGM();
 
 
     }

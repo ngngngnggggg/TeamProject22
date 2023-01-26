@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SkyboxChanger : MonoBehaviour
 {
+    [SerializeField] private WJ_Sound sound;
     public Material newSkybox;
     private Material currentSkybox;
     public GameObject ui;
@@ -24,6 +25,7 @@ public class SkyboxChanger : MonoBehaviour
             player.GetComponent<HW_Player>().enabled = false;
             time += Time.deltaTime;
             ui.SetActive(true);
+            sound.StopBGM(); //
             if(5f < time)
             {
             RenderSettings.skybox = newSkybox;
