@@ -6,6 +6,13 @@ public class SavePoint : MonoBehaviour
 {
     [SerializeField] private GameManager gameMng;
 
+    private MeshRenderer renderer;
+    [SerializeField] private Material mat;
+
+    private void Start()
+    {
+        renderer = transform.GetChild(0).GetComponent<MeshRenderer>();
+    }
 
     //private void OnCollisionEnter(Collision coll)
     //{
@@ -18,6 +25,7 @@ public class SavePoint : MonoBehaviour
     {   
         if (other.CompareTag("Player")  )
         {
+            renderer.material = mat;
             Debug.Log("??");
             gameMng.GameSave();
         }

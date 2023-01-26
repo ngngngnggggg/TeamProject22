@@ -5,6 +5,7 @@ using System.Numerics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
@@ -77,8 +78,12 @@ public class L_Player : MonoBehaviour
     //[SerializeField] private Material enemy2;
     //[SerializeField] private Material enemy3;
     public bool hasKey;
+    public bool hasLight;
 
     GameObject nearObject;
+
+    private bool isSave;
+    [SerializeField] private GameObject lamp;
 
     //public GameObject[] item;
     //public bool[] hasitem;
@@ -96,6 +101,9 @@ public class L_Player : MonoBehaviour
 
     private void Update()
     {
+        if (isSave)
+            StartCoroutine(Load());
+
         if (Move()) Run();
         Grab();
         Jump();
@@ -525,6 +533,7 @@ public class L_Player : MonoBehaviour
     {
         if (other.CompareTag("SavePoint"))
         {
+            isSave = true;
             Debug.Log("??");
             gameMng.GameSave();
             Renderer renderer = other.GetComponentInChildren<Renderer>();
@@ -578,14 +587,22 @@ public class L_Player : MonoBehaviour
                 Destroy(other.gameObject);
             
             transform.GetChild(1).gameObject.SetActive(true);
+            hasLight = true;
         }
 
         if (other.gameObject.tag == "Key")
         {
             
-                Destroy(other.gameObject);
+            Destroy(other.gameObject);
             
             hasKey = true;
+        }
+        if (other.CompareTag("DeathZone"))
+        {
+            anim.SetBool("isDie", true);
+            Debug.Log("Á×À½");
+            isdie = true;
+            StartCoroutine(DieCoroutine());
         }
     }
     // ÅÂ±×¿¡ ´êÀ¸¸é Á×´Â ¾Ö´Ï¸ÞÀÌ¼Ç
@@ -603,7 +620,6 @@ public class L_Player : MonoBehaviour
     
 
     }
-
     IEnumerator DestroyStone()
     {
         yield return new WaitForSeconds(3f);
@@ -616,14 +632,20 @@ public class L_Player : MonoBehaviour
     IEnumerator DieCoroutine()
     {
         yield return new WaitForSeconds(3f);
-        gameMng.GameLoad();
+        //gameMng.GameLoad();
+        SceneManager.LoadScene("SangMin");
+        
+    }
+
+    IEnumerator Load()
+    {
+        lamp.SetActive(true);
         yield return new WaitForSeconds(1f);
         anim.SetBool("isDie", false);
         yield return new WaitForSeconds(2.5f);
 
         isdie = false;
-
-
+        isSave = false;
     }
 
 
