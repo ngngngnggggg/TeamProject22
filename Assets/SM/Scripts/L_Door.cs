@@ -18,7 +18,7 @@ public class L_Door : MonoBehaviour
 
     private void OnCollisionStay(Collision coll)
     {
-        if (coll.gameObject.CompareTag("Player") && Player.hasKey)
+        if (coll.gameObject.CompareTag("Player") && Player.hasKey && Player.hasLight)
         {
             door.transform.rotation = Quaternion.Lerp(door.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime);
 
