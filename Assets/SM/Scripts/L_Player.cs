@@ -597,6 +597,13 @@ public class L_Player : MonoBehaviour
             
             hasKey = true;
         }
+        if (other.CompareTag("DeathZone"))
+        {
+            anim.SetBool("isDie", true);
+            Debug.Log("죽음");
+            isdie = true;
+            StartCoroutine(DieCoroutine());
+        }
     }
     // 태그에 닿으면 죽는 애니메이션
     private void OnCollisionEnter(Collision collision)
