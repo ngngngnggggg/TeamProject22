@@ -14,6 +14,7 @@ public class HW_Player : MonoBehaviour
 {
     [SerializeField] private GameObject dive; 
     [SerializeField] private HW_Water _water;
+    [SerializeField] private SoundManager _soundManager;
     
     //파티클 변수
     [SerializeField] public ParticleSystem particle;
@@ -99,6 +100,7 @@ public class HW_Player : MonoBehaviour
         lr = GetComponent<LineRenderer>();
         hand = GetComponentInChildren<Hand>();
         particle.Stop();
+        _soundManager.PlayBGM();
     }
 
     private void Update()
@@ -179,8 +181,6 @@ public class HW_Player : MonoBehaviour
         
         _speed = Input.GetKey(KeyCode.LeftShift) ? 3f : 0.5f;
         
-        
-        
         if (isWater)
         {
             if (Input.GetKey(KeyCode.Space))
@@ -191,8 +191,7 @@ public class HW_Player : MonoBehaviour
            
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
-
-           
+            
             Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
             //누르는 방향으로 플레이어 회전
             if (moveDir != Vector3.zero)
