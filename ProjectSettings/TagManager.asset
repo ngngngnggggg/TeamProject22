@@ -31,7 +31,6 @@ TagManager:
   - WaterLean
   - Water
   - PuzzleParticle
-  - Concrete
   layers:
   - Default
   - TransparentFX

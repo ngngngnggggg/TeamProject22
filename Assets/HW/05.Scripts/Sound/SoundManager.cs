@@ -7,32 +7,87 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
-   AudioSource audioSource;
-   public AudioClip[] audioClips;
-   private HW_Player player;
-   
-   
-   void Start()
-   {
-       audioSource = GetComponent<AudioSource>();
-   }
-   
-   //게임을 시작하면 0번째 브금 실행
-    public void PlayBGM()
+    static SoundManager instance;
+    public AudioSource[] audioSource;
+    
+    public static SoundManager Instance
     {
-        audioSource.clip = audioClips[0];
-        
-        audioSource.Play();
+        get
+        {
+            return instance;
+        }
     }
     
-    //isWater이면 1번째 브금 실행
-    public void PlayWaterBGM()
-    {
-        audioSource.clip = audioClips[1];
-        audioSource.Play();
-    }
    
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+
+            audioSource = GetComponentsInChildren<AudioSource>();
+        }
+        else
+        {
+            DestroyObject(this.gameObject);
+        }
+    }
+
+    public void StopSound(string soundName)
+    {
+        for (int i = 0; i < audioSource.Length; i++)
+        {
+            if (audioSource[i].gameObject.name.CompareTo(soundName) == 0)
+            {
+                audioSource[i].Stop();
+            }
+        }
+    }
     
+    public void PlaySound(string soundName)
+    {
+        for (int i = 0; i < audioSource.Length; i++)
+        {
+            if (audioSource[i].gameObject.name.CompareTo(soundName) == 0)
+            {
+                audioSource[i].Play();
+            }
+        }
+    }
     
+    public void StopAllSound()
+    {
+        for (int i = 0; i < audioSource.Length; i++)
+        {
+            audioSource[i].Stop();
+        }
+    }
+
+    public void SoundAllMute()
+    {
+        for (int i = 0; i < audioSource.Length; i++)
+        {
+            audioSource[i].mute = true;
+        }
+    }
+
+    public void SoundAllOn()
+    {
+        for (int i = 0; i < audioSource.Length; i++)
+        {
+            audioSource[i].mute = false;
+        }
+    }
+
+    public void BGSoundSpeedOn()
+    {
+        audioSource[0].pitch = 1.1f;
+    }
+
+    public void BGSoundSpeedOff()
+    {
+        audioSource[0].pitch = 1.0f;
+    }
     
 }
