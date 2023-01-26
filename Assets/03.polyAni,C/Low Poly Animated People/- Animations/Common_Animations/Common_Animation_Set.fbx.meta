@@ -675,6 +675,9 @@ ModelImporter:
   - first:
       74: -3120978622282428348
     second: Walking-Idle (1)
+  - first:
+      74: 7849458911725288456
+    second: Walking (1)
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -880,11 +883,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walking-Idle (1)
-      takeName: Walking-Idle
+      name: Walking (1)
+      takeName: Walking
       internalID: 0
-      firstFrame: 3500
-      lastFrame: 3515
+      firstFrame: 1700
+      lastFrame: 1730
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -903,11 +906,25 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.014752197
+        functionName: Step
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5868863
+        functionName: Step
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0.96
+      additiveReferencePoseFrame: 1699.92
     - serializedVersion: 16
       name: Standing_Singing
       takeName: Standing_Singing
