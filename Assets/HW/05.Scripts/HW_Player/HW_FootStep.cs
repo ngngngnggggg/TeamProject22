@@ -28,11 +28,15 @@ public class HW_FootStep : MonoBehaviour
        {
            if(hitInfo.transform.CompareTag(("Ground")))
            {
-               audioSource.PlayOneShot(audioClip[0]);
+               audioSource.PlayOneShot(audioClip[12]);
            }
            else if (hitInfo.transform.CompareTag("Concrete"))
            {
                audioSource.PlayOneShot(audioClip[5]);
+           }
+           else if (hitInfo.transform.CompareTag("Untagged"))
+           {
+               audioSource.PlayOneShot(audioClip[0]);
            }
        }
    }
@@ -44,11 +48,15 @@ public class HW_FootStep : MonoBehaviour
        {
            if(hitInfo.transform.CompareTag(("Ground")))
            {
-               audioSource.PlayOneShot(audioClip[1]);
+               audioSource.PlayOneShot(audioClip[12]);
            }
            else if (hitInfo.transform.CompareTag("Concrete"))
            {
                audioSource.PlayOneShot(audioClip[5]);
+           }
+           else if (hitInfo.transform.CompareTag("Untagged"))
+           {
+               audioSource.PlayOneShot(audioClip[1]);
            }
        }
    }
