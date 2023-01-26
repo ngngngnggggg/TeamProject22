@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -18,6 +20,15 @@ public class SkyboxChanger : MonoBehaviour
         
     }
 
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if(other.gameObject.name == "Player")
+    //     {
+    //         sound.StopBGM();
+    //     }
+    //     
+    // }
+
     private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.name == "Player")
@@ -25,7 +36,7 @@ public class SkyboxChanger : MonoBehaviour
             player.GetComponent<HW_Player>().enabled = false;
             time += Time.deltaTime;
             ui.SetActive(true);
-            sound.StopBGM(); //
+             //
             if(5f < time)
             {
             RenderSettings.skybox = newSkybox;

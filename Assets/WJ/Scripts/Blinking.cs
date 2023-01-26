@@ -53,6 +53,7 @@ public class Blinking : MonoBehaviour
             if (!m_IsEnd)
             {
                 m_IsEnd = true;
+                sound.PlayBGM2();
                 End();
             } 
 
@@ -103,7 +104,7 @@ public class Blinking : MonoBehaviour
         {
             //Debug.Log("On" + on);
             //Debug.Log(count);
-            sound.PlayBGM2();
+            //sound.PlayBGM2();
             image.color = Color.black;
             yield return new WaitForSeconds(0.05f);
             m_LoveHouse.SetRenderers(true);

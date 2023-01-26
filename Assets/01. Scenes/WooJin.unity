@@ -460,7 +460,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70960637}
-  m_LocalRotation: {x: 0.10283897, y: 0.067123614, z: -0.006955743, w: 0.9924063}
+  m_LocalRotation: {x: 0.102838956, y: 0.067123644, z: -0.0069557456, w: 0.9924063}
   m_LocalPosition: {x: -28.613445, y: 1.65, z: -15.842203}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1651,7 +1651,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204911847}
-  m_LocalRotation: {x: 0.10283897, y: 0.067123614, z: -0.006955743, w: 0.9924063}
+  m_LocalRotation: {x: 0.102838956, y: 0.067123644, z: -0.0069557456, w: 0.9924063}
   m_LocalPosition: {x: -28.613445, y: 1.65, z: -15.842203}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6285,6 +6285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f2e7213b2de5f45bf098930cfebee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 1559642854}
   speed: 1.5
   jumpPower: 3
   Stone: {fileID: 0}
