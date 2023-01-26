@@ -11,6 +11,7 @@ public class EnemyState2 : MonoBehaviour
     private float maxHp = 100f;
     public bool isDamaged = false;
     public int currentHp;
+    public Punch punch;
 
     public enum State
     {
@@ -144,10 +145,12 @@ public class EnemyState2 : MonoBehaviour
                 case State.STAY:
                     //moveAgent.PATROLLING = true;
                     moveAgent.Stop();
+                    punch.gameObject.SetActive(false);
                     break;
 
                 case State.TRACE:
                     moveAgent.TRACETARGET = playerTr.position;
+                    punch.gameObject.SetActive(false);
                     animator.SetBool(hashAttack, false);
                     animator.SetBool(hashDie, false);
                     animator.SetBool(hashMove, true);
@@ -159,6 +162,7 @@ public class EnemyState2 : MonoBehaviour
                     if ((this.transform.position - playerTr.position).magnitude < attackDist)
                         moveAgent.Stop();
                     Debug.Log("АјАн");
+                    punch.gameObject.SetActive(true);
                     animator.SetBool(hashDie, false);
                     animator.SetBool(hashMove, false);
                     animator.SetBool(hashAttack, true);
@@ -170,6 +174,7 @@ public class EnemyState2 : MonoBehaviour
                     this.gameObject.tag = "Untagged";
                     isDie = true;
                     moveAgent.Stop();
+                    punch.gameObject.SetActive(false);
                     animator.SetBool(hashAttack, false);
                     animator.SetBool(hashMove, false);
                     animator.SetBool(hashDie, true);
