@@ -15,13 +15,13 @@ public class SoundManager : MonoBehaviour
    void Start()
    {
        audioSource = GetComponent<AudioSource>();
+       PlayBGM();
    }
    
    //게임을 시작하면 0번째 브금 실행
     public void PlayBGM()
     {
         audioSource.clip = audioClips[0];
-        
         audioSource.Play();
     }
     
@@ -30,6 +30,11 @@ public class SoundManager : MonoBehaviour
     {
         audioSource.clip = audioClips[1];
         audioSource.Play();
+    }
+    
+    public void HWStopSound()
+    {
+        audioSource.Stop();
     }
    
     
