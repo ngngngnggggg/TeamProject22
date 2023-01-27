@@ -7,6 +7,7 @@ using UnityEngine;
 public class HW_Water : MonoBehaviour
 {
     [SerializeField] private HW_Player player;
+    [SerializeField] private L_Item item;
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private ParticleSystem waterParticles;
     [SerializeField] private AudioSource waterAudio;
@@ -86,6 +87,7 @@ public class HW_Water : MonoBehaviour
         if (other.transform.CompareTag("Player"))
         {
             Debug.Log("endSwim");
+            item.GetComponent<L_Item>().gameObject.SetActive(true);
             soundManager.GetComponent<SoundManager>().PlayBGM();
             waterAudio.PlayOneShot(waterClip);
             player.GetComponent<HW_Player>().particle.Stop();

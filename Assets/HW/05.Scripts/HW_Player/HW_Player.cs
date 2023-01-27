@@ -83,7 +83,7 @@ public class HW_Player : MonoBehaviour
     private LineRenderer lr;
     private Hand hand;
     public GameObject SavePointPanel;
-
+    public bool hasKey;
 
     //플레이어가 벽을 감지하게 하는 레이 히트
     private RaycastHit hit;
@@ -675,7 +675,14 @@ public class HW_Player : MonoBehaviour
 
 
 
-
+            }
+            
+            if (collision.gameObject.tag == "Key")
+            {
+            
+                Destroy(collision.gameObject);
+            
+                hasKey = true;
             }
         }
 
