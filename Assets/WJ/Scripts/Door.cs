@@ -8,6 +8,12 @@ public class Door : MonoBehaviour
     Animator animator;
     [SerializeField] GameObject[] environments;
     [SerializeField] private HW_Player player;
+    
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip doorOpen;
+    [SerializeField] private AudioClip doorClose;
+    [SerializeField] private SB_Sound sound;
+   
 
     public int count = 1;
 
@@ -24,6 +30,7 @@ public class Door : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) && player.Getislaying)
         {
             count++;
+            sound.BGMNext();
             StartCoroutine(Open());
             foreach(GameObject environment in environments)
             {
@@ -55,9 +62,19 @@ public class Door : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+              
             door.transform.rotation = Quaternion.Lerp(door.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime);
 
         }
+    }
+
+    private void OpenDoorSound()
+    {
+        audioSource.PlayOneShot(doorOpen);
+    }
+    private void CloseDoorSound()
+    {
+        audioSource.PlayOneShot(doorClose);
     }
 
 }

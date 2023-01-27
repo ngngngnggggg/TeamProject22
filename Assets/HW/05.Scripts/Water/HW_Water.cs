@@ -47,6 +47,7 @@ public class HW_Water : MonoBehaviour
             
             Map.SetActive(false);
             Debug.Log("물에 들어감");
+            soundManager.GetComponent<SoundManager>().HWStopSound();
             soundManager.GetComponent<SoundManager>().PlayWaterBGM();
             GetWater(other);
             //player에 상속되어있는 파티클 실행

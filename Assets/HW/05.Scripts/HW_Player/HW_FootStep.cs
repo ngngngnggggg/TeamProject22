@@ -39,6 +39,11 @@ public class HW_FootStep : MonoBehaviour
            {
                audioSource.PlayOneShot(audioClip[0]);
            }
+           else if (hitInfo.transform.CompareTag("Wood"))
+           {
+               audioSource.PlayOneShot(audioClip[13]);
+           }
+          
        }
    }
    
@@ -59,6 +64,11 @@ public class HW_FootStep : MonoBehaviour
            {
                audioSource.PlayOneShot(audioClip[1]);
            }
+           else if (hitInfo.transform.CompareTag("Wood"))
+           {
+               audioSource.PlayOneShot(audioClip[13]);
+           }
+
        }
    }
 
@@ -79,12 +89,17 @@ public class HW_FootStep : MonoBehaviour
            {
                audioSource.PlayOneShot(audioClip[2]);
            }
+           else if (hitInfo.transform.CompareTag("Wood"))
+           {
+               audioSource.PlayOneShot(audioClip[13]);
+           }
+
        }
    }
    
    private void RunJumpSound()
    {
-       audioSource.volume = 0.46f;
+       audioSource.volume = 0.2f;
        if (Physics.Raycast(transform.position, Vector3.down, out var hitInfo, 1f))
        {
            if(hitInfo.transform.CompareTag(("Ground")))
@@ -99,6 +114,11 @@ public class HW_FootStep : MonoBehaviour
            {
                audioSource.PlayOneShot(audioClip[3]);
            }
+           else if (hitInfo.transform.CompareTag("Wood"))
+           {
+               audioSource.PlayOneShot(audioClip[13]);
+           }
+
        }
    }
    
@@ -141,9 +161,14 @@ public class HW_FootStep : MonoBehaviour
 
     private void OutSwimmingSound()
     {
-        audioSource.PlayOneShot(audioClip[11]);
+        if (player.isWater)
+        {
+            audioSource.PlayOneShot(audioClip[11]);
+        }
+
     }
 
+    
 
 
    

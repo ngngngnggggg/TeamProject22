@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class EndPoint5 : MonoBehaviour
 {
-    [SerializeField] private Image image;
+    [SerializeField] private Image[] image;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -18,7 +18,8 @@ public class EndPoint5 : MonoBehaviour
     
     IEnumerator NextScene()
     {
-        image.enabled = true; 
+        image[0].enabled = true; 
+        image[1].enabled = true; 
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("HyunWoo");
     }

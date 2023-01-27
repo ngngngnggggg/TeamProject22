@@ -100,7 +100,7 @@ public class HW_Player : MonoBehaviour
         lr = GetComponent<LineRenderer>();
         hand = GetComponentInChildren<Hand>();
         particle.Stop();
-        _soundManager.PlayBGM();
+        
     }
 
     private void Update()
