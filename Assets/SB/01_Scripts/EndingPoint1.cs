@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class EndingPoint1 : MonoBehaviour
 {
     [SerializeField] private Image[] image;
+    [SerializeField] private L_Sound sound;
        
        private void OnTriggerEnter(Collider other)
        {
            if(other.gameObject.tag == "Player")
            {
+               
                StartCoroutine((NextScene()));
            }
        }

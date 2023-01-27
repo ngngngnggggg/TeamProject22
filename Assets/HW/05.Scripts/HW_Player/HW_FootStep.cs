@@ -13,6 +13,7 @@ public class HW_FootStep : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] HW_Player player;
     [SerializeField] W_Player w_Player;
+    [SerializeField] L_Player l_Player;
 
    private void Awake()
    {
@@ -159,7 +160,7 @@ public class HW_FootStep : MonoBehaviour
         audioSource.PlayOneShot(audioClip[10]);
     }
 
-    private void OutSwimmingSound()
+    public void OutSwimmingSound()
     {
         if (player.isWater)
         {

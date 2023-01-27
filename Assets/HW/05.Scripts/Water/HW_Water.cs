@@ -9,6 +9,8 @@ public class HW_Water : MonoBehaviour
     [SerializeField] private HW_Player player;
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private ParticleSystem waterParticles;
+    [SerializeField] private AudioSource waterAudio;
+    [SerializeField] private AudioClip waterClip;
 
     [SerializeField] private GameObject Map;
     
@@ -39,6 +41,8 @@ public class HW_Water : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
+        waterAudio = GetComponent<AudioSource>();
+        
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -83,6 +87,7 @@ public class HW_Water : MonoBehaviour
         {
             Debug.Log("endSwim");
             soundManager.GetComponent<SoundManager>().PlayBGM();
+            waterAudio.PlayOneShot(waterClip);
             player.GetComponent<HW_Player>().particle.Stop();
             other.GetComponent<HW_Player>().isWater = false;
             other.GetComponent<Rigidbody>().useGravity = true;

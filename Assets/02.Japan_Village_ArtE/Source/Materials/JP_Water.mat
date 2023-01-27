@@ -8,10 +8,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: JP_Water
-  m_Shader: {fileID: 4800000, guid: 381969889c84a4534aba4dd34312aee8, type: 3}
+  m_Shader: {fileID: 4800000, guid: eaa27c24fc1c08b469e18a8af53be254, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _NORMALMAP
+  - _PARALLAXMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -21,8 +22,24 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlbedoTex1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AlbedoTex2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AmbientOcclusion:
+        m_Texture: {fileID: 2800000, guid: 436f260eaa344ecaad45e34d803d5330, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BackgroundForest:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 0714c3c5dd84bdd4d8389f38e7bf5219, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9a4592dc5ce45f14a9c005dd13a509f7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Cube:
@@ -46,10 +63,42 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 51448f930bde48118673fbb997b466e4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex_1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex_2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex_3:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex_4:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MirrorReflectionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 9a4592dc5ce45f14a9c005dd13a509f7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap2:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -58,31 +107,83 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
+        m_Texture: {fileID: 2800000, guid: 436f260eaa344ecaad45e34d803d5330, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SplatMap:
+        m_Texture: {fileID: 2800000, guid: 51448f930bde48118673fbb997b466e4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AO_Invert: 0
+    - _Albedo2Flow: 1
+    - _Albedo2Tiling: 1
+    - _AlbedoContrast: 1
+    - _AlbedoIntensity: 1
     - _Alpha: 0.8
     - _BumpScale: 1
+    - _ColorMask: 15
+    - _CullMode: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DiffusePower: 1
     - _DstBlend: 0
+    - _Exp: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.968
     - _GlossyReflections: 1
+    - _MaskSoftnessX: 0
+    - _MaskSoftnessY: 0
     - _Metallic: 0.492
+    - _MicrowaveScale: 1
+    - _MicrowaveStrength: 0.5
+    - _MirrorFPOW: 5
+    - _MirrorR0: 0.01
     - _Mode: 0
+    - _NormalMap1Strength: 1
+    - _NormalMap2Flow: 0.5
+    - _NormalMap2Strength: 1
+    - _NormalMap2Tiling: 1.2
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _ParallaxAmount: 0.1
+    - _ParallaxFlow: 1
+    - _ParallaxMapTiling: 1
+    - _ParallaxNormal2Offset: 1
     - _SmoothnessTextureChannel: 0
+    - _SoftFactor: 0.5
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
     - _Strength: 1
     - _Tiling: 1
     - _UVSec: 0
+    - _VertexOffsetX: 0
+    - _VertexOffsetY: 0
     - _ZWrite: 1
+    - __dirty: 1
     m_Colors:
+    - _AlbedoColor: {r: 0.15, g: 0.161, b: 0.16, a: 1}
+    - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _Color: {r: 0.09656459, g: 0.47006533, b: 0.5849056, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MirrorColor: {r: 1, g: 1, b: 1, a: 0.5}
+    - _MirrorDepthColor: {r: 0, g: 0, b: 0, a: 0.5}
+    - _MossColor: {r: 0, g: 0.060145963, b: 0.9150943, a: 0}
+    - _MossDir: {r: 0, g: 0, b: 0, a: 0}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _TerrainTint: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
