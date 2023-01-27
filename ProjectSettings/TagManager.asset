@@ -36,6 +36,8 @@ TagManager:
   - Hint
   - Key
   - Concrete
+  - EndingPoint
+  - Wood
   layers:
   - Default
   - TransparentFX
