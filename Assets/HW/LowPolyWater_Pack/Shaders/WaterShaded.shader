@@ -166,13 +166,7 @@ CGINCLUDE
         half4 baseColor = calculateBaseColor(i);
        
  
-		half4 foam = Foam(_ShoreTex, i.bumpCoords * 2.0);
-		baseColor.rgb += foam.rgb * _Foam.x * (edgeBlendFactors.y + saturate(i.viewInterpolator.w - _Foam.y));
-		if( _isInnerAlphaBlendOrColor==0)
-			baseColor.rgb += 1.0-edgeBlendFactors.x;
-		if(  _isInnerAlphaBlendOrColor==1.0)
-			baseColor.a  =  edgeBlendFactors.x;
-		UNITY_APPLY_FOG(i.fogCoord, baseColor);
+		
 		return baseColor;
 	}
 	

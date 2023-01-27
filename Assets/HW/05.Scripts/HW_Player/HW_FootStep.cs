@@ -25,7 +25,7 @@ public class HW_FootStep : MonoBehaviour
    public void Step()
    {
        //볼륨은 0.46f로 고정
-         audioSource.volume = 0.46f;
+         audioSource.volume = 0.26f;
        if (Physics.Raycast(transform.position, Vector3.down, out var hitInfo, 1f))
        {
            if(hitInfo.transform.CompareTag(("Ground")))
@@ -50,7 +50,7 @@ public class HW_FootStep : MonoBehaviour
    
    private void RunStep()
    {
-       audioSource.volume = 0.46f;
+       audioSource.volume = 0.26f;
        if (Physics.Raycast(transform.position, Vector3.down, out var hitInfo, 1f))
        {
            if(hitInfo.transform.CompareTag(("Ground")))
@@ -75,7 +75,7 @@ public class HW_FootStep : MonoBehaviour
 
    private void StandingJumpSound()
    {
-       audioSource.volume = 0.46f;
+       audioSource.volume = 0.26f;
        if (Physics.Raycast(transform.position, Vector3.down, out var hitInfo, 1f))
        {
            if(hitInfo.transform.CompareTag(("Ground")))
@@ -147,16 +147,19 @@ public class HW_FootStep : MonoBehaviour
 
     private void SwimmingIdleSound()
     {
+        audioSource.volume = 0.4f;
         audioSource.PlayOneShot(audioClip[8]);
     }
     
     private void SwimmingSound()
     {
+        audioSource.volume = 0.4f;
         audioSource.PlayOneShot(audioClip[9]);
     }
 
     private void FastSwimmingSound()
     {
+        audioSource.volume = 0.4f;
         audioSource.PlayOneShot(audioClip[10]);
     }
 
