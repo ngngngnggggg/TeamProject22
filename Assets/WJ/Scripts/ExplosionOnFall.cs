@@ -6,9 +6,11 @@ public class ExplosionOnFall : MonoBehaviour
 {
     public GameObject explosionPrefab; //폭발할 파티클 추가
     private bool hasExploded = false;
+    private float time = 0f;
 
     private void Update()
     {
+        time+= Time.deltaTime;
         if (!hasExploded && transform.position.y <= 2.037f)
         {
             hasExploded = true;
@@ -17,6 +19,10 @@ public class ExplosionOnFall : MonoBehaviour
             Instantiate(explosionPrefab, explosionPos, Quaternion.identity);
             
             Destroy(this.gameObject,0.3f);
+        }
+        else if (time > 5.5f && transform.position.y <=3f)
+        {
+            Destroy(this.gameObject);
         }
     }
 }

@@ -42,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GlobalMap:
-        m_Texture: {fileID: 2800000, guid: 7c66cb660b2cf3e45a9205e11b5ba8f1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2f6a74f8751284f488c671743cc7cb37, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -62,7 +62,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tint_Gradient:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 0d1538518fe0fc3419d4568fef8454e0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -98,7 +98,7 @@ Material:
     - _SpecularHighlights: 1
     - _Speed: 1.5
     - _SrcBlend: 1
-    - _SubSurfaceDistorion: 0.008
+    - _SubSurfaceDistorion: 0.09
     - _SunPower: 0
     - _TransAmbient: 0.334
     - _TransDirect: 0.114
