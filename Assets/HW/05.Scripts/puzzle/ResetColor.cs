@@ -3,24 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.ParticleSystemJobs;
+using UnityEngine.UI;
 
 public class ResetColor : MonoBehaviour
 {
     [SerializeField] private GameObject[] cubes;
     [SerializeField] private StoneCut[] stone;
     [SerializeField] private Cubepuzzle puzzle;
-     [SerializeField]private HW_ParticleExplosion explosion;
+    [SerializeField] private HW_ParticleExplosion explosion;
+    [SerializeField] private HW_PuzzleUI puzzleUI;
      
      
-     [SerializeField] private AudioSource audioSource;
-        [SerializeField] private AudioClip audioClip;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip audioClip;
+    
+    [SerializeField] private Image image;
     
     public int count = 0;
     private ParticleSystem ps;
 
-    private void Start()
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            if(image != null)
+                image.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -39,6 +48,7 @@ public class ResetColor : MonoBehaviour
                 explosion.GetComponent<HW_ParticleExplosion>().ParticleSpawn();
                 return;
             }
+           
 
             foreach(GameObject cube in cubes)
                 cube.GetComponent<CubeColor>().ResetColor();

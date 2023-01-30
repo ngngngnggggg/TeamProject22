@@ -12,11 +12,11 @@ public class CubeColor : MonoBehaviour
     public bool success = false;
     [SerializeField] private ResetColor resetcolor;
     [SerializeField] private Material answerMat;
-
+    private GameObject image;
     
-
     private void Start()
     {
+        image = GameObject.Find("PuzzleText");
         mr = GetComponent<MeshRenderer>();
         originMat = mr.material;
     }
@@ -43,13 +43,29 @@ public class CubeColor : MonoBehaviour
         }
         else
         {
+            if (image != null)
+            {
+                image.SetActive(true);
+                image.transform.GetChild(1).gameObject.SetActive(true);
+                image.transform.GetChild(0).gameObject.SetActive(false);
+            }
+
             resetcolor.count--;
+            
         }
         mr.material = mat;
     }
     
     public void ResetColor()
     {
+        if (image != null)
+        {
+            image.SetActive(false);
+            image.transform.GetChild(1).gameObject.SetActive(false);
+            image.transform.GetChild(0).gameObject.SetActive(false);
+            Destroy(image);
+        }
+
         mr.material = originMat;
         mat = originMat;
         success = false;

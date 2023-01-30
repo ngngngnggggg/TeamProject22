@@ -2,34 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cubepuzzle : MonoBehaviour
 {
-    //[SerializeField] private GameObject ps;
+    
     private BoxCollider boxcollider;
-    //private Camera camera;
-    //private AudioListener audioListener;
-    //public float speed;
-    //private Camera currentCamera;
-    //public bool UseCameraRotation = true;
+    
+    
     
     [SerializeField] private GameObject cam;
     [SerializeField] private HW_Player player;
     
-    // [SerializeField] private AudioSource audioSource;
-    // [SerializeField] private AudioClip audioClip;
-    
     private void Start()
     {
         boxcollider = GetComponent<BoxCollider>();
-        //camera = cam.GetComponent<Camera>();
-        //audioListener = cam.GetComponent<AudioListener>();
-        //currentCamera = Camera.main;
-        
-        //시작하면 카메라 비 활성화
-        //camera.enabled = false;
-        //audioListener.enabled = false;
-        
     }
 
     private void Update()
@@ -39,6 +26,7 @@ public class Cubepuzzle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.CompareTag("Player"))
         {
             //자식 오브젝트를 전부 활성화
@@ -51,10 +39,6 @@ public class Cubepuzzle : MonoBehaviour
                     child.GetChild(j).gameObject.SetActive(true);
                 }
             }
-            //카메라 전환 안됨
-            //camera.enabled = true;
-            //audioListener.enabled = true;
-            
         }
         boxcollider.enabled = false;
         //인보크로 5초후 콜라이더 활성화
@@ -69,9 +53,6 @@ public class Cubepuzzle : MonoBehaviour
     {
         boxcollider.enabled = true;
     }
-    
-    
-  
     
     
     }

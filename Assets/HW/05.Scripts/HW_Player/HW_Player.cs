@@ -16,6 +16,7 @@ public class HW_Player : MonoBehaviour
     [SerializeField] private HW_Water _water;
     [SerializeField] private SoundManager _soundManager;
     [SerializeField] private L_Item _item;
+    [SerializeField] private HW_Key _key;
     //파티클 변수
     [SerializeField] public ParticleSystem particle;
     
@@ -663,7 +664,7 @@ public class HW_Player : MonoBehaviour
         }
     }
 
-    // 태그에 닿으면 죽는 애니메이션
+    
     private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("DeathZone"))
@@ -672,20 +673,24 @@ public class HW_Player : MonoBehaviour
                 
                 isdie = true;
                 StartCoroutine(DieCoroutine() );
-
-
-
+                
             }
             
             if (collision.gameObject.tag == "Key")
             {
             
-                _item.gameObject.SetActive(false);
+                _key.GetComponent<HW_Key>().keySound.Play();
+                Invoke("KeySetActive", 0.4f);
             
                 hasKey = true;
             }
         }
 
+
+    private void KeySetActive()
+    {
+        _item.gameObject.SetActive(false);
+    }
         IEnumerator DieCoroutine()
         {
             yield return new WaitForSeconds(3f);
