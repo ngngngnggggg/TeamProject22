@@ -15,7 +15,7 @@ public class HW_Player : MonoBehaviour
     [SerializeField] private GameObject dive; 
     [SerializeField] private HW_Water _water;
     [SerializeField] private SoundManager _soundManager;
-    
+    [SerializeField] private L_Item _item;
     //파티클 변수
     [SerializeField] public ParticleSystem particle;
     
@@ -680,7 +680,7 @@ public class HW_Player : MonoBehaviour
             if (collision.gameObject.tag == "Key")
             {
             
-                Destroy(collision.gameObject);
+                _item.gameObject.SetActive(false);
             
                 hasKey = true;
             }
