@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class HW_Water : MonoBehaviour
 {
+    [SerializeField] private HW_EventArrow[] eventArrow;
     [SerializeField] private HW_Player player;
     [SerializeField] private L_Item item;
     [SerializeField] private SoundManager soundManager;
@@ -88,6 +89,10 @@ public class HW_Water : MonoBehaviour
         {
             Debug.Log("endSwim");
             item.GetComponent<L_Item>().gameObject.SetActive(true);
+            if (player.hasKey == true)
+            {
+               Destroy(GameObject.Find("EventWaterKey"));
+            }
             soundManager.GetComponent<SoundManager>().PlayBGM();
             waterAudio.PlayOneShot(waterClip);
             player.GetComponent<HW_Player>().particle.Stop();
