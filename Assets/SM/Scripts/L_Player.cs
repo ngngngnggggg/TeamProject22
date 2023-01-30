@@ -29,7 +29,7 @@ public class L_Player : MonoBehaviour
     private Animator anim;
     //플레이어 캡슐 콜라이더
     private CapsuleCollider cc;
-
+   
     //점프를 했는지 확인하는 변수
     [Header("점프를 하고 있는지 확인")]
     [SerializeField]
@@ -79,6 +79,7 @@ public class L_Player : MonoBehaviour
     //[SerializeField] private Material enemy3;
     public bool hasKey;
     public bool hasLight;
+    public GameObject L_light;
 
     GameObject nearObject;
 
@@ -585,8 +586,8 @@ public class L_Player : MonoBehaviour
         {
             
                 Destroy(other.gameObject);
-            
-            transform.GetChild(1).gameObject.SetActive(true);
+
+            L_light.SetActive(true);
             hasLight = true;
         }
 
