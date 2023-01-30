@@ -647,7 +647,7 @@ public class HW_Player : MonoBehaviour
     {
         if (other.CompareTag("SavePoint"))
         {
-           
+
             gameMng.GameSave();
             Renderer renderer = other.GetComponentInChildren<Renderer>();
             renderer.material = mat;
@@ -658,7 +658,7 @@ public class HW_Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("SavePoint"))
+        if (other.CompareTag("SavePoint"))
         {
             SavePointPanel.gameObject.SetActive(false);
         }
