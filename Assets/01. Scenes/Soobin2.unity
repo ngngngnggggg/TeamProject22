@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.017657362, g: 0.011063282, b: 0.05104236, a: 1}
+  m_IndirectSpecularColor: {r: 0.017666858, g: 0.011070914, b: 0.051051173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1896,7 +1896,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433713927}
-  m_LocalRotation: {x: 0.08334781, y: 0.0041228062, z: -0.00034482972, w: 0.99651194}
+  m_LocalRotation: {x: 0.08334787, y: 0.0041228053, z: -0.00034482987, w: 0.99651194}
   m_LocalPosition: {x: 32.535065, y: 3, z: 29.706598}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2808,7 +2808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1408598146}
-  m_PathPosition: 0.083858915
+  m_PathPosition: 0.0838589
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -10420,7 +10420,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117624148}
-  m_LocalRotation: {x: 0.08334781, y: 0.0041228062, z: -0.00034482972, w: 0.99651194}
+  m_LocalRotation: {x: 0.08334787, y: 0.0041228053, z: -0.00034482987, w: 0.99651194}
   m_LocalPosition: {x: 32.535065, y: 3, z: 29.706598}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -33067,7 +33067,7 @@ MonoBehaviour:
   rope: {fileID: 1130801076}
   SavePointPanel: {fileID: 0}
   hasKey: 0
-  gameMng: {fileID: 0}
+  gameMng: {fileID: 795191623}
   mat: {fileID: 2100000, guid: 51501eefd60054384985c19917aece74, type: 2}
 --- !u!137 &8708070512678381836
 SkinnedMeshRenderer:

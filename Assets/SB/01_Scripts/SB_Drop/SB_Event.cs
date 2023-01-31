@@ -7,6 +7,7 @@ public class SB_Event : MonoBehaviour
     [SerializeField] private GameObject spawnPointGroup;
     private Transform[] spawnPoints;
     [SerializeField] private GameObject[] drops;
+    
 
     private bool on = false;
 
