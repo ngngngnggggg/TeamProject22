@@ -38,6 +38,7 @@ TagManager:
   - Concrete
   - EndingPoint
   - Wood
+  - ddd
   layers:
   - Default
   - TransparentFX

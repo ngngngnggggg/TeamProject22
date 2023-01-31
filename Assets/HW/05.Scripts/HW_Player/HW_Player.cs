@@ -566,13 +566,16 @@ public class HW_Player : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, -transform.up, out hit, range))
         {
-            if (hit.transform.tag == "Bad")
+            if (text != null)
             {
-                text.text = "Z를 누르면 침대 위에 누울 수 있습니다";
-            }
-            else
-            {
-                text.text = "C를 누르면 어딘가에 올라갈 수 있습니다";
+                if (hit.transform.tag == "Bad")
+                {
+                    text.text = "Z를 누르면 침대 위에 누울 수 있습니다";
+                }
+                else
+                {
+                    text.text = "C를 누르면 어딘가에 올라갈 수 있습니다";
+                }
             }
         }
 

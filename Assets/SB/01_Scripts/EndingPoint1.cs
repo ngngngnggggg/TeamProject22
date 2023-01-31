@@ -21,6 +21,7 @@ public class EndingPoint1 : MonoBehaviour
        {
            image[0].enabled = true; 
            image[1].enabled = true; 
+           PlayerPrefs.DeleteAll();
            yield return new WaitForSeconds(3f);
            SceneManager.LoadScene("SooBin2");
        }
