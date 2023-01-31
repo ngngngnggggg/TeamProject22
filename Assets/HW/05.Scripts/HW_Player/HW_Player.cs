@@ -568,7 +568,7 @@ public class HW_Player : MonoBehaviour
         {
             if (hit.transform.tag == "Bad")
             {
-                text.text = "Z를 누르면 침대에  올라갈 수 있습니다";
+                text.text = "Z를 누르면 침대 위에 누울 수 있습니다";
             }
             else
             {
