@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.PlayerLoop;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
+using TMPro;
 
 
 public class HW_Player : MonoBehaviour
@@ -19,8 +20,8 @@ public class HW_Player : MonoBehaviour
     [SerializeField] private HW_Key _key;
     //파티클 변수
     [SerializeField] public ParticleSystem particle;
-    
-    
+
+    [SerializeField] private TMP_Text text;
     
     
     //플레이어 이동 변수
@@ -563,7 +564,19 @@ public class HW_Player : MonoBehaviour
 
     private void LayDown()
     {
-        if (!islaying && Input.GetKeyDown(KeyCode.Z))
+        if (Physics.Raycast(transform.position, -transform.up, out hit, range))
+        {
+            if (hit.transform.tag == "Bad")
+            {
+                text.text = "Z를 누르면 침대에  올라갈 수 있습니다";
+            }
+            else
+            {
+                text.text = "C를 누르면 어딘가에 올라갈 수 있습니다";
+            }
+        }
+
+                if (!islaying && Input.GetKeyDown(KeyCode.Z))
         {
                   //아래쪽으로 레이 쏴서 태그가 Bad면
             if (Physics.Raycast(transform.position, -transform.up, out hit, range))

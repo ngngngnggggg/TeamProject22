@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CanvasChange : MonoBehaviour
 {
+    [SerializeField]
     Canvas cr;
     
 
