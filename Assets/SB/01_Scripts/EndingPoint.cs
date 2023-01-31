@@ -11,7 +11,7 @@ public class EndingPoint : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            StartCoroutine((NextScene()));
+            StartCoroutine(NextScene());
         }
     }
        
